@@ -1,0 +1,108 @@
+/*
+output.css
+Author: Matthew Katsenes
+Purpose: take TEI text (after parsing it with an XSLT) stylesheet and display it nicely for the browser.
+*/
+
+#text {
+	border: 1px solid black;
+	width: 60%;
+	position: absolute;
+	top: 75px;
+}
+
+.lg {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.l {
+	position: absolute;
+	left: 40px;
+}
+.line_number{
+	
+}
+
+
+.defined_term {
+	color: grey;
+	cursor:help;
+}
+
+#marginalia {
+	width: 30%;
+	position: fixed;
+	top: 20%;
+	left: 65%;
+}
+
+* html #marginalia {
+	position:absolute;
+}
+
+#definitions {
+	border:1px solid black;
+	padding:10px;
+	text-align: left;
+}
+#definitions_heading {
+	text-align: center;
+	font-weight: bold;
+}
+
+#notes {
+	border:1px solid black;
+	padding:10px;
+	text-align: left;
+	font-size: small;
+}
+
+.note {
+	margin-bottom: 10px;
+}
+
+.note_number {
+	font-weight: bold;
+}
+
+#notes_heading {      
+	text-align: center;
+	font-weight: bold;
+}
+
+#title {
+	font-size: x-large;	
+}
+
+#author {
+	font-size: small;
+	margin-bottom: 10px;
+}
+
+.entry {
+	font-size: small;
+	margin-bottom: 10px;
+}
+
+.headword {
+	font-weight: bold;
+}
+
+.part_of_speech {
+	font-style: italic;
+}
+
+#link_knowledge {
+	display: none;
+}
+
+#navigation {
+	border: 1px solid black;
+	width: 60%;
+	position: absolute;
+	top: 300px;
+}

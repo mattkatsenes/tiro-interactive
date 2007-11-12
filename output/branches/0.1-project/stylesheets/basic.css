@@ -1,0 +1,24 @@
+.done	{
+	text-decoration: line-through;
+}
+
+.wip	{
+	font-style: italic;
+}
+
+.not-done	{
+	
+}
+
+.title	{
+	font-size: 120%;
+}
+
+.h2	{
+	font-size: 110%;
+	color: gray;
+}
+
+.note	{
+	font-style: italic;
+}

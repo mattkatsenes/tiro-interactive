@@ -1,0 +1,25 @@
+<!ELEMENT pagesheet (items?, rules)*>
+<!ATTLIST pagesheet xmlns CDATA #IMPLIED>
+
+<!ELEMENT items (group)>
+
+<!ELEMENT group EMPTY >
+<!ATTLIST group 
+   name CDATA #IMPLIED 
+   element CDATA #IMPLIED >
+
+<!ELEMENT rules (link?, count?)*>
+
+<!ELEMENT link EMPTY >
+<!ATTLIST link 
+   type ( unit | range ) #REQUIRED 
+   num CDATA #REQUIRED 
+ >
+ 
+ <!ELEMENT count EMPTY >
+ <!ATTLIST count 
+   type ( element | char ) #REQUIRED 
+   num CDATA #REQUIRED 
+   name CDATA #IMPLIED 
+   namespace CDATA #IMPLIED 
+ >

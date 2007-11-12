@@ -1,0 +1,29 @@
+h1 {
+	color: grey;
+}
+
+.label {
+	font-weight: bold;
+}
+
+.word {
+	color: grey;
+}
+
+.defined {
+	font-style: italic;
+}
+
+.orth {
+	font-weight: bold;
+}
+
+.pos {
+	font-style: italic;
+}
+
+#definition_container
+{
+	background-color: #EEEEEE;
+	width: 60%
+}

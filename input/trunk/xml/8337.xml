@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<TEI>
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title/>
+				<author/>
+				<respStmt>
+					<resp/>
+					<name/>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<p>Prepared for publication using Matthew Katsenes' Annotater 1.0 at http://www.latin4fun.net</p>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Source of the text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+	</teiHeader>
+	
+	<text>		
+		<body>
+			<div n="text">
+			<l xml:id="text.1">miserere nobis</l><l xml:id="text.2">quis sum?</l></div>
+			
+			<div n="glossary">
+			<entry><form><orth>sum, esse, fui, futurus</orth></form><gramGrp><pos>v</pos><gen/><subc> </subc></gramGrp><def>to be, exist; also used to form verb perfect passive tenses with NOM PERF PPL*</def></entry><link targets="#g.sum #text.2.sum?"/></div>
+			
+			<div n="notes">
+			</div>
+		</body>
+	</text>
+</TEI>

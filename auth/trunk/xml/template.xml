@@ -1,0 +1,33 @@
+<TEI>
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title></title>
+				<author></author>
+				<respStmt>
+					<resp></resp>
+					<name></name>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<p>Prepared for publication using Tiro Interactive by Matthew Katsenes at http://www.tiro-interactive.org</p>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Source of the text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+	</teiHeader>
+
+	<text>
+		<body>
+			<div n="text">
+			</div>
+
+			<div n="glossary">
+			</div>
+
+			<div n="notes">
+			</div>
+		</body>
+	</text>
+</TEI>
