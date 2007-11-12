@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<TEI>
+	<teiHeader>
+
+		<fileDesc>
+			<titleStmt>
+				<title>Baucis et Philemon</title>
+				<author>P. Ovidius Naso</author>
+				<editor>Matthew Katsenes and Lisa Moore</editor>
+			</titleStmt>
+			<publicationStmt>
+				<pubPlace>Amherst, MA</pubPlace>
+				<date>2007</date>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Thanks to http://www.thelatinlibrary.net for the source text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+
+		<profileDesc>
+			<creation>
+				<date value="2007-05-31">October 10, 2007</date>
+			</creation>
+			<langUsage>
+				<language ident="la">Latin</language>
+				<language ident="en">English</language>
+				<language ident="gk">Greek</language>
+			</langUsage>
+		</profileDesc>
+	</teiHeader>
+
+	<text>
+		<body>
+			<div n="VIII" type="book" xml:lang="la">
+					<l xml:id="VIII.626" n="626">Iuppiter huc specie mortali cumque parente</l>
+					<l xml:id="VIII.627" n="627">venit Atlantiades positis caducifer alis.</l>
+					<l xml:id="VIII.628" n="628">mille domos adiere locum requiemque petentes,</l>
+					<l xml:id="VIII.629" n="629">mille domos clausere serae; tamen una recepit,</l>
+					<l xml:id="VIII.630" n="630">parva quidem, stipulis et canna tecta palustri,</l>
+					<l xml:id="VIII.631" n="631">sed pia Baucis anus parilique aetate Philemon</l>
+					<l xml:id="VIII.632" n="632">illa sunt annis iuncti iuvenalibus, illa</l>
+					<l xml:id="VIII.633" n="633">consenuere casa paupertatemque fatendo</l>
+					<l xml:id="VIII.634" n="634">effecere levem nec iniqua mente ferendo;</l>
+					<l xml:id="VIII.635" n="635">nec refert, dominos illic famulosne requiras:</l>
+					<l xml:id="VIII.636" n="636">tota domus duo sunt, idem parentque iubentque.</l>
+			</div>
+
+			<div n="glossary">
+			</div>
+
+			<div n="notes" xml:lang="en">
+				<note place="foot" anchored="false" target="#VIII.627" type="editorial" xml:id="VIII.627.n">
+					<foreign xml:lang="la" rend="italics">caducifer = caduceys + fero</foreign>: the one who carries the caduceus.
+				</note>
+				<link targets="#VIII.627 #VIII.627.n" />
+			</div>
+		</body>
+
+	</text>
+
+</TEI>

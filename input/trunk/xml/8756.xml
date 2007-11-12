@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<TEI>
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title/>
+				<author/>
+				<respStmt>
+					<resp/>
+					<name/>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<p>Prepared for publication using Matthew Katsenes' Annotater 1.0 at http://www.latin4fun.net</p>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Source of the text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+	</teiHeader>
+	
+	<text>		
+		<body>
+			<div n="text">
+			<l xml:id="text.1">arma</l><l xml:id="text.2">vir</l></div>
+			
+			<div n="glossary">
+			<entry><form><orth>vir, viri</orth></form><gramGrp><pos>n</pos><gen>m</gen><subc></subc></gramGrp><def>man; husband; hero; person of courage, honor, and nobility;</def></entry><link targets="#g.vir #text.2.vir"/></div>
+			
+			<div n="notes">
+			</div>
+		</body>
+	</text>
+</TEI>

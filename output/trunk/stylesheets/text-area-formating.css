@@ -1,0 +1,19 @@
+
+#addTextAreaButton
+{
+position: relative; top: -3em;
+}
+
+.textbox-test
+{
+background-color: #EBF0FF;
+border: 1px solid black;
+margin: 2px;
+color: rgb(119, 119, 119);
+padding-left: 10px;
+height: 20px; width: 400px;
+font-size: smaller;
+font-family: serif;
+font-style: normal;
+visibility: hidden;
+}

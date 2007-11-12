@@ -1,0 +1,186 @@
+/*
+output-ajaxcss
+Author: Matthew Katsenes
+Modifier: Drew Buschhorn
+Purpose: take TEI text (after parsing it with an XSLT stylesheet) and display it nicely for the browser.
+
+//This css design should resemble Pharr's Aeneid (Bolchazy-Carducci).
+This design should be useful to scaled learned of the text.
+*/
+
+#text {
+}
+
+.lg {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.l {
+	position: relative;
+	left: 40px;
+	font-style: italic;
+}
+.line_number{
+	position: absolute;
+}
+
+
+.defined_term {
+	font-style: normal;
+	cursor:help;
+}
+
+#marginalia {
+}
+
+
+
+#definitions {
+	padding: 0px 10px 0px 10px;
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+
+#definitions_heading {
+	text-align: center;
+	font-weight: bold;
+}
+
+#notes {
+/*	border-bottom:1px solid black; */
+	padding:10px;
+	text-align: left;
+	font-size: small;
+}
+
+.note {
+	margin-bottom: 10px;
+}
+
+.note_number {
+	font-weight: bold;
+}
+
+#notes_heading {      
+	text-align: center;
+	font-weight: bold;
+}
+
+#title {
+	font-size: x-large;
+	text-align: center;
+}
+
+#author {
+	font-size: small;
+	margin-bottom: 10px;
+	text-align: center;
+}
+
+.speaker {
+	position: relative;
+	left: 40px;
+	font-weight: bold;
+}
+
+.entry {
+	font-size: small;
+	margin-bottom: 10px;	
+}
+
+#definitions, #definitions_heading
+{
+display: none;
+
+}
+
+.headword {
+	font-weight: bold;
+}
+
+.part_of_speech {
+	font-style: italic;
+}
+
+br {
+//	clear: left;
+}
+
+#navigation {
+	border: 1px solid black;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/*
+#tempDefDiv{
+	position: absolute;
+	top: 70px;
+	right: 50px;
+	float: right;
+	text-align: left;
+	width: 15%;
+	overflow: auto;
+	font-size: small;
+	}
+
+.headword{
+font-family: arial;
+font-size: smaller;
+}
+
+.tempDefHR { background-color: black; color: black;}
+*/
+
+#container .column {
+position: relative;
+float: left;
+padding: 1%;
+outline: 1px solid black;
+min-height: 200px;
+}
+
+#left-col {
+  background-color: #EBF0FF;
+  width: 19%;
+  margin-left: 1px;
+}
+
+#left-col textarea {
+  background-color: #EBF0FF;
+  border: none;
+  min-height: 190px;
+  width: 100%;
+  font-family: serif, sans-serif;
+  font-size: smaller;
+}
+
+#center-col {
+   width:  49%;
+  margin-left: 3%;
+  margin-right:3%;
+}
+
+#right-col {
+  width: 19%;
+  float: right;
+}
+
+
+#header {
+padding: 1%;
+margin: 1px;
+outline: 1px solid black;
+clear: both;
+}
+
+#footer {
+padding: 1%;
+margin: 1px;
+outline: 1px solid black;
+clear: both;
+}

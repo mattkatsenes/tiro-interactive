@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<TEI>
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title/>
+				<author/>
+				<respStmt>
+					<resp/>
+					<name/>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<p>Prepared for publication using Matthew Katsenes' Annotater 1.0 at http://www.latin4fun.net</p>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Source of the text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+	</teiHeader>
+	
+	<text>		
+		<body>
+			<div n="text">
+			<l xml:id="text.1">contactum nullis ante cupidinibus.</l><l xml:id="text.2"/></div>
+			
+			<div n="glossary">
+			<entry><form><orth>contingit, contingere, contingit, contactus</orth></form><gramGrp><pos>est</pos><gen/><subc>V IMPERS</subc></gramGrp><def>it happens, it turns out; (PERF) it came to pass;</def></entry><link targets="#g.contingit #text.1.contactum"/><entry><form><orth>cupido, cupidinis</orth></form><gramGrp><pos>n</pos><gen>c</gen><subc></subc></gramGrp><def>desire/love/wish/longing (passionate); lust; greed, appetite; desire for gain;*</def></entry><link targets="#g.cupido #text.1.cupidinibus."/></div>
+			
+			<div n="notes">
+			</div>
+		</body>
+	</text>
+</TEI>

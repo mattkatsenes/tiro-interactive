@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<TEI>
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title/>
+				<author/>
+				<respStmt>
+					<resp/>
+					<name/>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<p>Prepared for publication using Matthew Katsenes' Annotater 1.0 at http://www.latin4fun.net</p>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Source of the text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+	</teiHeader>
+	
+	<text>		
+		<body>
+			<div n="text">
+			<l xml:id="text.1">;asldkfj</l><l xml:id="text.2">sum</l></div>
+			
+			<div n="glossary">
+			</div>
+			
+			<div n="notes">
+			</div>
+		</body>
+	</text>
+</TEI>

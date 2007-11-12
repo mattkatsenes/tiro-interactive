@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<cocoon>
+	<title>Index!</title>
+	<body>
+		<version number="0.5">
+			<ul title="Output Side">
+				<li done="yes">XSLT + CSS for Pharr style.</li>
+			</ul>
+			<ul title="Input">
+				<li done="yes">User typed input poetry lines.</li>
+			</ul>
+		</version>
+		<version number="1.0">
+			<note>Version 1.0 is the minimum acceptable version for MAT Project submission.</note>
+			<ul title="Output Side">
+				<li done="no">Output each style to PDF usuing Apache FOP (via cocoon).</li>
+			</ul>
+			<ul title="Input Side">
+				<li done="no"></li>
+			</ul>
+		</version>
+		<version number="2.0">
+			<note>This is a wish list only.  Total pipe dream.</note>
+			<ul title="Pipe Dreams">
+				<li done="no">Output by sense-unit.</li>
+				<li done="no">Auto-create a glossary.</li>
+				<li done="no">SCANSION!!!</li>
+				<li done="no">User (student) notes.</li>
+			</ul>
+		</version>
+	</body>
+</cocoon>
