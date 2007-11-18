@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+
+<com:THead Title="tiro interactive">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="content-language" content="en"/>
+
+<link href="css/style.css" rel="stylesheet" type="text/css"/>
+
+</com:THead>
+
+<body>
+
+<div id="pageHeader">
+<div id="logo"><img src="images/tiro-quill1s.jpg" /></div>
+<div id="welcome"><com:TContentPlaceHolder ID="welcome" /></div>
+</div>
+
+<div id="sidebar">
+<com:TContentPlaceHolder ID="sidebar" />
+</div>
+
+<div id="mainColumn">
+
+<div id="menubar">
+<com:TContentPlaceHolder ID="menubar" />
+</div>
+
+<div id="guts">
+<com:TContentPlaceHolder ID="guts" />
+</div>
+
+</div>
+<div id="credits">
+<ul>
+	<li>Copyright 2007 Matthew Katsenes</li>
+	<li>Powered By <a href="http://www.pradosoft.com" target="_blank">PRADO</a></li>
+</ul>
+</div>
+</body>
+</html>

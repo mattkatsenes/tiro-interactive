@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<application id="test" mode="Debug">
+
+  <paths>
+    <using namespace="Application.Templates.*" />
+    <using namespace="Application.Database.*" />
+  </paths>
+
+	<modules>
+		<module id="db" class="System.Data.TDataSourceConfig">
+			<database ConnectionString="sqlite:protected/Data/users.db" />
+		</module>
+		<module id="users" class="System.Security.TDbUserManager" UserClass="Application.Engine.TiroUser" ConnectionID="db" />
+		<module id="auth" class="System.Security.TAuthManager" UserManager="users" LoginPage="Login" />
+
+		<module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db" />
+	</modules>
+
+<!-- configuration for available services -->
+	<services>
+		<service id="page" class="TPageService" DefaultPage="Home" />
+	</services>
+
+</application>
