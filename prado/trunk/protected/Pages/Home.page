@@ -1,0 +1,21 @@
+<%@ MasterClass="Layout" %>
+
+<!-- Top Menu of options -->
+<com:TContent ID="menubar" >
+	<ul>
+		<li><a href="index.php?page=About">About Tiro</a></li>
+		<li><a href="index.php?page=Login">Login</a></li>
+		<li><a href="index.php?page=CreateUser">Create User</a></li>
+	</ul>
+</com:TContent >
+
+<!-- The sidebar -->
+<com:TContent ID="sidebar">
+Stuff goes here.
+</com:TContent>
+
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+The Meat.
+</com:TContent >
