@@ -1,0 +1,41 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The sidebar -->
+<com:TContent ID="sidebar">
+Stuff goes here.
+</com:TContent>
+
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+
+<com:TForm ID="loginForm">
+User Name: <com:TTextBox ID="username" AutoTrim="True"/>
+<com:TRequiredFieldValidator
+    ControlToValidate="username"
+    ErrorMessage="Please provide a username."
+    Display="Dynamic" />
+<com:TCustomValidator
+    ControlToValidate="username"
+    ErrorMessage="Sorry, your username is taken by someone else. Please choose another username."
+    OnServerValidate="checkUsername"
+    Display="Dynamic" />
+<br />
+
+Password: <com:TTextBox ID="password" TextMode="Password"/><br />
+Re-type Password: <com:TTextBox ID="password2" TextMode="Password"/>
+<com:TCompareValidator
+    ControlToValidate="password"
+    ControlToCompare="password2"
+    ErrorMessage="Passwords do not match."
+    Display="Dynamic" />
+<br />
+
+<com:TButton ID="Submit"
+	Text="Create"
+	CausesValidation="True"
+	ButtonType="Submit"
+	OnClick="createButtonClicked" />
+</com:TForm>
+
+</com:TContent >
