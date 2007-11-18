@@ -13,7 +13,16 @@
 
 <div id="pageHeader">
 <div id="logo"><img src="images/tiro-quill1s.jpg" /></div>
-<div id="welcome"><com:TContentPlaceHolder ID="welcome" /></div>
+<div id="welcome">
+<com:TMultiView ID="WelcomeMultiView">
+<com:TView ID="WelcomeGuest">
+Please login.
+</com:TView>
+<com:TView ID="WelcomeUser">
+Welcome, username (fix this).
+</com:TView>
+</com:TMultiView>
+</div>
 </div>
 
 <div id="sidebar">
@@ -23,7 +32,23 @@
 <div id="mainColumn">
 
 <div id="menubar">
-<com:TContentPlaceHolder ID="menubar" />
+<com:TMultiView ID="MenubarMultiView">
+<com:TView ID="MenubarGuest">
+	<ul>
+		<li><a href="index.php?page=About">About Tiro</a></li>
+		<li><a href="index.php?page=UserManagement.Login">Login</a></li>
+		<li><a href="index.php?page=UserManagement.Create">Create User</a></li>
+	</ul>
+</com:TView>
+<com:TView ID="MenubarUser">
+	<ul>
+		<li><a href="index.php?page=About">About Tiro</a></li>
+		<li><a href="index.php?page=UserManagement.Preferences">Edit Preferences</a></li>
+		<li><a href="index.php?page=UserManagement.Logout">Logout</a></li>
+	</ul>
+
+</com:TView>
+</com:TMultiView>
 </div>
 
 <div id="guts">

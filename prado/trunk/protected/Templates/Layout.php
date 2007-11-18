@@ -6,6 +6,12 @@ class Layout extends TTemplateControl
 	{
 		parent::__construct();
 	}
+
+	public function onLoad ($param)
+	{
+		$this->MenubarMultiView->activeView=$this->MenubarGuest;
+		$this->WelcomeMultiView->activeView=$this->WelcomeGuest;
+	}
 }
 
 ?>

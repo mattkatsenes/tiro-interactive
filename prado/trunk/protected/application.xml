@@ -12,7 +12,7 @@
 			<database ConnectionString="sqlite:protected/Data/users.db" />
 		</module>
 		<module id="users" class="System.Security.TDbUserManager" UserClass="Application.Engine.TiroUser" ConnectionID="db" />
-		<module id="auth" class="System.Security.TAuthManager" UserManager="users" LoginPage="Login" />
+		<module id="auth" class="System.Security.TAuthManager" UserManager="users" LoginPage="UserManagement.Login" />
 
 		<module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db" />
 	</modules>
