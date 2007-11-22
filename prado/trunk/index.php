@@ -1,6 +1,6 @@
 <?php
 
-$frameworkPath='/Library/prado/framework/prado.php';
+$frameworkPath='/etc/prado/framework/prado.php';
 
 // The following directory checks may be removed if performance is required
 $basePath=dirname(__FILE__);
