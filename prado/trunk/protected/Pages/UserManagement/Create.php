@@ -19,6 +19,8 @@ class Create extends TPage
 
             // saves to the database via Active Record mechanism
             $userRecord->save();
+            
+            $this->Application->getModule('auth')->login($this->username->Text,$this->password->Text);
 
             // redirects the browser to the homepage
             $this->Response->redirect($this->Service->DefaultPageUrl);

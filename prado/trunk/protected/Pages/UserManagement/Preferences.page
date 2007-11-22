@@ -1,0 +1,15 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The sidebar -->
+<com:TContent ID="sidebar">
+Stuff goes here.
+</com:TContent>
+
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+
+Preferences for <%= $this->Application->getModule('auth')->User->Name %>:
+
+
+</com:TContent >
