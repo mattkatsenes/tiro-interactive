@@ -18,6 +18,7 @@ class Login extends TPage {
             $url=$this->Application->getModule('auth')->ReturnUrl;
             if(empty($url))  // the user accesses the login page directly
                 $url=$this->Service->DefaultPageUrl;
+           	$this->Application->getModule('auth')->User->IsGuest=false;
             $this->Response->redirect($url);
 		}
 	}

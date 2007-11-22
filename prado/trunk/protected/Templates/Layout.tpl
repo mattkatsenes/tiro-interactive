@@ -10,7 +10,7 @@
 </com:THead>
 
 <body>
-
+<com:TForm>
 <div id="pageHeader">
 <div id="logo"><img src="images/tiro-quill1s.jpg" /></div>
 <div id="welcome">
@@ -19,7 +19,7 @@
 Please login.
 </com:TView>
 <com:TView ID="WelcomeUser">
-Welcome, username (fix this).
+Welcome,  <%= $this->Application->getModule('auth')->User->Name %>
 </com:TView>
 </com:TMultiView>
 </div>
@@ -44,7 +44,8 @@ Welcome, username (fix this).
 	<ul>
 		<li><a href="index.php?page=About">About Tiro</a></li>
 		<li><a href="index.php?page=UserManagement.Preferences">Edit Preferences</a></li>
-		<li><a href="index.php?page=UserManagement.Logout">Logout</a></li>
+		<li><com:TLinkButton Text="Logout" OnCommand="logoutButtonClicked" /></li>
+
 	</ul>
 
 </com:TView>
@@ -59,8 +60,9 @@ Welcome, username (fix this).
 <div id="credits">
 <ul>
 	<li>Copyright 2007 Matthew Katsenes</li>
-	<li>Powered By <a href="http://www.pradosoft.com" target="_blank">PRADO</a></li>
+	<li>Powered By <a href="http://www.pradosoft.com" target="_blank">PRADO</a>, <a href="http://www.php.net" target="_blank">PHP</a>, <a href="http://tomcat.apache.org" target="_blank">Tomcat</a>, and <a href="http://cocoon.apache.org" target="_blank">Cocoon</a></li>
 </ul>
 </div>
+</com:TForm>
 </body>
 </html>

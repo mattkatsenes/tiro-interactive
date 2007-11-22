@@ -9,7 +9,6 @@ Stuff goes here.
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
 
-<com:TForm ID="loginForm">
 User Name: <com:TTextBox ID="username" AutoTrim="True"/>
 <com:TRequiredFieldValidator ControlToValidate="username"
     ErrorMessage="Please provide your User Name."
@@ -29,6 +28,5 @@ Password: <com:TTextBox ID="password" TextMode="Password"/>
 	CausesValidation="True"
 	ButtonType="Submit"
 	OnClick="loginButtonClicked" />
-</com:TForm>
 
 </com:TContent >
