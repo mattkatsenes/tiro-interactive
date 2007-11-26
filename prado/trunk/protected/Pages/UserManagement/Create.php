@@ -15,7 +15,7 @@ class Create extends TPage
             // populates a UserRecord object with user inputs
             $userRecord=new UserRecord;
             $userRecord->username=$this->username->Text;
-            $userRecord->password=$this->password->Text;
+            $userRecord->password=md5($this->password->Text);
 
             // saves to the database via Active Record mechanism
             $userRecord->save();

@@ -2,7 +2,25 @@
 
 <!-- The sidebar -->
 <com:TContent ID="sidebar">
-Stuff goes here.
+<com:TMultiView ID="SidebarMultiView">
+<com:TView ID="SidebarGuest">
+Please login to view text management options.
+</com:TView>
+<com:TView ID="SidebarUser">
+<b>My Texts:</b>
+<ul>
+ 
+<%%
+var_dump(TextRecord::finder()->findAll());
+
+foreach (TextRecord::finder()->findByAuthor_id($this->username) as $text) 
+	echo "hello" . $text->title;
+%>
+	<li>Text Name - view | edit | publish</li>
+	<li><a href="index.php?page=TextManagement.NewText">New Text</a></li>
+</ul>
+</com:TView>
+</com:TMultiView>
 </com:TContent>
 
 

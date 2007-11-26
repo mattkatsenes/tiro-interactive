@@ -5,7 +5,7 @@ class Login extends TPage {
 	public function validateUser($sender,$param)
     {
         $authManager=$this->Application->getModule('auth');
-        if(!$authManager->login($this->username->Text,$this->password->Text))
+        if(!$authManager->login($this->username->Text,md5($this->password->Text)))
             $param->IsValid=false;  // tell the validator that validation fails
     }
 
