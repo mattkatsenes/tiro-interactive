@@ -11,6 +11,16 @@
 		<module id="db" class="System.Data.TDataSourceConfig">
 			<database ConnectionString="sqlite:protected/Data/users.db" />
 		</module>
+
+		<module id="db_tiro" class="System.Data.TDataSourceConfig">
+			<database ConnectionString="sqlite:protected/Data/tiro.db" />
+		</module>
+
+		
+		<module id="db2" class="System.Data.TDataSourceConfig">
+			<database ConnectionString="mysql:unix_socket=/tmp/mysql.sock;dbname=prado_auth" username="mkatsenes" password="whois" />
+		</module>
+		
 		<module id="users" class="System.Security.TDbUserManager" UserClass="Application.Engine.TiroUser" ConnectionID="db" />
 		<module id="auth" class="System.Security.TAuthManager" UserManager="users" LoginPage="UserManagement.Login" />
 
