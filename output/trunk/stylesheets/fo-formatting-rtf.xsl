@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format">
+                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+			 xmlns:jfor="http://www.jfor.org/xmlns/2001/stylesheet"
+			 >
   
   <xsl:output method="xml"
               version="1.0"
@@ -42,9 +44,6 @@
 
 	<xsl:attribute name="font-family">Times</xsl:attribute>
 	<xsl:attribute name="color">blue</xsl:attribute>
-	<xsl:attribute name="start-indent">2in</xsl:attribute>
-	<xsl:attribute name="space-after">0.1in</xsl:attribute>
-	<xsl:attribute name="text-align">justify</xsl:attribute>
 	
 	<xsl:apply-templates select="@*|node()"/>
 </xsl:element>
@@ -53,11 +52,7 @@
 <xsl:template match="*[@class='defined_term']">
 <xsl:element name="{name()}">
 
-	<xsl:attribute name="font-family">Times</xsl:attribute>
-	<xsl:attribute name="color">blue</xsl:attribute>
-	<xsl:attribute name="font-style">italics</xsl:attribute>
-	<xsl:attribute name="start-indent">2in</xsl:attribute>
-	<xsl:attribute name="text-align">justify</xsl:attribute>
+	<xsl:attribute name="font-style">italic</xsl:attribute>
 	
 	<xsl:apply-templates select="@*|node()"/>
 </xsl:element>
@@ -106,6 +101,10 @@
 <xsl:attribute name="font-size">8pt</xsl:attribute>
 <!--	<xsl:apply-templates select="node()"/> -->
 </xsl:template>
+
+<jfor:stylesheet default="Normal">
+<jfor:style name="Normal" font-size="10pt" font-family="Helvetica"/> 
+</jfor:stylesheet> 
 
 
 </xsl:stylesheet>
