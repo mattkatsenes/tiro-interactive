@@ -38,6 +38,7 @@
 				<map:transform src="stylesheets/tei2html.xsl"/>
 				<map:transform src="stylesheets/html2fo.xsl"/>
 				<map:transform src="stylesheets/fo-formatting-rtf.xsl"/>
+				<map:transform src="stylesheets/inherit-attributes.xsl"/>
 				<map:serialize type="fo2rtf"/>
 			</map:match>			
 			<map:match pattern="tei(*).xrtf">
@@ -48,6 +49,7 @@
 				<map:transform src="stylesheets/tei2html.xsl"/>
 				<map:transform src="stylesheets/html2fo.xsl"/>
 				<map:transform src="stylesheets/fo-formatting-rtf.xsl"/>
+				<map:transform src="stylesheets/inherit-attributes.xsl"/>
 				<map:serialize type="xml"/>
 			</map:match>			
 
@@ -71,6 +73,7 @@
 				<map:transform src="stylesheets/tei2html.xsl"/>
 				<map:transform src="stylesheets/html2fo.xsl"/>
 				<map:transform src="stylesheets/fo-formatting.xsl"/>
+				<map:transform src="stylesheets/inherit-attributes.xsl"/>
 				<map:serialize type="xml"/>
 			</map:match>
 		
