@@ -24,7 +24,6 @@ class NewText extends TPage
 		$newText = new TextRecord();
 		$newText->text_id = rand();
 		$newText->author_id = $this->Application->getModule('auth')->User->Name;
-		$newText->create_time = time();
 		$newText->title = $this->Title->Text;
 		$newText->status = 0;		
 		
