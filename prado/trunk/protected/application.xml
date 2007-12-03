@@ -18,13 +18,13 @@
 
 		
 		<module id="db2" class="System.Data.TDataSourceConfig">
-			<database ConnectionString="mysql:unix_socket=/tmp/mysql.sock;dbname=prado_auth" username="mkatsenes" password="whois" />
+			<database ConnectionString="mysql:unix_socket=/var/mysql/mysql.sock;dbname=fk_test" username="mkatsenes" password="whois" />
 		</module>
 		
-		<module id="users" class="System.Security.TDbUserManager" UserClass="Application.Engine.TiroUser" ConnectionID="db" />
+		<module id="users" class="System.Security.TDbUserManager" UserClass="Application.Engine.TiroUser" ConnectionID="db2" />
 		<module id="auth" class="System.Security.TAuthManager" UserManager="users" LoginPage="UserManagement.Login" />
 
-		<module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db" />
+		<module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db2" />
 	</modules>
 
 <!-- configuration for available services -->

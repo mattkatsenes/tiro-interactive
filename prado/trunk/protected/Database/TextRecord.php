@@ -8,7 +8,6 @@ class TextRecord extends TActiveRecord
 
 	public $text_id;
 	public $author_id;
-	public $create_time;
 	public $title;
 	public $status;
 
