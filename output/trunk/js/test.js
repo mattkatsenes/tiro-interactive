@@ -22,7 +22,7 @@ var defColumn2 = new Array();
 		defColumn2.push(defCollection.pop());
 
 	var newDivCol1 	= document.createElement('div');
-newDivCol1.id	= "defCol1";
+		newDivCol1.id	= "defCol1";
 		while(defColumn2.length > 0 )
 	   	newDivCol1.appendChild(defColumn2.pop());
 //	newDivCol1.appendChild(document.createElement('br'));	
