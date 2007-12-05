@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xsl:stylesheet version="1.0"
                 xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                xmlns:fo="http://www.w3.org/1999/XSL/Format"
-			 xmlns:jfor="http://www.jfor.org/xmlns/2001/stylesheet"
-			 >
+                xmlns:fo="http://www.w3.org/1999/XSL/Format">
   
   <xsl:output method="xml"
               version="1.0"
@@ -27,11 +25,5 @@
 </xsl:element>										//Close completed copy of original element, but with new style attributes.
 </xsl:template>
 -->
-	    
-<xsl:template match="@font-size">
-<xsl:copy />
-<xsl:attribute name="font-size">8pt</xsl:attribute>
-<!--	<xsl:apply-templates select="node()"/> -->
-</xsl:template>
 
 </xsl:stylesheet>

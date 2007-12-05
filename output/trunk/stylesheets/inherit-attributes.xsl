@@ -123,6 +123,9 @@ inherit-attributes.xsl and related tests added
 			or name()='hyphenate'
 			or name()='text-align'
 			or name()='master-reference'
+			or name()='space-after'
+			or name()='space-before'
+			or name()='layout'
         )]"/>
 	   <!--Exclude additional attributes that should not get passed to children -Drew - 11/30/07
 		or name()="class/id/ writing-mode/hyphenate/text-align/master-reference";
