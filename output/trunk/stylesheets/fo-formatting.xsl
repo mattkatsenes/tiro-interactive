@@ -180,6 +180,7 @@
 		<xsl:apply-templates select="	@*[not(
 															name()='font-family'
 															or name()='font-size'
+															or name()='color'
 															)														
 														]|node()"/>
 	</xsl:element>
