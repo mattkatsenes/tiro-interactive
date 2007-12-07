@@ -1,0 +1,6 @@
+<pagesheet xmlns="http://apache.org/cocoon/paginate/1.0">
+	<rules>
+		<count type="element" name="l" num="15"/>
+		<link type="unit" num="1"/>
+	</rules>
+</pagesheet>
