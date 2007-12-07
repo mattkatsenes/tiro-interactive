@@ -8,8 +8,8 @@
               encoding="utf-8"
               indent="yes"/>
 		    
-<xsl:template match="@*|node()">
-  <xsl:copy>
+<xsl:template match="@*|node()">	<!--		This copies all the document and it's attributes, remember that -->
+  <xsl:copy>									<!--  	Remember that attributes are not copied by default without an "@*" -->
     <xsl:apply-templates  select="@*|node()"/>
   </xsl:copy>
 </xsl:template>
