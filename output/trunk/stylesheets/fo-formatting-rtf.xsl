@@ -54,7 +54,7 @@
 	<xsl:element name="{name()}">
 		<xsl:apply-templates select="@*|node()" />
 	</xsl:element>																									<!-- The section above echos out the attributes/content of lg_blocks	-->
-	<fo:block jfor-class="Normal" role="br" class="extra-space">&#160;</fo:block>		<!-- this line adds an extra line after each section for readability.		-->
+	<xsl:call-template name="make-space" /><!-- this line adds an extra line before notes-heading for readability.	-->
 </xsl:template>
 <!--	++++++++++	-->
 
@@ -70,7 +70,7 @@
 
 <!-- Note-Table section -->
 <xsl:template match="*[@id='notes_heading']">
-<fo:block jfor-class="Normal" role="br" class="extra-space">&#160;</fo:block>			<!-- this line adds an extra line before notes-heading for readability.	-->
+		<xsl:call-template name="make-space" /><!-- this line adds an extra line before notes-heading for readability.	-->
 	<xsl:element name="{name()}">
 		<xsl:apply-templates select="@*|node()" />
 	</xsl:element>
@@ -81,5 +81,8 @@
 </xsl:template>
 <!--	++++++++++	-->
 
+<xsl:template name="make-space">
+<fo:block jfor-class="Normal" role="br" class="extra-space">&#160;</fo:block>
+</xsl:template>
 
 </xsl:stylesheet>
