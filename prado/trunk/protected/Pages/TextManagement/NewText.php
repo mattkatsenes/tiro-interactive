@@ -2,22 +2,6 @@
 
 class NewText extends TPage
 {
-	public function onLoad($param)
-    {
-	    $authManager=$this->Application->getModule('auth');
-		
-		$logged_in = !$authManager->User->IsGuest;
-		
-		if($logged_in)
-		{
-			$this->SidebarMultiView->ActiveView=$this->SidebarUser;
-		}
-		else
-		{
-			$this->SidebarMultiView->ActiveView=$this->SidebarGuest;
-		}
-    }
-
     
 	public function textCreate($sender, $param)
 	{

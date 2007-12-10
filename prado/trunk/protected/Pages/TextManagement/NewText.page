@@ -1,22 +1,5 @@
 <%@ MasterClass="Layout" %>
 
-<!-- The sidebar -->
-<com:TContent ID="sidebar">
-<com:TMultiView ID="SidebarMultiView">
-<com:TView ID="SidebarGuest">
-Some error has occurred.. you shouldn't see this.
-</com:TView>
-<com:TView ID="SidebarUser">
-<b>My Texts:</b>
-<ul>
-	<li>Text Name - view | edit | publish</li>
-	<li><a href="index.php?page=TextManagement.NewText">New Text</a></li>
-</ul>
-</com:TView>
-</com:TMultiView>
-</com:TContent>
-
-
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
 Title: <com:TTextBox ID="Title" />
