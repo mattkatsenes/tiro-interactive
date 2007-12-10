@@ -9,16 +9,14 @@ Please login to view text management options.
 <com:TView ID="SidebarUser">
 <b>My Texts:</b>
 
-<%%
-var_dump(UserRecord::finder()->findAll());
-echo "<br><br>";
-var_dump(TextRecord::finder()->findAll());
-%>
-
-<com:TScaffoldView RecordClass="UserRecord" />
 
 <ul>
-	<li>Text Name - view | edit | publish</li>
+<%%
+foreach($this->texts as $text)
+{
+	echo "<li>$text->title | <a href=\"index.php?page=TextManagement.View&id=$text->text_id\">view</a> |  <a href=\"index.php?page=TextManagement.Edit&id=$text->text_id\">edit</a> |  <a href=\"index.php?page=TextManagement.Publish&id=$text_id\">publish</a></li>";
+}
+%>
 	<li><a href="index.php?page=TextManagement.NewText">New Text</a></li>
 </ul>
 </com:TView>

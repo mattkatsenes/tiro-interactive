@@ -21,10 +21,10 @@
 			<database ConnectionString="mysql:unix_socket=/var/mysql/mysql.sock;dbname=fk_test" username="mkatsenes" password="whois" />
 		</module>
 		
-		<module id="users" class="System.Security.TDbUserManager" UserClass="Application.Engine.TiroUser" ConnectionID="db2" />
+		<module id="users" class="System.Security.TDbUserManager" UserClass="Application.Engine.TiroUser" ConnectionID="db_tiro" />
 		<module id="auth" class="System.Security.TAuthManager" UserManager="users" LoginPage="UserManagement.Login" />
 
-		<module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db2" />
+		<module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db_tiro" />
 	</modules>
 
 <!-- configuration for available services -->
