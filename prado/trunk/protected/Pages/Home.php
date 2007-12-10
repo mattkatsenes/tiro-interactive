@@ -16,6 +16,7 @@ class Home extends TPage {
 			$this->SidebarMultiView->ActiveView=$this->SidebarUser;
 			$this->username = $authManager->User->Name;
 			$userRecord = UserRecord::finder()->findByUsername($this->username);
+			$this->texts = TextRecord::finder()->findAllByAuthor_id($this->username);
 		}
 		else
 		{
