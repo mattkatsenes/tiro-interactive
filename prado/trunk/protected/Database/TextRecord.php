@@ -16,7 +16,7 @@ class TextRecord extends TActiveRecord
 		return parent::finder($className);
 	}
 
-	public $author; //holds an UserRecord
+	public $author; // holds an UserRecord
 
 	public static $RELATIONS=array
 	(

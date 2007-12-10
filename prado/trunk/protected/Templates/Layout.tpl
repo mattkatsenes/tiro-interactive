@@ -16,40 +16,28 @@
 <div id="welcome">
 <com:TMultiView ID="WelcomeMultiView">
 <com:TView ID="WelcomeGuest">
-Please login.
+Please <a href="index.php?page=UserManagement.Login">login</a>.
 </com:TView>
 <com:TView ID="WelcomeUser">
 Welcome,  <%= $this->Application->getModule('auth')->User->Name %>
+<br />
+<com:TLinkButton Text="Logout" OnCommand="logoutButtonClicked" />
 </com:TView>
 </com:TMultiView>
 </div>
 </div>
 
 <div id="sidebar">
+<%= $this->sideBar() %>
 <com:TContentPlaceHolder ID="sidebar" />
 </div>
 
 <div id="mainColumn">
 
 <div id="menubar">
-<com:TMultiView ID="MenubarMultiView">
-<com:TView ID="MenubarGuest">
-	<ul>
-		<li><a href="index.php?page=About">About Tiro</a></li>
-		<li><a href="index.php?page=UserManagement.Login">Login</a></li>
-		<li><a href="index.php?page=UserManagement.Create">Create User</a></li>
-	</ul>
-</com:TView>
-<com:TView ID="MenubarUser">
-	<ul>
-		<li><a href="index.php?page=About">About Tiro</a></li>
-		<li><a href="index.php?page=UserManagement.Preferences">Edit Preferences</a></li>
-		<li><com:TLinkButton Text="Logout" OnCommand="logoutButtonClicked" /></li>
-
-	</ul>
-
-</com:TView>
-</com:TMultiView>
+<ul>
+<%= $this->menuBar() %>
+</ul>
 </div>
 
 <div id="guts">

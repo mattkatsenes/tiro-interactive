@@ -8,17 +8,20 @@ class UserRecord extends TActiveRecord
 
 	public $username;
 	public $password;
-
+	public $perm;
+	
 	public static function finder($className=__CLASS__)
 	{
 		return parent::finder($className);
 	}
 
-    public $texts=array(); //holds an array of TextRecord
-
+    public $texts=array(); // holds an array of TextRecord
+    public $newsItems=array(); // holds an array of NewsItemRecord
+    
     public static $RELATIONS=array
     (
         'texts' => array(self::HAS_MANY, 'TextRecord'),
+    	'newsItems' => array(self::HAS_MANY, 'NewsItemRecord'),
     );
 }
 ?>
