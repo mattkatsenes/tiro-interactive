@@ -1,36 +1,76 @@
 <?php
 
+/**
+ * The default template for the whole project.
+ * 
+ * This template wraps around every page.  It provides
+ * a header, nav-bar, and side-bar for each page.
+ * It's built on @link http://www.pradosoft.com Prado PHP Framework.
+ * 
+ * @author Matthew Katsenes <psalakanthos@gmail.com>
+ * @copyright Copyright (c) 2007 Matthew Katsenes
+ * @package tiro-input
+ * @subpackage layout
+ * @version tiro-input side v. 0.1
+ */
 class Layout extends TTemplateControl
 {
+	/**
+	 * Layout Constructor.
+	 * 
+	 * Calls the parent constructor.
+	 */
 	public function __construct()
 	{
 		parent::__construct();
 	}
 
+	/**
+	 * Set the TMultiView for logged-in or not.
+	 * 
+	 * This changes the login state in the welcome div.
+	 * @param mixed $param I've no idea what this actually is.
+	 */
 	public function onLoad ($param)
 	{
 		$authManager=$this->Application->getModule('auth');
-		
 		$logged_in = !$authManager->User->IsGuest;
 		
 		if($logged_in)
-		{
-//			$this->MenubarMultiView->activeView=$this->MenubarUser;
 			$this->WelcomeMultiView->activeView=$this->WelcomeUser;
-		}
 		else
-		{
-//			$this->MenubarMultiView->activeView=$this->MenubarGuest;
 			$this->WelcomeMultiView->activeView=$this->WelcomeGuest;
-		}
 	}
 	
-	/*
-	 * @author Matthew Katsenes <psalakanthos@gmail.com>
+	/**
+	 * Create the MenuBar.
+	 * 
+	 * Parse the $pageService to see what page we're on.  Then use that info
+	 * and the $logged_in state to create the <li>'s for the MenuBar.
+	 * 
+	 * So, if we're logged in and on the Home page, the MenuBar will hold all
+	 * the items from $MENUBAR_ITEMS_USER except the one with RequestedPagePath
+	 * Home.
+	 * 
+	 * @staticvar array $MENUBAR_ITEMS_GUEST An array of descriptive_title => prado_path for guest options.
+	 * @staticvar array $MENUBAR_ITEMS_USER An array of descriptive_title => prado_path for user options. 
 	 * @return string The <li>'s for the MenuBar
 	 */
 	public function menuBar()
 	{
+		static $MENUBAR_ITEMS_GUEST = array(
+			'Home' => 'Home',
+			'About Tiro' => 'About',
+			'Login' => 'UserManagement.Login',
+			'Create User' => 'UserManagement.Create'
+			);
+		static $MENUBAR_ITEMS_USER = array(
+			'Home' => 'Home',
+			'About Tiro' => 'About',
+			'Login' => 'UserManagement.Login',
+			'Create User' => 'UserManagement.Create'
+			);
+	
 		$authManager=$this->Application->getModule('auth');
 		$logged_in = !$authManager->User->IsGuest;
 
@@ -53,12 +93,21 @@ EOT;
 	<li><a href="index.php?page=UserManagement.Preferences">Edit Preferences</a></li>
 EOT;
 		}
+		
+		$pageService = $this->Application->getService('page');
+		
+		$menuList .= $pageService->RequestedPagePath;
 		return $menuList; 
 	}
 
-	/*
-	 * @author Matthew Katsenes <psalakanthos@gmail.com>
-	 * @return string The complete HTML for the SideBar
+	/**
+	 * Generates the HTML for the SideBar.
+	 * 
+	 * The SideBar has (right now) two sections (12/13/2007):
+	 * - News Items
+	 * - Project Listing (once logged in)
+	 * 
+	 * @return string $sideBar The complete HTML for the SideBar
 	 */
 	public function sideBar()
 	{

@@ -1,5 +1,15 @@
 <?php
-
+/**
+ * User Creation Page.
+ * 
+ * Create new users and store them in our database.
+ * 
+ * @author Matthew Katsenes <psalakanthos@gmail.com>
+ * @copyright Copyright (c) 2007 Matthew Katsenes
+ * @package tiro-input
+ * @subpackage user-management
+ * @version tiro-input side v. 0.1
+ */
 class Create extends TPage
 {
 

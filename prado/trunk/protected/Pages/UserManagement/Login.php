@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Login Page.
+ * 
+ * User login page.
+ * 
+ * @author Matthew Katsenes <psalakanthos@gmail.com>
+ * @copyright Copyright (c) 2007 Matthew Katsenes
+ * @package tiro-input
+ * @subpackage user-management
+ * @version tiro-input side v. 0.1
+ */
 class Login extends TPage {
 
 	public function validateUser($sender,$param)
