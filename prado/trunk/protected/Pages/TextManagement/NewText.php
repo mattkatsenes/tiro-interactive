@@ -1,8 +1,16 @@
 <?php
 
+/**
+ * Text Creation page.
+ * 
+ * @author Matthew Katsenes <psalakanthos@gmail.com>
+ * @copyright Copyright (c) 2007 Matthew Katsenes
+ * @package tiro-input
+ * @subpackage text-management
+ * @version tiro-input side v. 0.1
+ */
 class NewText extends TPage
-{
-    
+{    
 	public function textCreate($sender, $param)
 	{
 		$newText = new TextRecord();

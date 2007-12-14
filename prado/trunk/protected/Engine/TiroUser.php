@@ -1,13 +1,44 @@
 <?php
+
+/**
+ * User base file.
+ * 
+ * @author Matthew Katsenes <psalakanthos@gmail.com>
+ * @copyright Copyright (c) 2007 Matthew Katsenes
+ * @package tiro-input
+ * @subpackage user-management
+ * @version tiro-input-side v. 0.1
+ */
+
 Prado::using('System.Security.TDbUserManager');
 
+/**
+ * User Manager class.
+ * 
+ * Extends Prado's Database Authentication class. 
+ */
 class TiroUser extends TDbUser {
 
+	/**
+	 * @param string $username
+	 * @param string $password Already passed through an MD5 Hash.
+	 * @return bool Is the name/pass combination valid?
+	 */
 	public function validateUser($username, $password)
 	{
 		return UserRecord::finder()->findBy_username_AND_password($username,$password)!==null;
 	}
 
+	/**
+	 * Create an INSTANCE of this class.
+	 * 
+	 * This function does not create a new user record entry in
+	 * the DB.  @see UserRecord.php for that.  This function is
+	 * not meant for use in my code.  It implements an abstract
+	 * from the Prado code.
+	 * 
+	 * @return mixed Either the logged-in user object OR null.
+	 */
 	public function createUser($username)
 	{
         // use UserRecord Active Record to look for the specified username
