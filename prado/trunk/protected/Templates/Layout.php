@@ -120,7 +120,7 @@ EOT;
 <span class="SideBarLabel">News</span>
 <ul>
 EOT;
-		$newsItems = NewsItemRecord::finder()->findAll();
+		$newsItems = NewsRecord::finder()->findAll();
 		
 		foreach($newsItems as $item)
 		{
