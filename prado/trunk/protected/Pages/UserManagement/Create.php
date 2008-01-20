@@ -12,7 +12,6 @@
  */
 class Create extends TPage
 {
-
 	function checkUsername($sender,$param)
 	{
 		$param->IsValid=UserRecord::finder()->findByPk($this->username->Text)===null;
@@ -22,21 +21,21 @@ class Create extends TPage
 	{
 		if($this->IsValid)  // when all validations succeed
         {
-            // populates a UserRecord object with user inputs
-            $userRecord=new UserRecord;
-            $userRecord->username=$this->username->Text;
-            $userRecord->password=md5($this->password->Text);
+			// populates a UserRecord object with user inputs
+			$userRecord=new UserRecord;
+			$userRecord->username=$this->username->Text;
+			$userRecord->password=md5($this->password->Text);
 
-            // saves to the database via Active Record mechanism
-            $userRecord->save();
-            
-            $this->Application->getModule('auth')->login($this->username->Text,$this->password->Text);
+			// saves to the database via Active Record mechanism
+			$userRecord->save();
 
-            // redirects the browser to the homepage
-            $this->Response->redirect($this->Service->DefaultPageUrl);
-        }
+			// umm.. create all the directories and whatnot.
+			
+			$this->Application->getModule('auth')->login($this->username->Text,md5($this->password->Text));
 
+			// redirects the browser to the homepage
+			$this->Response->redirect($this->Service->DefaultPageUrl);
+		}
 	}
 }
-
 ?>

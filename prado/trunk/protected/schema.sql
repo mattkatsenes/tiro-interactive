@@ -1,36 +1,51 @@
-/* create users table */
+-- file: schema.sql
+-- author: Matthew Katsenes
+-- usage: to create tiro.db with initial values...
+-- 	$ sqlite3 tiro.db < tiro_new.sql
+-- ********************************
+
+-- teacherUsers
+CREATE TABLE IF NOT EXISTS teacherUsers (
+	username TEXT PRIMARY KEY,
+	password TEXT,
+	first_name TEXT,
+	middle_name TEXT,
+	last_name TEXT,
+	email TEXT,
+	website TEXT
+);
+
+-- textItems
+CREATE TABLE IF NOT EXISTS textItems (
+	dir_name TEXT PRIMARY KEY,
+	title TEXT,
+	creation_date DATE,
+	last_edit DATE,
+	author_id TEXT
+		CONSTRAINT author_fk REFERENCES TeacherUsers(username) ON DELETE CASCADE,
+	status		INT NOT NULL,        /* 0: not_shared; 1: limited_access; 2: shared  */
+	plugins		TEXT
+);
+
+-- create adminUsers
 CREATE TABLE adminUsers (
-	username	VARCHAR(128) NOT NULL PRIMARY KEY,
-	password	VARCHAR(128) NOT NULL,
-	email		VARCHAR(256)
+	username	TEXT PRIMARY KEY,
+	password	TEXT NOT NULL,
+	email		TEXT,
+	preferences	TEXT
 );
 
-/* create teacherUsers table */
-CREATE TABLE teacherUsers (
-	username	VARCHAR(128) NOT NULL PRIMARY KEY,
-	password	VARCHAR(128) NOT NULL,
-	email		VARCHAR(256)
-);
-
-/* create studentUsers table */
+-- create studentUsers
 CREATE TABLE studentUsers (
-	username	VARCHAR(128) NOT NULL PRIMARY KEY,
-	password	VARCHAR(128) NOT NULL,
-	teacher_id	VARCHAR(128) NOT NULL
+	username	TEXT PRIMARY KEY,
+	password	TEXT NOT NULL,
+	teacher_id	TEXT NOT NULL
 		CONSTRAINT fk_teacher REFERENCES teacherUsers(username) ON DELETE CASCADE,
-	email		VARCHAR(256)
+	email		TEXT,
+	preferences	TEXT
 );
 
-/* create textItems table */
-CREATE TABLE textItems (
-  text_id       INTEGER NOT NULL PRIMARY KEY,
-  author_id     VARCHAR(128) NOT NULL
-    CONSTRAINT fk_author REFERENCES teacherUsers(username) ON DELETE CASCADE,
-  title         VARCHAR(256) NOT NULL,  /* title of the text */
-  status        TINYINT NOT NULL        /* 0: not_shared; 1: limited_access; 2: shared  */
-);
-
-/* create news table */
+-- create newsItems
 CREATE TABLE newsItems (
 	item_id		INTEGER NOT NULL PRIMARY KEY,
 	author_id 	VARCHAR(128) NOT NULL
@@ -39,9 +54,57 @@ CREATE TABLE newsItems (
 	full_text	TEXT
 );
 
-/* insert testing users */
-INSERT INTO adminUsers VALUES('admin','21232f297a57a5a743894a0e4a801fc3','psalakanthos@gmail.com');
-INSERT INTO teacherUsers VALUES('teacher','8d788385431273d11e8b43bb78f3aa41','');
-INSERT INTO studentUsers VALUES('student','cd73502828457d15655bbd7a63fb0bc8','teacher','');
-INSERT INTO textItems VALUES(1,'teacher','Example1',0);
-INSERT INTO newsItems VALUES(1,'admin','slug!','full text of news item 1.');
+
+-- *****************
+-- Much help on triggers and fk constraints from:
+-- http://rcs-comp.com/site/index.php/view/Utilities-SQLite_foreign_key_trigger_generator
+-- *****************
+
+-- textItems insert creation_date, check foreign key.
+CREATE TRIGGER create_text INSERT ON textItems
+BEGIN
+	UPDATE textItems SET creation_date = strftime("%m-%d-%Y %H:%M:%S",'now') WHERE title = new.title;
+	UPDATE textItems SET last_edit = strftime("%m-%d-%Y %H:%M:%S",'now') WHERE title = new.title;
+	SELECT RAISE(ROLLBACK, 'insert on table textItems violates foreign key constraint.') WHERE new.author_id IS NOT NULL AND (SELECT username FROM teacherUsers WHERE username = NEW.author_id) IS NULL;
+END;
+
+-- Foreign Key preventing update on textItems
+CREATE TRIGGER update_text BEFORE UPDATE ON textItems
+BEGIN
+	UPDATE textItems SET last_edit = strftime("%m-%d-%Y %H:%M:%S",'now') WHERE title = new.title;
+	SELECT RAISE(ROLLBACK, 'update on table textItems violates foreign key constraint')
+	WHERE new.author_id IS NOT NULL AND (SELECT username FROM teacherUsers WHERE username = NEW.author_id) IS NULL;
+END;
+
+-- studentUsers check foreign key.
+CREATE TRIGGER check_teacher INSERT ON studentUsers
+BEGIN
+	SELECT RAISE(ROLLBACK, 'insert on table studentUsers violates foreign key constraint.') WHERE new.teacher_id IS NOT NULL AND (SELECT username FROM teacherUsers WHERE username = NEW.teacher_id) IS NULL;
+END;
+
+-- Foreign Key Preventing update on studentUsers
+CREATE TRIGGER update_teacher BEFORE UPDATE ON studentUsers
+BEGIN
+	SELECT RAISE(ROLLBACK, 'update on table studentUsers violates foreign key constraint')
+	WHERE new.teacher_id IS NOT NULL AND (SELECT username FROM teacherUsers WHERE username = NEW.teacher_id) IS NULL;
+END;
+
+-- newsItems check foreign key.
+CREATE TRIGGER check_news INSERT ON newsItems
+BEGIN
+	SELECT RAISE(ROLLBACK, 'insert on table newsItems violates foreign key constraint.') WHERE new.author_id IS NOT NULL AND (SELECT username FROM teacherUsers WHERE username = NEW.author_id) IS NULL;
+END;
+
+-- Foreign Key Preventing update on studentUsers
+CREATE TRIGGER update_news BEFORE UPDATE ON newsItems
+BEGIN
+	SELECT RAISE(ROLLBACK, 'update on table newsItems violates foreign key constraint')
+	WHERE new.author_id IS NOT NULL AND (SELECT username FROM teacherUsers WHERE username = NEW.author_id) IS NULL;
+END;
+
+-- Some Initial Data
+INSERT INTO teacherUsers (username,password,first_name,middle_name,last_name,email,website) VALUES ('matt','b244383da8e1b93814430dd9a77db079','Matthew','G.','Katsenes','psalakanthos@gmail.com','http://www.tiro-interactive.org');
+INSERT INTO textItems (title,author_id,status) VALUES ('worker','matt',0);
+
+-- ** Test case for fk constraint.
+-- INSERT INTO textItems (title,author_id,status) VALUES ('failer','nobody',0);

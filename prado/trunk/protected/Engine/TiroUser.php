@@ -26,7 +26,7 @@ class TiroUser extends TDbUser {
 	 */
 	public function validateUser($username, $password)
 	{
-		return UserRecord::finder()->findBy_username_AND_password($username,$password)!==null;
+		return TeacherRecord::finder()->findBy_username_AND_password($username,$password)!==null;
 	}
 
 	/**
@@ -41,15 +41,38 @@ class TiroUser extends TDbUser {
 	 */
 	public function createUser($username)
 	{
-        // use UserRecord Active Record to look for the specified username
-        $userRecord=UserRecord::finder()->findByPk($username);
-        if($userRecord instanceof UserRecord) // if found
+        /*
+         * use Active Record classes to look for the specified username
+         * 
+         * Try teacherRecord, then studentRecord, then adminRecord
+         */
+        $teacherRecord = TeacherRecord::finder()->findByPk($username);
+        $studnetRecord = StudentRecord::finder()->findByPk($username);
+        $adminRecord = AdminRecord::finder()->findByPk($username);
+        
+        if($teacherRecord instanceof TeacherRecord) // if found
         {
             $user=new TiroUser($this->Manager);
             $user->Name=$username;  // set username
             $user->IsGuest=false;   // the user is not a guest
             return $user;
         }
+        
+        if($studentRecord instanceof StudentRecord) // if found
+        {
+            $user=new TiroUser($this->Manager);
+            $user->Name=$username;  // set username
+            $user->IsGuest=false;   // the user is not a guest
+            return $user;
+        }
+        if($adminRecord instanceof AdminRecord) // if found
+        {
+            $user=new TiroUser($this->Manager);
+            $user->Name=$username;  // set username
+            $user->IsGuest=false;   // the user is not a guest
+            return $user;
+        }
+        
         else
             return null;
     }

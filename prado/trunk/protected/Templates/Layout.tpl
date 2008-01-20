@@ -12,7 +12,7 @@
 <body>
 <com:TForm>
 <div id="pageHeader">
-<div id="logo"><img src="images/tiro-quill1s.jpg" /></div>
+<div id="logo"><img src="images/tiro-dropshadow-s.jpg" /></div>
 <div id="welcome">
 <com:TMultiView ID="WelcomeMultiView">
 <com:TView ID="WelcomeGuest">
