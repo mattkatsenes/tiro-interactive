@@ -14,8 +14,12 @@ class TeacherRecord extends TActiveRecord
 
 	public $username;
 	public $password;
+	public $first_name;
+	public $middle_name;
+	public $last_name;
 	public $email;
-
+	public $website;
+	
 	public static function finder($className=__CLASS__)
 	{
 		return parent::finder($className);

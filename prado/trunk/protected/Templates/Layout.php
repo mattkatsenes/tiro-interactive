@@ -146,7 +146,7 @@ EOT;
 EOT;
 			foreach($my_texts as $text)
 			{
-				$sideBar .= "<li>$text->title | <a href=\"index.php?page=TextManagement.View&id=$text->text_id \">view</a> |  <a href=\"index.php?page=TextManagement.Edit&id=$text->text_id\">edit</a> |  <a href=\"index.php?page=TextManagement.Publish&id=$text_id\">publish</a></li>";
+				$sideBar .= "<li>$text->title | <a href=\"index.php?page=TextManagement.View&id=$text->title \">view</a> |  <a href=\"index.php?page=TextManagement.Edit&id=$text->title\">edit</a> |  <a href=\"index.php?page=TextManagement.Publish&id=$title\">publish</a></li>";
 			}
 			
 			$sideBar .= "<li><a href=\"index.php?page=TextManagement.NewText\">New Text</a></li></ul>";
