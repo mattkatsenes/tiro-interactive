@@ -4,10 +4,18 @@
 -- 	$ sqlite3 tiro.db < tiro_new.sql
 -- ********************************
 
+-- userRecords
+-- This is the table holding names/passwords for authentication.
+-- user data and relations are stored in the individual tables for Teachers, Students, and Admins.
+CREATE TABLE IF NOT EXISTS userRecords (
+	username	TEXT PRIMARY KEY,
+	password	TEXT,
+	role		INT		-- 0 = Admin, 1 = Teacher, 2 = Student
+);
+
 -- teacherUsers
 CREATE TABLE IF NOT EXISTS teacherUsers (
 	username TEXT PRIMARY KEY,
-	password TEXT,
 	first_name TEXT,
 	middle_name TEXT,
 	last_name TEXT,
@@ -22,7 +30,7 @@ CREATE TABLE IF NOT EXISTS textItems (
 	creation_date DATE,
 	last_edit DATE,
 	author_id TEXT
-		CONSTRAINT author_fk REFERENCES TeacherUsers(username) ON DELETE CASCADE,
+		CONSTRAINT author_fk REFERENCES teacherUsers(username) ON DELETE CASCADE,
 	status		INT NOT NULL,        /* 0: not_shared; 1: limited_access; 2: shared  */
 	plugins		TEXT
 );
@@ -30,7 +38,6 @@ CREATE TABLE IF NOT EXISTS textItems (
 -- create adminUsers
 CREATE TABLE adminUsers (
 	username	TEXT PRIMARY KEY,
-	password	TEXT NOT NULL,
 	email		TEXT,
 	preferences	TEXT
 );
@@ -38,7 +45,6 @@ CREATE TABLE adminUsers (
 -- create studentUsers
 CREATE TABLE studentUsers (
 	username	TEXT PRIMARY KEY,
-	password	TEXT NOT NULL,
 	teacher_id	TEXT NOT NULL
 		CONSTRAINT fk_teacher REFERENCES teacherUsers(username) ON DELETE CASCADE,
 	email		TEXT,
@@ -103,8 +109,10 @@ BEGIN
 END;
 
 -- Some Initial Data
-INSERT INTO teacherUsers (username,password,first_name,middle_name,last_name,email,website) VALUES ('matt','b244383da8e1b93814430dd9a77db079','Matthew','G.','Katsenes','psalakanthos@gmail.com','http://www.tiro-interactive.org');
+INSERT INTO userRecords (username, password, role) VALUES ('matt','b244383da8e1b93814430dd9a77db079',1);
+INSERT INTO teacherUsers (username,first_name,middle_name,last_name,email,website) VALUES ('matt','Matthew','G.','Katsenes','psalakanthos@gmail.com','http://www.tiro-interactive.org');
 INSERT INTO textItems (title,author_id,status) VALUES ('worker','matt',0);
-
+INSERT INTO userRecords (username, password, role) VALUES ('student','b244383da8e1b93814430dd9a77db079',2);
+INSERT INTO studentUsers (username,teacher_id) VALUES ('student','matt');
 -- ** Test case for fk constraint.
 -- INSERT INTO textItems (title,author_id,status) VALUES ('failer','nobody',0);
