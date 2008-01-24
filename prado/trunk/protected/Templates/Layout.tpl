@@ -19,9 +19,9 @@
 Please <a href="index.php?page=UserManagement.Login">login</a>.
 </com:TView>
 <com:TView ID="WelcomeUser">
-Welcome,  <%= $this->Application->getModule('auth')->User->Name %>
+Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Roles[0] %>.
 <br />
-<com:TLinkButton Text="Logout" OnCommand="logoutButtonClicked" />
+<com:TLinkButton Text="Logout" OnCommand="logoutButtonClicked" 	CausesValidation="False"/>
 </com:TView>
 </com:TMultiView>
 </div>
