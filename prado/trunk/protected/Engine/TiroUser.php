@@ -7,11 +7,11 @@
  * @copyright Copyright (c) 2007 Matthew Katsenes
  * @package tiro-input
  * @subpackage user-management
- * @version tiro-input-side v. 0.1
+ * @version tiro-input-side v. 0.2
+ * @todo Rewrite this to implement several different types of user
  */
 
 Prado::using('System.Security.TDbUserManager');
-
 /**
  * User Manager class.
  * 
@@ -26,7 +26,7 @@ class TiroUser extends TDbUser {
 	 */
 	public function validateUser($username, $password)
 	{
-		return TeacherRecord::finder()->findBy_username_AND_password($username,$password)!==null;
+		return UserRecord::finder()->findBy_username_AND_password($username,$password)!==null;
 	}
 
 	/**
@@ -41,41 +41,26 @@ class TiroUser extends TDbUser {
 	 */
 	public function createUser($username)
 	{
-        /*
-         * use Active Record classes to look for the specified username
-         * 
-         * Try teacherRecord, then studentRecord, then adminRecord
-         */
-        $teacherRecord = TeacherRecord::finder()->findByPk($username);
-        $studnetRecord = StudentRecord::finder()->findByPk($username);
-        $adminRecord = AdminRecord::finder()->findByPk($username);
-        
-        if($teacherRecord instanceof TeacherRecord) // if found
-        {
-            $user=new TiroUser($this->Manager);
-            $user->Name=$username;  // set username
-            $user->IsGuest=false;   // the user is not a guest
-            return $user;
-        }
-        
-        if($studentRecord instanceof StudentRecord) // if found
-        {
-            $user=new TiroUser($this->Manager);
-            $user->Name=$username;  // set username
-            $user->IsGuest=false;   // the user is not a guest
-            return $user;
-        }
-        if($adminRecord instanceof AdminRecord) // if found
-        {
-            $user=new TiroUser($this->Manager);
-            $user->Name=$username;  // set username
-            $user->IsGuest=false;   // the user is not a guest
-            return $user;
-        }
-        
-        else
-            return null;
-    }
+		$userRecord = UserRecord::finder()->findByPk($username);
+		if($userRecord instanceof UserRecord)
+		{
+			$user = new TiroUser($this->Manager);
+			$user->Name = $username;
+			$user->IsGuest = false;
+			
+			if($userRecord->role == 0)
+				$user->Roles = 'admin';
+			elseif($userRecord->role == 1)
+				$user->Roles = 'teacher';
+			elseif($userRecord->role == 2)
+				$user->Roles = 'student';
+			else
+				$user->Roles = 'oops';			
+			return $user;
+		}
+		else
+			return null;
+	}
 }
 
 ?>

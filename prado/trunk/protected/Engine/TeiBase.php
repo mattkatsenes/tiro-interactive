@@ -19,14 +19,16 @@ class TeiBase
 	/**
 	 * String for the path to text.xml
 	 */	
-	public $path;	
+	public $path;
 	
-	/**
-	 * Load text.xml file into memory.
-	 */
-	public function loadText()
+	function __construct($path)
 	{
-	
+		$this->xml = new DomDocument;
+		
+		if(file_exists($path . '/text.xml'))
+			$this->xml->load($path . '/text.xml');
+		else
+			$this->xml->save($path . '/text.xml');
 	}
 	
 	/**
@@ -34,7 +36,7 @@ class TeiBase
 	 */
 	public function saveText()
 	{
-	
+		$this->xml->save($this->path);
 	}
 	
 }
