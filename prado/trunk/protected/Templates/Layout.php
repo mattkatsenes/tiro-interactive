@@ -96,7 +96,7 @@ EOT;
 		
 		$pageService = $this->Application->getService('page');
 		
-		$menuList .= $pageService->RequestedPagePath;
+//		$menuList .= $pageService->RequestedPagePath;
 		return $menuList; 
 	}
 
@@ -135,7 +135,7 @@ EOT;
 		{
 			$sideBar .= "Please login to see your saved projects.";
 		}
-		else
+		elseif($this->User->Roles[0] == 'teacher')
 		{
 			$username = $authManager->User->Name;
 			$my_texts = TextRecord::finder()->findAllByAuthor_id($username);
@@ -150,6 +150,19 @@ EOT;
 			}
 			
 			$sideBar .= "<li><a href=\"index.php?page=TextManagement.NewText\">New Text</a></li></ul>";
+		}
+		elseif($this->User->Roles[0] == 'student')
+		{
+			$teacherRecord = StudentRecord::finder()->withTeacher()->findByPk($this->User->Name)->teacher;
+			$sideBar .= <<<EOT
+<span class="SideBarLabel">Teacher: $teacherRecord->first_name $teacherRecord->middle_name $teacherRecord->last_name </span>
+<ul>
+EOT;
+			$teacherTexts= TextRecord::finder()->findAllByAuthor_id($teacherRecord->username);
+			foreach($teacherTexts as $text)
+				if($text->status > 0)
+					$sideBar .= "<li>$text->title</li>";
+			$sidebar .= "</ul>";
 		}
 		return $sideBar; 
 	}
