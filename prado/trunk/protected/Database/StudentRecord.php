@@ -13,9 +13,9 @@ class StudentRecord extends TActiveRecord
 	const TABLE='studentUsers';
 
 	public $username;
-	public $password;
 	public $teacher_id;
 	public $email;
+	public $preferences;
 
 	public static function finder($className=__CLASS__)
 	{

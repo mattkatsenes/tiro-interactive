@@ -13,7 +13,6 @@ class AdminRecord extends TActiveRecord
 	const TABLE='adminUsers';
 
 	public $username;
-	public $password;
 	public $email;
 
 	public static function finder($className=__CLASS__)
