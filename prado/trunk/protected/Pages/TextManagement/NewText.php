@@ -11,13 +11,36 @@
  */
 class NewText extends TPage
 {    
+	/**
+	 * Creation Button Clicked.
+	 * 
+	 * Check to see if the author has another text with this title.
+	 * Check for a non-unique 'directory' since this is the PK.
+	 * Make the directories and default files.
+	 */
 	public function textCreate($sender, $param)
 	{
 		$newText = new TextRecord();
 		$newText->author_id = $this->User->Name;
 		$newText->title = $this->Title->Text;
 		$newText->status = 0;
+		$newText->creation_date = date("m-d-Y H:i:s");		//%m-%d-%Y %H:%M:%S",'now'
 
+		// Check to see if this author has already created this title.
+		$id=2;
+		foreach(TeacherRecord::finder()->withTexts()->findByUsername($this->User->Name)->texts as $text)
+		{
+			if($text->title == $newText->title)	
+			{
+				// find a title that's not yet taken
+				while(TextRecord::finder()->find('title = :title AND author_id = :author_id',
+							array(':title'=>$newText->title . $id,':author_id'=>$this->User->Name)) != null)
+					$id++;
+
+				$newText->title .= $id;
+			}
+		}
+		
 		$directory = $this->filename_safe($newText->title);
 		
 		$id = 0;
@@ -27,20 +50,21 @@ class NewText extends TPage
 				$id++;
 			$directory .= $id;
 		}
-		
 		$newText->dir_name = $directory;
 
-		$this->textSetup($newText);
+		$this->dirSetup($newText);
 		
 		$newText->save();
 		
 //		$this->Response->redirect($this->Service->DefaultPageUrl);
 	}
 	
-	private function textSetup($newText)
+	/**
+	 * Setup the directories and files for this text.
+	 */
+	private function dirSetup($newText)
 	{
 		global $ABS_PATH,$USERS_PREFIX;
-		$success = false;
 
 		$path = $ABS_PATH . "/" . $USERS_PREFIX . "/" . $this->User->Name ."/". $newText->dir_name;
 		
@@ -49,10 +73,11 @@ class NewText extends TPage
 		
 		$text = new TeiBase;
 		$text->saveText();
-		
-		return $path;
 	}
 	
+	/**
+	 * Is this string reasonable to be a filename?
+	 */
 	private	function filename_safe($filename)
 	{
     	$temp = $filename;

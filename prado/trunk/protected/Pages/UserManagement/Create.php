@@ -30,6 +30,10 @@ class Create extends TPage
 			$userRecord->save();
 
 			// umm.. create all the directories and whatnot.
+			global $ABS_PATH,$USERS_PREFIX;
+
+			$path = $ABS_PATH . "/" . $USERS_PREFIX . "/" . $userRecord->username;
+			mkdir($path);
 			
 			$this->Application->getModule('auth')->login($this->username->Text,md5($this->password->Text));
 
