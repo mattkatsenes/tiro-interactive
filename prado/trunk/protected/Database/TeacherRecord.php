@@ -13,7 +13,6 @@ class TeacherRecord extends TActiveRecord
 	const TABLE='teacherUsers';
 
 	public $username;
-	public $password;
 	public $first_name;
 	public $middle_name;
 	public $last_name;
