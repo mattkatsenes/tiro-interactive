@@ -8,6 +8,11 @@ User Name: <com:TTextBox ID="username" AutoTrim="True"/>
     ControlToValidate="username"
     ErrorMessage="Please provide a username."
     Display="Dynamic" />
+<com:TRegularExpressionValidator
+	ControlToValidate="username"
+	ErrorMessage="This is not a valid username"
+	Display="Dynamic"
+	RegularExpression="\w+([-+.]\w+)*" />
 <com:TCustomValidator
     ControlToValidate="username"
     ErrorMessage="Sorry, your username is taken by someone else. Please choose another username."
@@ -24,6 +29,15 @@ Re-type Password: <com:TTextBox ID="password2" TextMode="Password"/>
     Display="Dynamic" />
 <br />
 
+User Type: 
+<com:TRadioButton ID="teacher"
+	GroupName="userType"
+	Text="Teacher"
+	Checked="true" />
+<com:TRadioButton ID="student"
+	GroupName="userType"
+	Text="Student" />
+<br /><br />
 <com:TButton ID="Submit"
 	Text="Create"
 	CausesValidation="True"
