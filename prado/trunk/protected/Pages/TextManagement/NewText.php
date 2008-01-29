@@ -71,7 +71,7 @@ class NewText extends TPage
 		mkdir($path);
 		require_once($ABS_PATH . "/protected/Engine/TeiBase.php");
 		
-		$text = new TeiBase;
+		$text = new TeiBase($path);
 		$text->saveText();
 	}
 	
