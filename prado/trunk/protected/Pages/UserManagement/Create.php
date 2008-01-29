@@ -12,6 +12,17 @@
  */
 class Create extends TPage
 {
+	function onLoad()
+	{
+		$teachers = TeacherRecord::finder()->findAll();
+
+		foreach($teachers as $teacher)
+			$teacherArray[$teacher->username] = $teacher->last_name;
+		
+		$this->teacherDropDown->DataSource=$teacherArray;
+		$this->teacherDropDown->dataBind();	
+	}
+
 	function checkUsername($sender,$param)
 	{
 		$param->IsValid=UserRecord::finder()->findByPk($this->username->Text)===null;
@@ -25,19 +36,32 @@ class Create extends TPage
 			$userRecord=new UserRecord;
 			$userRecord->username=$this->username->Text;
 			$userRecord->password=md5($this->password->Text);
+			
+			if($this->teacher->Checked)
+			{
+				$userRecord->role = 1;
+				$teacherRecord = new TeacherRecord;
+				$teacherRecord->username = $userRecord->username;
+				$teacherRecord->save();
+				
+				// umm.. create all the directories and whatnot.
+				global $ABS_PATH,$USERS_PREFIX;
 
+				$path = $ABS_PATH . "/" . $USERS_PREFIX . "/" . $userRecord->username;
+				mkdir($path);				
+			}
+			elseif($this->student->Checked)
+			{
+				$userRecord->role = 2;
+				$studentRecord = new StudentRecord;
+				$studentRecord->username = $userRecord->username;
+				$studentRecord->teacher_id = $this->teacherDropDown->SelectedValue;
+				$studentRecord->save();
+			}
 			// saves to the database via Active Record mechanism
 			$userRecord->save();
 
-			// umm.. create all the directories and whatnot.
-			global $ABS_PATH,$USERS_PREFIX;
-
-			$path = $ABS_PATH . "/" . $USERS_PREFIX . "/" . $userRecord->username;
-			mkdir($path);
-			
-			$this->Application->getModule('auth')->login($this->username->Text,md5($this->password->Text));
-
-			// redirects the browser to the homepage
+			// redirects the browser to the homepage.. should go to preferences.
 			$this->Response->redirect($this->Service->DefaultPageUrl);
 		}
 	}

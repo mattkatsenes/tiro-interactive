@@ -2,7 +2,6 @@
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
-
 User Name: <com:TTextBox ID="username" AutoTrim="True"/>
 <com:TRequiredFieldValidator
     ControlToValidate="username"
@@ -37,11 +36,24 @@ User Type:
 <com:TRadioButton ID="student"
 	GroupName="userType"
 	Text="Student" />
-<br /><br />
+<br />
+<div id="teacherList" style="display: none;">
+<com:TDropDownList 
+	PromptText="Choose Your Teacher"
+	ID="teacherDropDown" />
+
+</div>
+<br />
 <com:TButton ID="Submit"
 	Text="Create"
 	CausesValidation="True"
 	ButtonType="Submit"
 	OnClick="createButtonClicked" />
+	
+<com:TClientScript>
+Event.observe($("<%= $this->student->ClientID %>"),'click',function(){
+	$("teacherList").show();
+});
+</com:TClientScript>
 
 </com:TContent >
