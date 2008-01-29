@@ -11,8 +11,7 @@
 
 <body>
 <com:TForm>
-<div id="pageHeader">
-<div id="logo"><img src="images/tiro-dropshadow-s.jpg" /></div>
+<div id="sidebar">
 <div id="welcome">
 <com:TMultiView ID="WelcomeMultiView">
 <com:TView ID="WelcomeGuest">
@@ -25,12 +24,10 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 </com:TView>
 </com:TMultiView>
 </div>
-</div>
-
-<div id="sidebar">
 <%= $this->sideBar() %>
 <com:TContentPlaceHolder ID="sidebar" />
 </div>
+<div id="logo"><img src="images/tiro-dropshadow-s.jpg" /></div>
 
 <div id="mainColumn">
 

@@ -4,33 +4,30 @@
  * date: 11/12/2007
 */
 
-#pageHeader {
-	width: 95%;
+body {
+	margin: 0px 0px 0px 0px;
 }
 
 #logo {
 	float: left;
-	padding: 5px;
 }
 
 #welcome {
-	float: right;
-	padding: 5px;
-	padding-top: 19px;
+
+	border-bottom: solid 1px;
 }
 
 #sidebar {
-	clear: both;
-	float: left;
-	border-top: solid 2px Navy;
-	width: 25%;
+	float: right;
+	border: solid 2px Navy;
+	width: 20em;
 	background-color: Lavender;
-	padding: 5px;
+	padding: 10px;
 }
 
 #mainColumn {
-	float: left;
-	width: 73%;
+	clear: left;
+	width: 100%;
 	border-top: solid 2px Navy;
 }
 
@@ -66,16 +63,14 @@
 }
 
 #guts {
-	clear: left;
-	float: left;
 	width: 100%;
 	padding: 10px;
 }
 
 #credits {
 	clear: both;
-	width: 98%;
 	border-top: solid 2px Navy;
+	width: 100%;
 	float: left;
 	vertical-align: middle;
 	color: Navy;

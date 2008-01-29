@@ -5,6 +5,7 @@
   <paths>
     <using namespace="Application.Templates.*" />
     <using namespace="Application.Database.*" />
+    <using namespace="System.Web.UI.ActiveControls.*" />
   </paths>
 
 	<modules>
