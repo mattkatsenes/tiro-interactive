@@ -19,7 +19,7 @@ class TeiBase
 	/**
 	 * String for the path to text.xml
 	 */	
-	public $path;
+	public $xml_file;
 	
 	function __construct($path)
 	{
@@ -29,6 +29,8 @@ class TeiBase
 			$this->xml->load($path . '/text.xml');
 		else
 			$this->xml->save($path . '/text.xml');
+		
+		$this->xml_file = $path . '/text.xml';
 	}
 	
 	/**
@@ -36,7 +38,7 @@ class TeiBase
 	 */
 	public function saveText()
 	{
-		$this->xml->save($this->path);
+		$this->xml->save($this->xml_file);
 	}
 	
 }
