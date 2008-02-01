@@ -32,11 +32,9 @@ function getCSSRule(ruleName, deleteFlag) {               // Return requested st
    }                                                      // end styleSheet ability check
    return false;                                          // we found NOTHING!
 }                                                         // end getCSSRule 
-
 function killCSSRule(ruleName) {                          // Delete a CSS rule   
    return getCSSRule(ruleName,'delete');                  // just call getCSSRule w/delete flag.
 }                                                         // end killCSSRule
-
 function addCSSRule(ruleName) {                           // Create a new css rule
    if (document.styleSheets) {                            // Can browser do styleSheets?
       if (!getCSSRule(ruleName)) {                        // if rule doesn't exist...
@@ -59,7 +57,6 @@ key properties:  text, parent->line, timeSpent, id;
 
 key methods:	getNotes, get/setTimeSpent, get/setID, get/setParentLine, getLineTextBox;
 */
-
 tiroTestBlank = Class.create();
 tiroTestBlank.prototype = {
 
@@ -179,8 +176,10 @@ Event.observe("addTextAreaButton","click",
 		}
 	});
 
-Event.observe("pagenotes","focus", function() {CallMe("//Begin Entry-notes");});
-Event.observe("pagenotes","blur", function() {CallMe("//End Entry-notes");});
+	loadPagenotes();
+	$$('#pagenotes')[0].clonePosition($$('#text')[0], {setLeft:false,setTop:false,setWidth:false});
+Event.observe("pagenotes","focus", function() {CallMe("//Begin Entry-notes");loadPagenotes();});
+Event.observe("pagenotes","blur", function() {CallMe("//End Entry-notes");savePagenotes();});
 
 /*
 Event.observe("pagenotes","keypress", function(g)
@@ -257,3 +256,57 @@ lines.each	(function (line)
 		}			);
 	*/
 };
+
+
+
+
+//-----------------------------
+//-----------------------------
+			function sendRequest(data, responseFunction) {
+				new Ajax.Request("php/update.php", 
+					{ 
+					method: 'post', 
+					parameters: "param="+escape(data),
+					onComplete: responseFunction,
+					onFailure: function(){console.log("error");}
+					});
+				}
+
+			function loadPagenotes()
+			{
+			var responseArray = new Array();
+				var responseObj = new Object();
+					//responseObj.user			= Cookie->this.user;  --Replace with some user characterization token
+					responseObj.verb				= "load-note";
+					responseObj.text_location	= $("current-page").innerHTML;
+					responseObj.text				= "";
+			responseArray.push(responseObj);	
+				
+			sendRequest(
+									Object.toJSON(responseArray),
+									function(req){
+															console.log(req.responseText);
+															var txt = req.responseText;
+															$("pagenotes").value= txt.substring(txt.indexOf("[[[")+3,txt.indexOf("]]]"));
+														}
+								);
+			}
+			
+			
+			function savePagenotes()
+			{
+			var data_collection = $$("#pagenotes");
+			var responseArray = new Array();
+	
+			for(i = 0; i < data_collection.length; i++)
+				{
+				var responseObj = new Object();
+					//responseObj.user			= Cookie->this.user;  --Replace with some user characterization token
+					responseObj.verb				= "save-note";
+					responseObj.text_location	= $("current-page").innerHTML;
+					responseObj.text				= data_collection[i].value;
+				responseArray.push(responseObj);
+				}
+			sendRequest(Object.toJSON(responseArray), function(req){console.log(req.responseText);});
+			}
+//-----------------------------
