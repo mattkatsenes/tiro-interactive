@@ -27,7 +27,7 @@
 				<xsl:value-of select="$title" /><xsl:text> by </xsl:text><xsl:value-of select="$author" />
 			</xsl:variable>
 			<title>
-				<xsl:value-of select="$pagetitle"/>
+				<xsl:value-of select="$pagetitle"/> - lines: <xsl:value-of select="//l[1]/@n"/>-<xsl:value-of select="//l[last()]/@n"/>
 			</title>
 			<xsl:call-template name="includeCSS"/>
 			<xsl:call-template name="includeJava"/>
