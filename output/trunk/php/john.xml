@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<text name="ecologues">
+  <page n="1">
+    <comment>Well hi there </comment>
+  </page>
+  <page n="2">
+    <comment>Well hi there page 2</comment>
+  </page>
+  <page n="3">
+    <comment>Well hi there, whats up?</comment>
+  </page>
+  <page n="4">
+    <comment>Well hi!</comment>
+  </page>
+</text>
