@@ -2,6 +2,18 @@
 <cocoon>
 	<title>Index!</title>
 	<body>
+		<version number="current">
+			<ul title="Action URLs">
+				<li>tei.html</li>
+				<li>tei(*)</li>
+				<li>tei-ajax(*)</li>
+				<li>tei-ajax-testform(*)</li>
+				<li>tei(*).xml</li>
+				<li>tei(*).rtf</li>
+				<li>tei(*).pdf</li>
+				<li>tei-book(*).pdf</li>
+			</ul>
+		</version>
 		<version number="0.5">
 			<ul title="Output Side">
 				<li done="yes">XSLT + CSS for Pharr style.</li>
@@ -9,11 +21,12 @@
 			<ul title="Input">
 				<li done="yes">User typed input poetry lines.</li>
 			</ul>
-		</version>
+		</version>		
 		<version number="1.0">
 			<note>Version 1.0 is the minimum acceptable version for MAT Project submission.</note>
 			<ul title="Output Side">
-				<li done="no">Output each style to PDF usuing Apache FOP (via cocoon).</li>
+				<li done="yes">Output each style to PDF usuing Apache FOP (via cocoon).</li>
+				<li done="yes">Output each style to RTF using JFOR/Apache FOP (via cocoon).</li>
 			</ul>
 			<ul title="Input Side">
 				<li done="no"></li>
