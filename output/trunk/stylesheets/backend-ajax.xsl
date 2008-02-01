@@ -24,7 +24,8 @@
 		<div id="title">
 			<xsl:value-of select="$title" />
 		</div>
-		<div id="author">by <xsl:value-of select="$author" />; ed. <xsl:value-of select="$editor" />
+		<div id="author">by <xsl:value-of select="$author" />; ed. <xsl:value-of select="$editor" />;
+		<span style="display: none" id="page-lines"> Lines: <span class="line-index" id="start-line"><xsl:value-of select="//l[1]/@n"/></span>-<span class="line-index" id="end-line"><xsl:value-of select="//l[last()]/@n"/></span></span>
 		</div>
 	</xsl:template>
 
@@ -259,7 +260,7 @@
 
 					<!-- td current -->
 					<td align="center">
-						[page <xsl:value-of select="@current"/> of <xsl:value-of select="@total"/>]
+						[page <span class="pagination" id="current-page"><xsl:value-of select="@current"/></span> of <span class="pagination" id="total-pages"><xsl:value-of select="@total"/></span>]
 					</td>
 
 					<!-- td next -->
