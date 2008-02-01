@@ -42,8 +42,9 @@
 <xsl:template match="fo:flow[@flow-name='xsl-region-body']/fo:block">
 <xsl:element name="{name()}">
 	<!-- These attributes set the default font/size for the pdf and rtf -->
+	<xsl:attribute name="id">PageStart</xsl:attribute>
 	<xsl:attribute name="font-family">Times</xsl:attribute>
-	<xsl:attribute name="font-size"> <xsl:value-of select="$normal-font" /></xsl:attribute>
+	<xsl:attribute name="font-size"><xsl:value-of select="$normal-font" /></xsl:attribute>
 	<xsl:apply-templates select="@*|node()"/>
 </xsl:element>
 </xsl:template>
