@@ -116,7 +116,7 @@ $xpath 	= new DOMXPath($doc);
  * @version tiro-input-side v. 0.2
  * @todo add ability to output as a simple text string.  Split definitions by &emdash; to make each type of meaning more clear.
  * @param string $query_term_url Output of <query ref="query_term_url"> from morph2.jsp
- * @return DOMDocument an XML formatted document containing the definition of the given latin lemma signified by $query_term_url
+ * @return string an XML formatted document containing the definition of the given latin lemma signified by $query_term_url
  */
 function getDefinition($query_term_url, $return_type = "xml")
 {
