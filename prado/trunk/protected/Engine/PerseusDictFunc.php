@@ -14,8 +14,9 @@
  */
 function getParse($query_term, $return_type = "xml")
 {
+global $PERSEUS_SERVER;
 //Create our perseus api query
-$xml_chunker = "http://www.tiro-interactive.org/hopper/xmlmorph2.jsp?";
+$xml_chunker = $PERSEUS_SERVER . "xmlmorph2.jsp?";
 $perseus_query = $xml_chunker ."lang=la" ."&" ."lookup=". $query_term;
 //
 
