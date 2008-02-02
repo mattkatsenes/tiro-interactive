@@ -9,7 +9,7 @@
  * @subpackage core
  * @version 0.0 - roughed out
  */
-class TeiBase
+class TiroXMLBase
 {
 	/**
 	 * DOMDocument holding the TEI-compliant xml
