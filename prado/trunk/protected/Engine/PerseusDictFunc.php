@@ -103,7 +103,7 @@ $xpath 	= new DOMXPath($doc);
 	else
 		$result_doc_root->setAttribute('status','complete');
 		
-	return $result_doc->saveXML();
+	return $result_doc;
 }
 
 
