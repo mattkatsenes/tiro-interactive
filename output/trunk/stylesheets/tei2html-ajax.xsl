@@ -3,6 +3,13 @@
 <xsl:output method="html" indent="yes"/>
 <xsl:include href="backend-ajax.xsl"/>
 
+<xsl:variable name="lastLine">
+	<xsl:value-of select="(//l)[count(//l)]/@n" />
+</xsl:variable>
+<xsl:variable name="startLine">
+	<xsl:value-of select="(//l)[1]/@n" />
+</xsl:variable>
+
 <xsl:variable name="title">
 	<xsl:value-of select="//title" />
 </xsl:variable>
@@ -27,7 +34,7 @@
 				<xsl:value-of select="$title" /><xsl:text> by </xsl:text><xsl:value-of select="$author" />
 			</xsl:variable>
 			<title>
-				<xsl:value-of select="$pagetitle"/> - lines: <xsl:value-of select="//l[1]/@n"/>-<xsl:value-of select="//l[last()]/@n"/>
+				<xsl:value-of select="$pagetitle"/> - lines: <xsl:value-of select="$startLine"/>-<xsl:value-of select="$lastLine"/>
 			</title>
 			<xsl:call-template name="includeCSS"/>
 			<xsl:call-template name="includeJava"/>

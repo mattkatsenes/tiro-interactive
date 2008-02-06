@@ -23,7 +23,7 @@
 			<xsl:value-of select="$title" />
 		</div>
 		<div id="author">by <xsl:value-of select="$author" />; ed. <xsl:value-of select="$editor" />;
-		<span style="display: none" id="page-lines"> Lines: <span class="line-index" id="start-line"><xsl:value-of select="//l[1]/@n"/></span>-<span class="line-index" id="end-line"><xsl:value-of select="//l[last()]/@n"/></span></span>
+		<span style="display: none" id="page-lines"> Lines: <span class="line-index" id="start-line"><xsl:value-of select="$startLine"/></span>-<span class="line-index" id="end-line"><xsl:value-of select="$lastLine"/></span></span>
 		</div>
 	</xsl:template>
 
