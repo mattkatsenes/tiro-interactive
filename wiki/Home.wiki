@@ -1,6 +1,6 @@
 #summary Summary of the project.
 
 = Roadmap =
-* 0.2 - We'll call this our current milestone, shall we?
-* ...
-* 1.0
+  * 0.2 - We'll call this our current milestone, shall we?
+  * ...
+  * 1.0
