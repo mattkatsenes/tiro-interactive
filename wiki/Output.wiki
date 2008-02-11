@@ -11,7 +11,7 @@ Through the magic of [http://fop.apache.org/ FOP], these xhtml pages are further
 = Details =
 
 = Example =
-[http://www.tiro-interactive.org/output/  TEI testbed example-std]
+[http://www.tiro-interactive.org/output/  TEI testbed example-std] - *down currently*
 
 [http://caltuslex.hopto.org:8888/cocoon/output/  TEI testbed example-exp]
 
