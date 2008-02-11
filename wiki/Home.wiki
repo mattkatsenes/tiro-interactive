@@ -4,3 +4,10 @@
   * 0.2 - We'll call this our current milestone, shall we?
   * ...
   * 1.0
+
+= Major Subsections =
+  * [Setup] - How the tiro-interactive servers are setup, including [http://www.perseus.tufts.edu/hopper/ Perseus Hopper].
+  * [Input] - How TEI-(tiro)-XML documents are created from plain text or Perseus TEI xml.
+  * [Output] - How TEI-(tiro)-XML documents are converted to various output formats.
+  * [Printing] - How users properly print create documents.
+  * [Future] - The future directions for tiro-interactive.
