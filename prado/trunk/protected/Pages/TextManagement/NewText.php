@@ -56,7 +56,7 @@ class NewText extends TPage
 		
 		$newText->save();
 		
-//		$this->Response->redirect($this->Service->DefaultPageUrl);
+		$this->Response->redirect("index.php?page=TextManagement.PerseusInitializeText&title=" . $newText->title);
 	}
 	
 	/**
@@ -69,9 +69,9 @@ class NewText extends TPage
 		$path = $ABS_PATH . "/" . $USERS_PREFIX . "/" . $this->User->Name ."/". $newText->dir_name;
 		
 		mkdir($path);
-		require_once($ABS_PATH . "/protected/Engine/TeiBase.php");
+		require_once($ABS_PATH . "/protected/Engine/TiroText.php");
 		
-		$text = new TeiBase($path);
+		$text = new TiroText($path);
 		$text->saveText();
 	}
 	
