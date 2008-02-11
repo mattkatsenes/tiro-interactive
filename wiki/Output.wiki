@@ -10,7 +10,15 @@ Through the magic of [http://fop.apache.org/ FOP], these xhtml pages are further
 
 = Details =
 
-Add your content here.  Format your content with:
-  * Text in *bold* or _italic_
-  * Headings, paragraphs, and lists
-  * Automatic links to other wiki pages
+[http://www.tiro-interactive.org/output/  TEI testbed example-std]
+[http://caltuslex.hopto.org:8888/cocoon/output/  TEI testbed example-exp]
+
+Action URLs
+    * [http://caltuslex.hopto.org:8888/cocoon/output/tei.html  output/tei.html]
+    * [http://caltuslex.hopto.org:8888/cocoon/output/tei(1) output/tei(1)]
+    * [http://caltuslex.hopto.org:8888/cocoon/output/tei-ajax(1) output/tei-ajax(1)]
+    * [http://caltuslex.hopto.org:8888/cocoon/output/tei-ajax-testform(1) output/tei-ajax-testform(1)]
+    * [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).xml output/tei(1).xml]
+    * [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).rtf output/tei(1).rtf]
+    * [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).pdf output/tei(1).pdf]
+    * [http://caltuslex.hopto.org:8888/cocoon/output/tei-book(1).pdf output/tei-book(1).pdf]
