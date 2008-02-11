@@ -1,6 +1,5 @@
 <?php
-$ABS_PATH = "/Users/mkatsenes/Sites/workspace/prado";
-$USERS_PREFIX = "protected/users";
+include('globals.php');
 
 $frameworkPath='/etc/prado/framework/prado.php';
 
