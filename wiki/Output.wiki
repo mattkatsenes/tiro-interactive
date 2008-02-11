@@ -16,6 +16,7 @@ Through the magic of [http://fop.apache.org/ FOP], these xhtml pages are further
 [http://caltuslex.hopto.org:8888/cocoon/output/  TEI testbed example-exp]
 
 ==Action URLs==
+    || *Action URL* - example URL || status ||
     || [http://caltuslex.hopto.org:8888/cocoon/output/tei(1) output/tei(1)] || ||
     || [http://caltuslex.hopto.org:8888/cocoon/output/tei-ajax(1) output/tei-ajax(1)] || experimental ||
     || [http://caltuslex.hopto.org:8888/cocoon/output/tei-ajax-testform(1) output/tei-ajax-testform(1)] || experimental ||
