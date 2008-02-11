@@ -1,0 +1,16 @@
+#summary The output methods used to convert a TEI-(tiro)-XML doc to an output format.
+
+= Introduction =
+
+As a result of the input side of the tiro system, a well formated TEI-(tiro)-XML document is created.  This document lacks presentation information, so we must have a system to convert this xml to a useful display format such as html.
+
+To this end, the tiro-interactive project uses [http://cocoon.apache.org/2.1/ Apache Cocoon 2.1] as an xml/xslt/etc handler.  Using a series of style-sheets, a given xml document is transformed into a linked series of well formed xhtml pages dynamically for access.
+
+Through the magic of [http://fop.apache.org/ FOP], these xhtml pages are further converted into PDF files or RTF files for download.
+
+= Details =
+
+Add your content here.  Format your content with:
+  * Text in *bold* or _italic_
+  * Headings, paragraphs, and lists
+  * Automatic links to other wiki pages
