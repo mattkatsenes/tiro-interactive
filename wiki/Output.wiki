@@ -16,12 +16,12 @@ Through the magic of [http://xmlgraphics.apache.org/fop/ FOP], these xhtml pages
 [http://caltuslex.hopto.org:8888/cocoon/output/  TEI testbed example-exp]
 
 ==Action URLs==
-|| *Action URL* - example URL || *status* ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1) output/tei(1)] || stable ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei-ajax(1) output/tei-ajax(1)] || experimental ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei-ajax-testform(1) output/tei-ajax-testform(1)] || experimental ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).pdf output/tei(1).pdf] || stable ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei-book(1).pdf output/tei-book(1).pdf] || experimental ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).rtf output/tei(1).rtf] || stable ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).xml output/tei(1).xml] || stable ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei.html  output/tei.html] || stable ||
+|| *Action URL* - example URL || *status* || *wikipage* ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1) output/tei(1)] || stable || [OutputFormat#xhtmlFormat xhtmlFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei-ajax(1) output/tei-ajax(1)] || experimental || [OutputFormat#xhtmlFormat xhtmlFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei-ajax-testform(1) output/tei-ajax-testform(1)] || experimental || [OutputFormat#xhtmlFormat xhtmlFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).pdf output/tei(1).pdf] || stable || [OutputFormat#pdfFormat pdfFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei-book(1).pdf output/tei-book(1).pdf] || experimental || [OutputFormat#pdfFormat pdfFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).rtf output/tei(1).rtf] || stable || [OutputFormat#rtfFormat rtfFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).xml output/tei(1).xml] || stable || [OutputFormat#xml miscFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei.html  output/tei.html] || stable || [OutputFormat#xml miscFormat] ||
