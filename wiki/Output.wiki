@@ -23,5 +23,5 @@ Through the magic of [http://xmlgraphics.apache.org/fop/ FOP], these xhtml pages
 || [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).pdf output/tei(1).pdf] || stable || [OutputFormat#pdfFormat pdfFormat] ||
 || [http://caltuslex.hopto.org:8888/cocoon/output/tei-book(1).pdf output/tei-book(1).pdf] || experimental || [OutputFormat#pdfFormat pdfFormat] ||
 || [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).rtf output/tei(1).rtf] || stable || [OutputFormat#rtfFormat rtfFormat] ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).xml output/tei(1).xml] || stable || [OutputFormat#xml miscFormat] ||
-|| [http://caltuslex.hopto.org:8888/cocoon/output/tei.html  output/tei.html] || stable || [OutputFormat#xml miscFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei(1).xml output/tei(1).xml] || stable || [OutputFormat#miscFormat miscFormat] ||
+|| [http://caltuslex.hopto.org:8888/cocoon/output/tei.html  output/tei.html] || stable || [OutputFormat#miscFormat miscFormat] ||
