@@ -15,20 +15,24 @@
 			<xsl:apply-templates/>
 		</xsl:copy>
 	</xsl:template>
-		    
+
+	<!-- Remove copies of notes and headings that come after the latin text -->
 	<xsl:template match="*[@id='notes_heading']"/>
 	<xsl:template match="*[@id='notes']"/>
-		    
+	<!-- -->
+	
+	<!-- Find the PageStart fo:block (ref: fo-formatting-book.xsl) -->
 	<xsl:template match="*[@id='PageStart']">
 		<xsl:copy>
-		<xsl:copy-of select="@*|//*[@id='notes_heading']"/>
-		<xsl:copy-of select="@*|//*[@id='notes']"/>
-		<fo:block break-after="page"/> 
-			<xsl:apply-templates/>
+			<!-- Make copy of notes and move to front -->
+			<xsl:copy-of select="@*|//*[@id='notes_heading']"/>
+			<xsl:copy-of select="@*|//*[@id='notes']"/>
+			<!-- Cause page break after notes ends -->
+			<fo:block break-after="page"/>
+				<!-- continue through xml files -->
+				<xsl:apply-templates/>
 		</xsl:copy>
 	</xsl:template>
-		    
-		    
 		    
 		    
 <!--

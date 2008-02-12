@@ -14,16 +14,16 @@
   =======================================================================-->
   
   <!-- page size -->
-  <xsl:param name="page-width">106mm</xsl:param>
-  <xsl:param name="page-height">171mm</xsl:param>
-  <xsl:param name="page-margin-top">2mm</xsl:param>
-  <xsl:param name="page-margin-bottom">2mm</xsl:param>
-  <xsl:param name="page-margin-left">6mm</xsl:param>
-  <xsl:param name="page-margin-right">6mm</xsl:param>
+  <xsl:param name="page-width">4.25in</xsl:param>
+  <xsl:param name="page-height">6.875in</xsl:param>
+  <xsl:param name="page-margin-top">0.5in</xsl:param>
+  <xsl:param name="page-margin-bottom">0.25in</xsl:param>
+  <xsl:param name="page-margin-left">0.1in</xsl:param>
+  <xsl:param name="page-margin-right">0.5in</xsl:param>
 
   <!-- page header and footer -->
-  <xsl:param name="page-header-margin">5mm</xsl:param>
-  <xsl:param name="page-footer-margin">5mm</xsl:param>
+  <xsl:param name="page-header-margin">0.25in</xsl:param>
+  <xsl:param name="page-footer-margin">0.25in</xsl:param>
   <xsl:param name="title-print-in-header">false</xsl:param>
   <xsl:param name="page-number-print-in-footer">false</xsl:param>
   
