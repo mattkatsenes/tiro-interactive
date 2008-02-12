@@ -16,20 +16,21 @@
 			
 			<xsl:variable name="small-indent"		>0.1in</xsl:variable>
 			<xsl:variable name="normal-indent"	>0.3in</xsl:variable>
-			<xsl:variable name="large-indent"		>0.7in</xsl:variable>
+			<xsl:variable name="large-indent"		>0.6in</xsl:variable>
 			<xsl:variable name="larger-indent"		>1in</xsl:variable>
 			
-			<xsl:variable name="lg_block_col1"	>0.4in</xsl:variable>  <!--Line number column of line-groups-table-->
-			<xsl:variable name="lg_block_col2"	>4in</xsl:variable>  <!--Latin-line column of line-groups-table-->
-			<xsl:variable name="text_line_spacing">2</xsl:variable>
+			<xsl:variable name="lg_block_col1"	>0.35in</xsl:variable>  <!--Line number column of line-groups-table-->
+			<xsl:variable name="lg_block_col2"	>3.15in</xsl:variable>  <!--Latin-line column of line-groups-table-->
+			<xsl:variable name="text_line_spacing">2.5</xsl:variable>
+			<xsl:variable name="text_line_align">left</xsl:variable>
 			
-			<xsl:variable name="definitions_block_col">1.75in</xsl:variable>		<!-- Width of definition columns -->
+			<xsl:variable name="definitions_block_col">1.5in</xsl:variable>		<!-- Width of definition columns -->
 				<xsl:variable name="def_border_width"	>0.25pt</xsl:variable>	<!-- Definition of start-end border vertical-width, !NOTE! border is applied to each  -->
 				<xsl:variable name="def_border_color"	>black</xsl:variable>		<!-- of the defintion cells, but NOT the left-right margin cells -->
 				<xsl:variable name="def_border_style"	>solid</xsl:variable>
-			<xsl:variable name="def_marg_left"	>0.3in</xsl:variable>
-			<xsl:variable name="def_marg_right"	>0.4in</xsl:variable>
-			<xsl:variable name="def_title_indent"	>0.3in</xsl:variable>
+			<xsl:variable name="def_marg_left"	>0.25in</xsl:variable>
+			<xsl:variable name="def_marg_right"	>0.35in</xsl:variable>
+			<xsl:variable name="def_title_indent"	>0.25in</xsl:variable>
 			
 <!-- end Variable list to allow for vague css ishness -->
 			
@@ -216,7 +217,7 @@
 						the previous sibling object to see if it is a "line_number" object. -->
 						<xsl:when test="preceding-sibling::*[1][@class='line_number']"> <!--should return a line_number object!!-->
 							<!--- IF object before current latin-line IS line number, put in left hand table cell -->
-							<fo:block class="line_number" font-style="normal"><xsl:value-of select="preceding-sibling::*[1][@class='line_number']"/></fo:block>
+							<fo:block class="line_number" font-style="normal" text-align="left"><xsl:value-of select="preceding-sibling::*[1][@class='line_number']"/></fo:block>
 						</xsl:when>
 						<xsl:otherwise>
 							<!--- IF NOT  put blank left hand table cell, with a new class tag so this cell can be further modified by other XSLT-->
@@ -225,7 +226,7 @@
 					</xsl:choose>
 				</fo:table-cell>
 				<fo:table-cell class="lg_cell_text"> <!--Always put content of class="l" latin line into right hand cell of lg table -->
-					<fo:block class="l_text"><xsl:apply-templates select="@*|node()"/></fo:block>
+					<fo:block class="l_text" text-align="{$text_line_align}"><xsl:apply-templates select="@*|node()"/></fo:block>
 				</fo:table-cell>
 			</fo:table-row>
 </xsl:template>
@@ -260,7 +261,7 @@
 				<fo:table-row>
 		
 					<fo:table-cell column-number="2"> <!-- column-number 1 is definitions_left_margin -->
-						<fo:block id="def_block1" class="def_block">
+						<fo:block id="def_block1" class="def_block" margin-right="2pt">
 						<xsl:for-each select="(*[(@class='entry')])[position() &lt;= $def_col1]">		<!--For-each entry whose position in the list of all "*[(@class='entry')]" is <= value_def_col1, display! -->
 								<xsl:element name="{name()}">
 									<xsl:attribute name="n"><xsl:value-of select="position()"/></xsl:attribute>

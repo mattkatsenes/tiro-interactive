@@ -18,8 +18,8 @@
   <xsl:param name="page-height">6.875in</xsl:param>
   <xsl:param name="page-margin-top">0.5in</xsl:param>
   <xsl:param name="page-margin-bottom">0.25in</xsl:param>
-  <xsl:param name="page-margin-left">0.1in</xsl:param>
-  <xsl:param name="page-margin-right">0.5in</xsl:param>
+  <xsl:param name="page-margin-left">0.25in</xsl:param>
+  <xsl:param name="page-margin-right">0.35in</xsl:param>
 
   <!-- page header and footer -->
   <xsl:param name="page-header-margin">0.25in</xsl:param>
