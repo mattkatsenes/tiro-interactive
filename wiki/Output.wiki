@@ -6,7 +6,7 @@ As a result of the input side of the tiro system, a well formed TEI-(tiro)-XML d
 
 To this end, the tiro-interactive project uses [http://cocoon.apache.org/2.1/ Apache Cocoon 2.1] as an xml/xslt/etc handler.  Using a series of style-sheets, a given xml document is transformed into a linked series of well formed xhtml pages dynamically for access.
 
-Through the magic of [http://fop.apache.org/ FOP], these xhtml pages are further converted into PDF files or RTF files for download.
+Through the magic of [http://xmlgraphics.apache.org/fop/ FOP], these xhtml pages are further converted into PDF files or RTF files for download.
 
 = Details =
 
