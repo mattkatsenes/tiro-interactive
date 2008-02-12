@@ -1,0 +1,17 @@
+#summary How each output format for tiro is created.
+
+= Introduction =
+
+Add your content here.
+
+
+== xhtmlFormat ==
+
+
+== pdfFormat ==
+
+
+== rtfFormat ==
+
+
+== miscFormat ==
