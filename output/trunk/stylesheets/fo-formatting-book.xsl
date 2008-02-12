@@ -21,11 +21,16 @@
 			
 			<xsl:variable name="lg_block_col1"	>0.4in</xsl:variable>  <!--Line number column of line-groups-table-->
 			<xsl:variable name="lg_block_col2"	>4in</xsl:variable>  <!--Latin-line column of line-groups-table-->
+			<xsl:variable name="text_line_spacing">2</xsl:variable>
 			
-			<xsl:variable name="definitions_block_col">2.0in</xsl:variable>		<!-- Width of definition columns (left-margin/right margin are set = $normal-indent) -->
+			<xsl:variable name="definitions_block_col">1.75in</xsl:variable>		<!-- Width of definition columns -->
 				<xsl:variable name="def_border_width"	>0.25pt</xsl:variable>	<!-- Definition of start-end border vertical-width, !NOTE! border is applied to each  -->
 				<xsl:variable name="def_border_color"	>black</xsl:variable>		<!-- of the defintion cells, but NOT the left-right margin cells -->
 				<xsl:variable name="def_border_style"	>solid</xsl:variable>
+			<xsl:variable name="def_marg_left"	>0.3in</xsl:variable>
+			<xsl:variable name="def_marg_right"	>0.4in</xsl:variable>
+			<xsl:variable name="def_title_indent"	>0.3in</xsl:variable>
+			
 <!-- end Variable list to allow for vague css ishness -->
 			
 	<xsl:output method="xml"
@@ -142,7 +147,7 @@
 	<!-- Defintions section		-->
 	<xsl:template match="*[@id='definitions_heading']">
 		<xsl:element name="fo:block">
-			<xsl:attribute name="start-indent">0.0in</xsl:attribute>
+			<xsl:attribute name="start-indent"><xsl:value-of select="$def_title_indent"/></xsl:attribute>
 			<xsl:attribute name="font-size"><xsl:value-of select="$normal-font"/></xsl:attribute>
 			<xsl:attribute name="font-weight">bold</xsl:attribute>
 			<xsl:apply-templates select="@*|node()"/>
@@ -199,7 +204,7 @@
 <!-- Complex logic section		-->
 <xsl:template match="*[@class='line_number']" /> <!-- This removes the line numbers from the xml feed so that they only appear if accessed in the *[@class='l'] template, manually -->
 <xsl:template match="*[@class='l']">	<!--The table these rows match with has been created in the template "*[@class='lg']" -->
-			<fo:table-row>
+			<fo:table-row line-height="{$text_line_spacing}">
 				<fo:table-cell class="lg_cell_linenumber">
 					<xsl:choose>
 					<!--	The XHTML is setup in the following fashion:
@@ -236,7 +241,7 @@
 			<xsl:attribute name="space-after"><xsl:value-of select="$normal-space"/></xsl:attribute>
 			
 		<fo:table font-size="{$small-font}" id="definitions_block_table">
-			<fo:table-column column-width="0.0in" id="definitions_left_margin"/>
+			<fo:table-column column-width="{$def_marg_left}" id="definitions_left_margin"/>
 			<!-- FOP fails to format tables to pdf properly.  The only way to indent a table in the proper fashion is to create	-->
 			<!-- A left and right margin cell.  This should more properly be moved into the PDF specific section, since they		-->
 			<!-- are removed anyway by the RTF section, but I dont want to deal with it right now. -DREW	-->
@@ -250,7 +255,7 @@
 									border-after-width="{$def_border_width}" border-after-color="{$def_border_color}" border-after-style="{$def_border_style}"
 									border-top-width="{$def_border_width}" border-top-color="{$def_border_color}" border-top-style="{$def_border_style}"
 			/>
-			<fo:table-column column-width="0.0in" id="definitions_right_margin"/><!-- see above -->
+			<fo:table-column column-width="{$def_marg_right}" id="definitions_right_margin"/><!-- see above -->
 			<fo:table-body >			
 				<fo:table-row>
 		
