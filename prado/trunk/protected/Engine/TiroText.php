@@ -142,6 +142,7 @@ class TiroText
 	 */
 	public function saveText()
 	{
+		$this->xml->formatOutput=true;
 		$this->xml->save($this->xml_file);
 	}
 	
