@@ -22,5 +22,7 @@
 		</encodingDesc>
 	</teiHeader>
 	
-	<text/>
+	<text>
+		<body />
+	</text>
 </TEI>

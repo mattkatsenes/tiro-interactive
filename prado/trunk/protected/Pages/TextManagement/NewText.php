@@ -3,6 +3,9 @@
 /**
  * Text Creation page.
  * 
+ * This uses the hard-coded arrays $AUTHOR_ARRAY and 
+ * $TEXT_ARRAY because RDF processing is incredibly slow.
+ * 
  * @author Matthew Katsenes <psalakanthos@gmail.com>
  * @copyright Copyright (c) 2007 Matthew Katsenes
  * @package tiro-input
@@ -11,6 +14,50 @@
  */
 class NewText extends TPage
 {    
+	/**
+	 * Load the page and choose the View.
+	 * 
+	 * If we are loading for the first time, go to Author.
+	 * Otherwise, someone else should've reset it.
+	 */
+	public function onLoad()
+	{
+		if(!$this->IsPostBack)
+			$this->loadAuthorView();
+	}
+
+	public function loadAuthorView()
+	{
+		global $AUTHOR_ARRAY;
+		$this->AuthorList->DataSource=$AUTHOR_ARRAY;
+		$this->AuthorList->dataBind();
+		$this->ChoicesMultiView->ActiveView = $this->AuthorView;		
+	}
+	
+	public function authorChosen($sender,$param)
+	{
+		global $AUTHOR_ARRAY, $TEXT_ARRAY;
+		$author_index = $param->Index;
+		$author = $AUTHOR_ARRAY[$author_index];
+		$this->AuthorName->Text = $author;
+		
+		$this->TextList->DataTextField="title";
+		$this->TextList->DataValueField="perseus";
+		$this->TextList->DataSource=$TEXT_ARRAY[$author];
+		$this->TextList->dataBind();
+		
+		$this->ChoicesMultiView->ActiveView = $this->TextView;
+	}
+	
+	public function textChosen($sender,$param)
+	{
+		$this->ToCAuthorName->Text = $this->AuthorName->Text;
+		$this->ToCTextName->Text = $sender->Items->offsetGet($param->Index)->Text;
+		$this->ToCPerseus->Text = $sender->Items->offsetGet($param->Index)->Value;
+		
+		$this->ChoicesMultiView->ActiveView = $this->ToCView;
+	}
+	
 	/**
 	 * Creation Button Clicked.
 	 * 
