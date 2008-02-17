@@ -5,13 +5,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="content-language" content="en"/>
 
-<link href="css/style.css" rel="stylesheet" type="text/css"/>
+<link href="css/style-2col.css" rel="stylesheet" type="text/css"/>
 
 </com:THead>
 
 <body>
+<div id="container">
 <com:TForm>
 <div id="sidebar">
+<div id="logo"><img src="images/tiro4-apollo.jpg" /></div>
 <div id="welcome">
 <com:TMultiView ID="WelcomeMultiView">
 <com:TView ID="WelcomeGuest">
@@ -24,10 +26,12 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 </com:TView>
 </com:TMultiView>
 </div>
+<div id="sidebar_content">
 <%= $this->sideBar() %>
 <com:TContentPlaceHolder ID="sidebar" />
 </div>
-<div id="logo"><img src="images/tiro-dropshadow-s.jpg" /></div>
+</div>
+
 
 <div id="mainColumn">
 
@@ -49,5 +53,6 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 </ul>
 </div>
 </com:TForm>
+</div>
 </body>
 </html>
