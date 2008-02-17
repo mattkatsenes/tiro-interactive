@@ -103,7 +103,8 @@ class NewText extends TPage
 		
 		$newText->save();
 		
-		$this->Response->redirect("index.php?page=TextManagement.PerseusInitializeText&title=" . $newText->title);
+		global $PERSEUS_SERVER;
+		$this->Response->redirect($PERSEUS_SERVER . 'xmltoc.jsp?doc=' . $this->ToCPerseus->Text);
 	}
 	
 	/**

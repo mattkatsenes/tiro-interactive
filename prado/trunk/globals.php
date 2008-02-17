@@ -4,7 +4,7 @@
 $ABS_PATH = "/Users/mkatsenes/Sites/workspace/prado-gcode";
 $USERS_PREFIX = "protected/users";
 
-$PERSEUS_SERVER="http://www.perseus.tufts.edu/hopper/";
+$PERSEUS_SERVER="http://www.tiro-interactive.org/hopper/";
 $PERSEUS_TEXT_DIR="/Users/mkatsenes/Sites/perseus-texts/";
 
 // Massive Hard-coded arrays
