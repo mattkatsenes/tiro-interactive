@@ -34,10 +34,12 @@ body {
 	width: 301px;
 	padding-bottom: 10px;
 	height: 402px;
-	overflow: auto;
+	overflow: hidden;
 }
 #sidebar_content {
 	padding: 10px;
+	height: 104px;
+	overflow: auto;
 }
 
 #mainColumn {
