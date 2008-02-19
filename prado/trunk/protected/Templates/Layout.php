@@ -122,6 +122,9 @@ EOT;
 EOT;
 		$newsItems = NewsRecord::finder()->findAll();
 		
+		if(NewsRecord::finder()->count() == 0)
+		$sideBar .= "<li>No news.</li>";
+		
 		foreach($newsItems as $item)
 		{
 			$sideBar .= <<<EOT
@@ -144,12 +147,12 @@ EOT;
 <span class="SideBarLabel">My Texts</span>
 <ul>
 EOT;
-			foreach($my_texts as $text)
-			{
-				$sideBar .= "<li>$text->title | <a href=\"index.php?page=TextManagement.View&id=$text->title \">view</a> |  <a href=\"index.php?page=TextManagement.Edit&id=$text->title\">edit</a> |  <a href=\"index.php?page=TextManagement.Publish&id=$title\">publish</a></li>";
-			}
+			$sideBar .= "<li><a href=\"index.php?page=TextManagement.NewText\">New Text</a></li>";
 			
-			$sideBar .= "<li><a href=\"index.php?page=TextManagement.NewText\">New Text</a></li></ul>";
+			foreach($my_texts as $text)
+				$sideBar .= "<li><a href=\"index.php?page=TextManagement.Edit&id=$text->dir_name\">$text->title</a> | <a href=\"index.php?page=TextManagement.Delete&id=$text->dir_name\">Delete</a></li>";
+		
+			$sideBar .= "</ul>";
 		}
 		elseif($this->User->Roles[0] == 'student')
 		{
