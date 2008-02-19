@@ -48,8 +48,8 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 </div>
 <div id="credits">
 <ul>
-	<li>Copyright 2007 Matthew Katsenes</li>
-	<li>Powered By <a href="http://www.pradosoft.com" target="_blank">PRADO</a>, <a href="http://www.php.net" target="_blank">PHP</a>, <a href="http://tomcat.apache.org" target="_blank">Tomcat</a>, and <a href="http://cocoon.apache.org" target="_blank">Cocoon</a></li>
+	<li>Copyright 2008 Matthew Katsenes</li>
+	<li>Powered By <a href="http://www.pradosoft.com" target="_blank">PRADO</a>, <a href="http://www.php.net" target="_blank">PHP</a>, <a href="http://tomcat.apache.org" target="_blank">Tomcat</a>, <a href="http://cocoon.apache.org" target="_blank">Cocoon</a>, <a href="http://www.perseus.tufts.edu">Perseus</a>, and <a href="http://www.tei-c.org">TEI</a>.</li>
 </ul>
 </div>
 </com:TForm>
