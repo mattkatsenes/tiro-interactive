@@ -111,10 +111,10 @@ END;
 -- Some Initial Data
 INSERT INTO userRecords (username, password, role) VALUES ('matt','b244383da8e1b93814430dd9a77db079',1);
 INSERT INTO teacherUsers (username,first_name,middle_name,last_name,email,website) VALUES ('matt','Matthew','G.','Katsenes','psalakanthos@gmail.com','http://www.tiro-interactive.org');
-INSERT INTO textItems (title,author_id,status) VALUES ('worker','matt',0);
+INSERT INTO textItems (dir_name,title,author_id,status) VALUES ('worker','worker','matt',0);
 INSERT INTO userRecords (username, password, role) VALUES ('student','2070a792f5514dc5cf441c4dd4c275a3',2);
 INSERT INTO studentUsers (username,teacher_id) VALUES ('student','matt');
 
--- ** Test case for fk constraint.
+-- ** Test cases for fk constraint.
 -- INSERT INTO studentUsers (username) VALUES ('failing_student');
 -- INSERT INTO textItems (title,author_id,status) VALUES ('failer','nobody',0);
