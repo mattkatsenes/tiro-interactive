@@ -1,7 +1,7 @@
 -- file: schema.sql
 -- author: Matthew Katsenes
 -- usage: to create tiro.db with initial values...
--- 	$ sqlite3 tiro.db < tiro_new.sql
+-- 	$ sqlite3 tiro.db < schema.sql
 -- ********************************
 
 -- userRecords
@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS teacherUsers (
 
 -- textItems
 CREATE TABLE IF NOT EXISTS textItems (
-	dir_name TEXT PRIMARY KEY,
+	id INTEGER PRIMARY KEY AUTOINCREMENT,
+	dir_name TEXT,
 	title TEXT,
 	creation_date DATE,
 	last_edit DATE,
@@ -111,7 +112,7 @@ END;
 -- Some Initial Data
 INSERT INTO userRecords (username, password, role) VALUES ('matt','b244383da8e1b93814430dd9a77db079',1);
 INSERT INTO teacherUsers (username,first_name,middle_name,last_name,email,website) VALUES ('matt','Matthew','G.','Katsenes','psalakanthos@gmail.com','http://www.tiro-interactive.org');
-INSERT INTO textItems (dir_name,title,author_id,status) VALUES ('worker','worker','matt',0);
+--INSERT INTO textItems (dir_name,title,author_id,status) VALUES ('worker','worker','matt',0);
 INSERT INTO userRecords (username, password, role) VALUES ('student','2070a792f5514dc5cf441c4dd4c275a3',2);
 INSERT INTO studentUsers (username,teacher_id) VALUES ('student','matt');
 

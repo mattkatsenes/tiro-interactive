@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugins>
+	<plugin>
+		<name>Add Perseus Text</name>
+		<desc>Use me to add text segments from well known classical authors stored on the Perseus Digital Library.</desc>
+		<folder>PerseusAdd</folder>
+		<friendly-url>/{id}/PerseusAdd</friendly-url>
+	</plugin>
+</plugins>

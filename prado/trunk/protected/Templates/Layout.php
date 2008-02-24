@@ -7,11 +7,14 @@
  * a header, nav-bar, and side-bar for each page.
  * It's built on @link http://www.pradosoft.com Prado PHP Framework.
  * 
+ * UPDATE: The template now works properly using Prado's TBulletedList class.
+ * 
  * @author Matthew Katsenes <psalakanthos@gmail.com>
  * @copyright Copyright (c) 2007 Matthew Katsenes
  * @package tiro-input
  * @subpackage layout
- * @version tiro-input side v. 0.1
+ * @version tiro-input side v. 0.2
+ * 
  */
 class Layout extends TTemplateControl
 {
@@ -40,8 +43,19 @@ class Layout extends TTemplateControl
 			$this->WelcomeMultiView->activeView=$this->WelcomeUser;
 		else
 			$this->WelcomeMultiView->activeView=$this->WelcomeGuest;
+		
+		$this->menuBar($logged_in);
+		$this->sideBar($logged_in);
 	}
 	
+	/**
+	 * Gets the application context (the relative URL for the prado app without the index.php bit).
+	 */
+	public function getApplicationContext()
+	{
+		$context = $this->Application->Request->ApplicationUrl;
+		return substr_replace($context,'',-9);
+	}
 	/**
 	 * Create the MenuBar.
 	 * 
@@ -52,122 +66,74 @@ class Layout extends TTemplateControl
 	 * the items from $MENUBAR_ITEMS_USER except the one with RequestedPagePath
 	 * Home.
 	 * 
-	 * @staticvar array $MENUBAR_ITEMS_GUEST An array of descriptive_title => prado_path for guest options.
-	 * @staticvar array $MENUBAR_ITEMS_USER An array of descriptive_title => prado_path for user options. 
-	 * @return string The <li>'s for the MenuBar
+	 * @param bool $logged_in guest or user state?
+	 * @staticvar array $MENUBAR_ITEMS_GUEST An array of  prado_path => descriptive_title for guest options.
+	 * @staticvar array $MENUBAR_ITEMS_USER An array of prado_path => descriptive_title for user options. 
 	 */
-	public function menuBar()
+	public function menuBar($logged_in)
 	{
 		static $MENUBAR_ITEMS_GUEST = array(
-			'Home' => 'Home',
-			'About Tiro' => 'About',
-			'Login' => 'UserManagement.Login',
-			'Create User' => 'UserManagement.Create'
+			'index.php?page=Home' => 'Home',
+			'index.php?page=About' => 'About Tiro',
+			'index.php?page=UserManagement.Login' => 'Login',
+			'index.php?page=UserManagement.Create' => 'Create User'
 			);
 		static $MENUBAR_ITEMS_USER = array(
-			'Home' => 'Home',
-			'About Tiro' => 'About',
-			'Login' => 'UserManagement.Login',
-			'Create User' => 'UserManagement.Create'
+			'index.php?page=Home' => 'Home',
+			'index.php?page=About' =>'About Tiro'
 			);
-	
-		$authManager=$this->Application->getModule('auth');
-		$logged_in = !$authManager->User->IsGuest;
-
-		$menuList = "";
 		
 		if(!$logged_in)
 		{
-			$menuList = <<<EOT
-	<li><a href="index.php?page=Home">Home</a></li>
-	<li><a href="index.php?page=About">About Tiro</a></li>
-	<li><a href="index.php?page=UserManagement.Login">Login</a></li>
-	<li><a href="index.php?page=UserManagement.Create">Create User</a></li>
-EOT;
+			$this->MenuList->DataSource=$MENUBAR_ITEMS_GUEST;
+			$this->MenuList->databind();
 		}
 		else
 		{
-			$menuList = <<<EOT
-	<li><a href="index.php?page=Home">Home</a></li>
-	<li><a href="index.php?page=About">About Tiro</a></li>
-	<li><a href="index.php?page=UserManagement.Preferences">Edit Preferences</a></li>
-EOT;
+			$this->MenuList->DataSource=$MENUBAR_ITEMS_USER;
+			$this->MenuList->databind();
 		}
-		
-		$pageService = $this->Application->getService('page');
-		
-//		$menuList .= $pageService->RequestedPagePath;
-		return $menuList; 
 	}
 
 	/**
-	 * Generates the HTML for the SideBar.
-	 * 
-	 * The SideBar has (right now) two sections (12/13/2007):
-	 * - News Items
-	 * - Project Listing (once logged in)
-	 * 
-	 * @return string $sideBar The complete HTML for the SideBar
+	 * Binds the data for the SideBar.
 	 */
-	public function sideBar()
-	{
-		$authManager=$this->Application->getModule('auth');
-		$logged_in = !$authManager->User->IsGuest;
-
-		$sideBar = "";
-
-		$sideBar .= <<<EOT
-<span class="SideBarLabel">News</span>
-<ul>
-EOT;
-		$newsItems = NewsRecord::finder()->findAll();
-		
-		if(NewsRecord::finder()->count() == 0)
-		$sideBar .= "<li>No news.</li>";
-		
-		foreach($newsItems as $item)
+	public function sideBar($logged_in)
+	{	
+/*		if(!$logged_in)
 		{
-			$sideBar .= <<<EOT
-	<li>$item->slug <a href="index.php?page=News&id=$item->item_id ">...</a></li>
-EOT;
-		}
-		
-		$sideBar .= "</ul>";
-		
-		if(!$logged_in)
+			$this->SideBarLabel->Text = "Please login.";
+			$this->SideBarList->DataSource = Array("Please Login");
+		} */
+		if($this->User->Roles[0] == 'teacher')
 		{
-			$sideBar .= "Please login to see your saved projects.";
-		}
-		elseif($this->User->Roles[0] == 'teacher')
-		{
-			$username = $authManager->User->Name;
+			$this->SideBarLabel->Text = "My Texts:";
+			$username = $this->User->Name;
 			$my_texts = TextRecord::finder()->findAllByAuthor_id($username);
-			
-			$sideBar .= <<<EOT
-<span class="SideBarLabel">My Texts</span>
-<ul>
-EOT;
-			$sideBar .= "<li><a href=\"index.php?page=TextManagement.NewText\">New Text</a></li>";
-			
+
+			$textArray = Array("index.php?page=TextManagement.NewText" => "New Text");
 			foreach($my_texts as $text)
-				$sideBar .= "<li><a href=\"index.php?page=TextManagement.Edit&id=$text->dir_name\">$text->title</a> | <a href=\"index.php?page=TextManagement.Delete&id=$text->dir_name\">Delete</a></li>";
-		
-			$sideBar .= "</ul>";
+				$textArray["index.php?page=TextManagement.View&id=$text->dir_name"] = $text->title;
+				
+			$this->SideBarList->DataSource = $textArray;
+			$this->SideBarList->databind();
 		}
 		elseif($this->User->Roles[0] == 'student')
 		{
 			$teacherRecord = StudentRecord::finder()->withTeacher()->findByPk($this->User->Name)->teacher;
-			$sideBar .= <<<EOT
-<span class="SideBarLabel">Teacher: $teacherRecord->first_name $teacherRecord->middle_name $teacherRecord->last_name </span>
-<ul>
-EOT;
+			
+			$this->SideBarLabel->Text = "Teacher: $teacherRecord->first_name $teacherRecord->middle_name $teacherRecord->last_name";
+			
+			$textArray = Array();
+			
 			$teacherTexts= TextRecord::finder()->findAllByAuthor_id($teacherRecord->username);
 			foreach($teacherTexts as $text)
 				if($text->status > 0)
-					$sideBar .= "<li>$text->title</li>";
-			$sidebar .= "</ul>";
+					$textArray["index.php?page=Student.View&id=$text->dir_name"] = $text->title;
+			
+			$this->SideBarList->DataSource = $textArray;
+			$this->SideBarList->databind();
 		}
-		return $sideBar; 
 	}
 	
 	public function logoutButtonClicked()

@@ -23,9 +23,58 @@ class NewText extends TPage
 	public function onLoad()
 	{
 		if(!$this->IsPostBack)
-			$this->loadAuthorView();
+			$this->ChoicesMultiView->ActiveView = $this->PerseusQuestion;
 	}
+	
+	public function perseusYes()
+	{
+		$this->loadAuthorView();
+	}
+	public function perseusNo()
+	{
+		$this->ChoicesMultiView->ActiveView = $this->PerseusNoView;
+	}
+	
+	public function perseusNoInit()
+	{
+		$newText = new TextRecord();
+		$newText->author_id = $this->User->Name;
+		$newText->title = $this->Title->Text;
+		$newText->status = 0;
+		$newText->creation_date = date("m-d-Y H:i:s");		//%m-%d-%Y %H:%M:%S",'now'
 
+		// Check to see if this author has already created this title.
+		$id=2;
+		foreach(TeacherRecord::finder()->withTexts()->findByUsername($this->User->Name)->texts as $text)
+		{
+			if($text->title == $newText->title)	
+			{
+				// find a title that's not yet taken
+				while(TextRecord::finder()->find('title = :title AND author_id = :author_id',
+							array(':title'=>$newText->title . $id,':author_id'=>$this->User->Name)) != null)
+					$id++;
+
+				$newText->title .= $id;
+			}
+		}
+		
+		$directory = $this->filename_safe($newText->title);
+		
+		$id = 0;
+		if(TextRecord::finder()->find('author_id = ? AND dir_name = ?', $this->User->Name, $directory) != null)
+		{
+			while(TextRecord::finder()->find('author_id = ? AND dir_name = ?', $this->User->Name, $directory . $id) != null)
+				$id++;
+			$directory .= $id;
+		}
+		$newText->dir_name = $directory;
+
+		$this->dirSetup($newText);
+		
+		$newText->save();
+		$this->Response->redirect("index.php");
+	}
+	
 	public function loadAuthorView()
 	{
 		global $AUTHOR_ARRAY;
@@ -65,11 +114,11 @@ class NewText extends TPage
 	 * Check for a non-unique 'directory' since this is the PK.
 	 * Make the directories and default files.
 	 */
-	public function textCreate($sender, $param)
+	public function ToCDisplay($sender, $param)
 	{
 		$newText = new TextRecord();
 		$newText->author_id = $this->User->Name;
-		$newText->title = $this->Title->Text;
+		$newText->title = $this->ToCTextName->Text;
 		$newText->status = 0;
 		$newText->creation_date = date("m-d-Y H:i:s");		//%m-%d-%Y %H:%M:%S",'now'
 
@@ -91,9 +140,9 @@ class NewText extends TPage
 		$directory = $this->filename_safe($newText->title);
 		
 		$id = 0;
-		if(TextRecord::finder()->findByDir_name($directory) != null)
+		if(TextRecord::finder()->find('author_id = ? AND dir_name = ?', $this->User->Name, $directory) != null)
 		{
-			while(TextRecord::finder()->findByDir_name($directory . $id) != null)
+			while(TextRecord::finder()->find('author_id = ? AND dir_name = ?', $this->User->Name, $directory . $id) != null)
 				$id++;
 			$directory .= $id;
 		}
