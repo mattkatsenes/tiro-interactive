@@ -1,10 +1,15 @@
 <?xml version="1.0"?>
 <text name="ecologues">
   <page n="1">
-    <comment>Well hi there </comment>
+    <comment>This is a user editable textbox designed to store student notes to an xml file while reading this page. (Currently the notes are saved whenever the this box loses focus)
+
+Note that the unitalicized words can be clicked on to display an ajax style definition.
+
+Currently this page is experimental, and the source is fairly unreadable.  But it makes use of a controller/children model to keep track of edits to the text boxes on the right (loaded by click the [+]).  The amount of time spent editing each box is kept in an ajax array for later storage.
+</comment>
   </page>
   <page n="2">
-    <comment>Well hi there page 2</comment>
+    <comment>Well hi there page 2 hello</comment>
   </page>
   <page n="3">
     <comment>Well hi there, whats up?</comment>
