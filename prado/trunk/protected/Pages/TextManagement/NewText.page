@@ -2,16 +2,29 @@
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
+<com:TMultiView ID="ChoicesMultiView">
+<com:TView ID="PerseusQuestion">
+Do you want to get the source of the text from Perseus?
+<com:TButton ID="PerseusQuestionYes"
+	Text="Yes"
+	OnClick="perseusYes" />
+ or 
+<com:TButton ID="PerseusQuestionNo"
+	Text="No"
+	OnClick="perseusNo" />
+</com:TView>
 
-
+<com:TView ID="PerseusNoView">
 Descriptive Filename: <com:TTextBox ID="Title" />
 <com:TRequiredFieldValidator
     ControlToValidate="Title"
     Display="Dynamic"
     Text="Please input a filename." />
 <br />
+<com:TButton Text="Submit" OnClick="perseusNoInit" CausesValidation="true"/>
 
-<com:TMultiView ID="ChoicesMultiView">
+</com:TView>
+
 <com:TView ID="AuthorView">
 <p>Choose an Author:</p>
 
@@ -39,7 +52,7 @@ Descriptive Filename: <com:TTextBox ID="Title" />
 Text: <com:TLabel ID="ToCTextName" /><br />
 Perseus ID: <com:TLabel ID="ToCPerseus" /></p>
 
-<com:TButton Text="Submit" OnClick="textCreate" CausesValidation="true"/>
+<com:TButton Text="Submit" OnClick="ToCDisplay"/>
 </com:TView>
 </com:TMultiView>
 

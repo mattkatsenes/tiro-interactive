@@ -17,6 +17,7 @@ class TextRecord extends TActiveRecord
 {
 	const TABLE='textItems';
 
+	public $id;
 	public $title;
 	public $creation_date;
 	public $last_edit;

@@ -5,15 +5,15 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="content-language" content="en"/>
 
-<link href="css/style-2col.css" rel="stylesheet" type="text/css"/>
-
+<!-- <link href="css/style-2col.css" rel="stylesheet" type="text/css"/>  -->
+<com:TStyleSheet StyleSheetUrl="<%= $this->ApplicationContext %>/css/style-2col.css" />
 </com:THead>
 
 <body>
 <div id="container">
 <com:TForm>
 <div id="sidebar">
-<div id="logo"><img src="images/tiro4-apollo.jpg" /></div>
+<div id="logo"><img src="<%= $this->ApplicationContext %>images/tiro4-apollo.jpg" /></div>
 <div id="welcome">
 <com:TMultiView ID="WelcomeMultiView">
 <com:TView ID="WelcomeGuest">
@@ -27,7 +27,9 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 </com:TMultiView>
 </div>
 <div id="sidebar_content">
-<%= $this->sideBar() %>
+<com:TLabel ID="SideBarLabel" />
+<com:TBulletedList id="SideBarList"
+	DisplayMode="HyperLink" />
 <com:TContentPlaceHolder ID="sidebar" />
 </div>
 </div>
@@ -36,9 +38,8 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 <div id="mainColumn">
 
 <div id="menubar">
-<ul>
-<%= $this->menuBar() %>
-</ul>
+<com:TBulletedList id="MenuList"
+	DisplayMode="HyperLink" />
 </div>
 
 <div id="guts">
