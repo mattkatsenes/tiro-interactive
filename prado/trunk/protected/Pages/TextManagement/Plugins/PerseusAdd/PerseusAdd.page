@@ -1,0 +1,37 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+<com:TMultiView ID="ChoicesMultiView">
+<com:TView ID="AuthorView">
+<p>Choose an Author:</p>
+
+<com:TBulletedList 
+	ID="AuthorList" 
+	DisplayMode="LinkButton"
+	OnClick="authorChosen" 
+	CausesValidation="false"/>
+
+</com:TView>
+
+<com:TView ID="TextView">
+<p>Author: <com:TLabel ID="AuthorName" /></p>
+
+<com:TBulletedList 
+	ID="TextList" 
+	DisplayMode="LinkButton"
+	OnClick="textChosen" 
+	CausesValidation="false"/>
+
+</com:TView>
+
+<com:TView ID="ToCView">
+<p>Author: <com:TLabel ID="ToCAuthorName" /><br />
+Text: <com:TLabel ID="ToCTextName" /><br />
+Perseus ID: <com:TLabel ID="ToCPerseus" /></p>
+
+<com:TButton Text="Submit" OnClick="ToCDisplay"/>
+</com:TView>
+</com:TMultiView>
+
+</com:TContent >

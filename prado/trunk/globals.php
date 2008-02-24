@@ -1,7 +1,7 @@
 <?php
 // MODIFY THIS FILE FOR LOCAL CONFIGURATION
 
-$ABS_PATH = "/Users/mkatsenes/Sites/workspace/prado-gcode";
+$ABS_PATH = "/Users/mkatsenes/Sites/workspace/prado";
 $USERS_PREFIX = "protected/users";
 
 $PERSEUS_SERVER="http://www.tiro-interactive.org/hopper/";

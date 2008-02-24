@@ -1,0 +1,15 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+<h1><%= $this->text->title %></h1>
+<br />
+
+<com:TTable ID="Plugins">
+	<com:TTableHeaderRow>
+		<com:TTableHeaderCell Text="Link" />
+		<com:TTableHeaderCell Text="Description" />
+		<com:TTableHeaderCell Text="In use?" />
+	</com:TTableHeaderRow>
+</com:TTable>
+</com:TContent>
