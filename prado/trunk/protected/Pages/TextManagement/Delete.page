@@ -1,6 +1,0 @@
-<%@ MasterClass="Layout" %>
-
-<!-- The Main portion of the page. -->
-<com:TContent ID="guts" >
-Delete: <%= $this->text->title %>
-</com:TContent>

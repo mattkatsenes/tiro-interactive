@@ -72,15 +72,15 @@ class Layout extends TTemplateControl
 	 */
 	public function menuBar($logged_in)
 	{
-		static $MENUBAR_ITEMS_GUEST = array(
-			'index.php?page=Home' => 'Home',
-			'index.php?page=About' => 'About Tiro',
-			'index.php?page=UserManagement.Login' => 'Login',
-			'index.php?page=UserManagement.Create' => 'Create User'
+		$MENUBAR_ITEMS_GUEST = array(
+			$this->Application->Request->ApplicationUrl . '?page=Home' => 'Home',
+			$this->Application->Request->ApplicationUrl . '?page=About' => 'About Tiro',
+			$this->Application->Request->ApplicationUrl . '?page=UserManagement.Login' => 'Login',
+			$this->Application->Request->ApplicationUrl . '?page=UserManagement.Create' => 'Create User'
 			);
-		static $MENUBAR_ITEMS_USER = array(
-			'index.php?page=Home' => 'Home',
-			'index.php?page=About' =>'About Tiro'
+		$MENUBAR_ITEMS_USER = array(
+			$this->Application->Request->ApplicationUrl . '?page=Home' => 'Home',
+			$this->Application->Request->ApplicationUrl . '?page=About' =>'About Tiro'
 			);
 		
 		if(!$logged_in)
@@ -113,7 +113,7 @@ class Layout extends TTemplateControl
 
 			$textArray = Array("index.php?page=TextManagement.NewText" => "New Text");
 			foreach($my_texts as $text)
-				$textArray["index.php?page=TextManagement.View&id=$text->dir_name"] = $text->title;
+				$textArray[$this->Application->Request->ApplicationUrl . "/$text->id"] = $text->title;
 				
 			$this->SideBarList->DataSource = $textArray;
 			$this->SideBarList->databind();
