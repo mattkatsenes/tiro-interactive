@@ -13,7 +13,7 @@ class View extends TPage
 		{
 			$row = new TTableRow;
 			$cell = new TTableCell;
-			$cell->Text = $plugin->name;
+			$cell->Text = "<a href=\"" . $this->Application->Request->ApplicationUrl .'/'. $this->text->id .'/'. $plugin->folder . "\">". $plugin->name . "</a>";
 			$row->Cells->add($cell);
 			
 			$cell = new TTableCell;
@@ -21,7 +21,7 @@ class View extends TPage
 			$row->Cells->add($cell);
 			
 			$cell = new TTableCell;
-			$cell->Text = "not yet";
+			$cell->Text = "not implemented yet";
 			$row->Cells->add($cell);
 			
 			$this->Plugins->Rows->add($row);
