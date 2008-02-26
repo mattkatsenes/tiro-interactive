@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <!DOCTYPE TEI PUBLIC "-//TEI P5//DTD Main Document Type//EN" "/Users/mkat/Sites/tei/P5/dtd/tei.dtd" [
+	<!ENTITY % TEI.header 'INCLUDE' >
+	<!ENTITY % TEI.core 'INCLUDE' >
+	<!ENTITY % TEI.textstructure 'INCLUDE' >
+	<!ENTITY % TEI.analysis 'INCLUDE' >
+	<!ENTITY % TEI.drama 'INCLUDE' >
+	<!ENTITY % TEI.dictionaries 'INCLUDE' >
+	<!ENTITY % TEI.linking 'INCLUDE' >
+]> -->
+
+<TEI>
+	<teiHeader>
+		
+		<fileDesc>
+			<titleStmt>
+				<title>Ecloga Prima</title>
+				<author>P. Vergilius Maro</author>
+				<editor>Matthew G. Katsenes</editor>
+				<respStmt>
+					<name key="mk">Matthew G. Katsenes</name>
+					<resp>Creation and digitization of the notes and vocabulary.</resp>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<pubPlace>Amherst, MA</pubPlace>
+				<date>2007</date>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Thanks to http://www.thelatinlibrary.net for the source text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+		
+		<encodingDesc>
+			<projectDesc>
+				<p>This annotation was originally completed as a project for Prof. Breed's Vergil course.  Digitization is for the purpose of displaying the capabilities of XSLT and Javascript.</p>
+			</projectDesc>
+			<editorialDecl>
+				<p>Vocabulary glossed herein includes all words not on Clyde Pharr's pullout.  Notes are aimed at an AP level.</p>
+			</editorialDecl>
+			
+			<refsDecl xml:id="canonical">
+				<cRefPattern matchPattern="(.+).(.+)" replacementPattern="#xpath1(//div[@type='poem' and @n='$1']//l[$2])">
+					<p>This pointer pattern extracts and references the <q>poem</q> and <q>line number</q> from the Eclogues.</p>
+				</cRefPattern>
+				<cRefPattern matchPattern="(.+)" replacementPattern="#xpath1(//div[@type='poem' and @n='$1'])">
+					<p>This pointer pattern extracts and references just the <q>poem</q>.</p>
+				</cRefPattern>
+			</refsDecl>
+		</encodingDesc>
+		
+		<profileDesc>
+			<creation>
+				<date value="2007-05-31">May 31, 2007</date>
+			</creation>
+			<langUsage>
+				<language ident="la">Latin</language>
+				<language ident="en">English</language>
+				<language ident="gk">Greek</language>
+			</langUsage>
+		</profileDesc>
+		<revisionDesc>
+		<change date="2008-02-25">
+				<name>Drew</name>
+				<description>Removed definitions/notes section and added term tags to every word to use file as temp input data for the definitions module.  Note that terms should NOT include . ? : etc inside tags but I was too lazy for this test example.</description>
+		</change>
+		<change date="2007-06-01">
+				<name>Matthew</name>
+				<description>Finished the teiHeader info and began entering the text.</description>
+		</change>
+		</revisionDesc>
+	</teiHeader>
+	
+	<text>
+		<body>
+			<div n="I" type="poem" xml:lang="la">
+				<sp who="#ti">
+					<l xml:id="I.19" n="19"><term>Urbem</term> <term>quam</term> <term>dicunt</term> <term>Romam,</term> <term>Meliboee,</term> <term>putavi</term></l>
+					<l xml:id="I.20" n="20"><term>stultus</term> <term>ego</term> <term>huic</term> <term>nostrae</term> <term>similem,</term> <term>cui</term> <term>saepe</term> <term>solemus</term></l>
+					<l xml:id="I.21" n="21"><term>pastores</term> <term>ovium</term> <term>teneros</term> <term>depellere</term> <term>fetus.</term></l>
+					<l xml:id="I.22" n="22"><term>sic</term> <term>canibus</term> <term>catulos</term> <term>similes,</term> <term>sic</term> <term>matribus</term> <term>haedos</term></l>
+					<l xml:id="I.23" n="23"><term>noram,</term> <term>sic</term> <term>parvis</term> <term>componere</term> <term>magna</term> <term>solebam.</term></l>
+					<l xml:id="I.24" n="24"><term>verum</term> <term>haec</term> <term>tantum</term> <term>alias</term> <term>inter</term> <term>caput</term> <term>extulit</term> <term>urbes</term></l>
+					<l xml:id="I.25" n="25"><term>quantum</term> <term>lenta</term> <term>solent</term> <term>inter</term> <term>viburna</term> <term>cupressi.</term></l>
+				</sp>
+				<sp who="#me">
+					<l xml:id="I.26" n="26"><term>Et</term> <term>quae</term> <term>tanta</term> <term>fuit</term> <term>Romam</term> <term>tibi</term> <term>causa</term> <term>videndi?</term></l> 
+				</sp>
+				<sp who="#ti">
+					<l xml:id="I.27" n="27"><term>Libertas,</term> <term>quae</term> <term>sera</term> <term>tamen</term> <term>respexit</term> <term>inertem,</term></l> 
+					<l xml:id="I.28" n="28"><term>candidior</term> <term>postquam</term> <term>tondenti</term> <term>barba</term> <term>cadebat,</term></l> 
+					<l xml:id="I.29" n="29"><term>respexit</term> <term>tamen</term> <term>et</term> <term>longo</term> <term>post</term> <term>tempore</term> <term>venit,</term></l> 
+					<l xml:id="I.30" n="30"><term>postquam</term> <term>nos</term> <term>Amaryllis</term> <term>habet,</term> <term>Galatea</term> <term>reliquit.</term></l> 
+					<l xml:id="I.31" n="31"><term>namque</term> - <term>fatebor</term> <term>enim</term> - <term>dum</term> <term>me</term> <term>Galatea</term> <term>tenebat,</term></l> 
+					<l xml:id="I.32" n="32"><term>nec</term> <term>spes</term> <term>libertatis</term> <term>erat</term> <term>nec</term> <term>cura</term> <term>peculi.</term></l> 
+					<l xml:id="I.33" n="33"><term>quamvis</term> <term>multa</term> <term>meis</term> <term>exiret</term> <term>victima</term> <term>saeptis</term></l> 
+					<l xml:id="I.34" n="34"><term>pinguis</term> <term>et</term> <term>ingratae</term> <term>premeretur</term> <term>caseus</term> <term>urbi,</term></l> 
+					<l xml:id="I.35" n="35"><term>non</term> <term>umquam</term> <term>gravis</term> <term>aere</term> <term>domum</term> <term>mihi</term> <term>dextra</term> <term>redibat.</term></l> 
+				</sp>
+				<sp who="#me">
+					<l xml:id="I.36" n="36"><term>Mirabar</term> <term>quid</term> <term>maesta</term> <term>deos,</term> <term>Amarylli,</term> <term>vocares,</term></l> 
+					<l xml:id="I.37" n="37"><term>cui</term> <term>pendere</term> <term>sua</term> <term>patereris</term> <term>in</term> <term>arbore</term> <term>poma.</term></l> 
+					<l xml:id="I.38" n="38"><term>Tityrus</term> <term>hinc</term> <term>aberat.</term> <term>ipsae</term> <term>te,</term> <term>Tityre,</term> <term>pinus,</term></l> 
+					<l xml:id="I.39" n="39"><term>ipsi</term> <term>te</term> <term>fontes,</term> <term>ipsa</term> <term>haec</term> <term>arbusta</term> <term>vocabant.</term></l> 
+				</sp>
+				<sp who="#ti">
+					<l xml:id="I.40" n="40"><term>Quid</term> facerem? <term>neque</term> <term>servitio</term> <term>me</term> <term>exire</term> <term>licebat</term></l> 
+					<l xml:id="I.41" n="41"><term>nec</term> <term>tam</term> <term>praesentis</term> <term>alibi</term> <term>cognoscere</term> <term>divos.</term></l> 
+					<l xml:id="I.42" n="42"><term>hic</term> <term>illum</term> <term>vidi</term> <term>iuvenem,</term> <term>Meliboee,</term> <term>quot</term> <term>annis</term></l> 
+					<l xml:id="I.43" n="43"><term>bis</term> <term>senos</term> <term>cui</term> <term>nostra</term> <term>dies</term> <term>altaria</term> <term>fumant,</term></l> 
+					<l xml:id="I.44" n="44"><term>hic</term> <term>mihi</term> <term>responsum</term> <term>primus</term> <term>dedit</term> <term>ille</term> <term>petenti</term>:</l>
+					<l xml:id="I.45" n="45"><term>'pascite</term> <term>ut</term> <term>ante</term> <term>boves,</term> <term>pueri,</term> <term>submittite</term> <term>tauros</term>.'</l>
+				</sp>
+			</div>
+		</body>		
+	</text>
+</TEI>
