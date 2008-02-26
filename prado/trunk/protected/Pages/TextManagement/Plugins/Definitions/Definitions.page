@@ -2,9 +2,9 @@
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
-Do definition business here.
-<br />
-<pre>
+<h1>Username: <com:TButton Text="load" onClick="Load"/ > <com:TLabel ID='Name'/> </h1>
 
-</pre>
+
+
+
 </com:TContent >
