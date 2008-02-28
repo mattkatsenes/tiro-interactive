@@ -132,11 +132,25 @@ class TiroText
 			return Array($mountPoint, $gift->parentNode);
 	}
 	
+	/**
+	 * Get the entire XML document.
+	 */
 	function getXML()
 	{
 		$temp = simplexml_import_dom($this->xml);
 		return $temp->asXML();
 	}
+	
+	/**
+	 * Get the XML for the text portion only.
+	 */	
+	function getText()
+	{
+		$text = $this->xml->getElementsByTagName('text')->item(0);
+		$temp = simplexml_import_dom($text);
+		return $temp->asXML();
+	}
+	
 	/**
 	 * Save text.xml file into memory.
 	 */
