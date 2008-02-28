@@ -2,7 +2,7 @@
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
-<h1>Username:<com:TLabel ID='Name' OnLoad='Load()'/></h1>
+<h1>Username:<com:TLabel ID='myName' OnLoad='Load()'/></h1>
 
 	<com:TPanel>
 		<com:TPlaceHolder ID='LatinText' />
