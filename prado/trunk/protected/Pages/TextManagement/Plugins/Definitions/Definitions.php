@@ -20,9 +20,32 @@ class Definitions extends TPage
 		global $ABS_PATH,$USERS_PREFIX;
 		$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
 		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
-		$this->tiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name);
+		$myTiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name);
+		$this->tiroText = innerTextProcessing($myTiroText);
 	}
 
+	/**
+	 * 
+	 * 
+	 * 
+	 * 
+	 */
+	function innerTextProcessing(TiroText $textObject)
+	{
+	$textXML = new DOMDocument();
+			$textXML->formatOutput = true;
+			$textXML->preserveWhiteSpace =true;
+	$textXML->loadXML($textObject->getText());
+	
+	$textToHtmlSheet = new DOMDocument();
+		$textToHtmlSheet->load('tirotext_to_html.xsl');
+	// Configure the transformer
+	$proc = new XSLTProcessor;
+		$proc->importStyleSheet($textToHtmlSheet); // attach the xsl rules
+	
+	return $proc->transformToXML($TextXML);
+	}
+	
 	function Load()
 	{
 	
