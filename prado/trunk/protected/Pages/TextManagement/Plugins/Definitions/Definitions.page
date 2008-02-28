@@ -2,9 +2,16 @@
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
-<h1>Username: <com:TButton Text="load" onClick="Load"/ > <com:TLabel ID='Name'/> </h1>
+<h1>Username:<com:TLabel ID='Name' OnLoad='Load()'/></h1>
 
+	<com:TPanel>
+		<com:TPlaceHolder ID='LatinText' />
+		<span onclick='alert(<%= $this->LatinText->ClientID %>);'>-</span>
+	</com:TPanel>
 
-
+	<com:TPanel>
+		<com:TPlaceHolder ID='DefinitionAnchor' />
+		---
+	</com:TPanel>
 
 </com:TContent >
