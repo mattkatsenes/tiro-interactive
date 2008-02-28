@@ -13,4 +13,5 @@
                 <com:TPlaceHolder ID='DefinitionAnchor' />
         </com:TPanel>
 
+		<%= $this->tiroText->getXML() %>
 </com:TContent >
