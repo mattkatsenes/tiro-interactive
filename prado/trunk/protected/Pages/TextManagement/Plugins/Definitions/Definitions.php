@@ -21,7 +21,7 @@ class Definitions extends TPage
 		$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
 		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
 		$myTiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name);
-		$this->tiroText = innerTextProcessing($myTiroText);
+		$this->LatinText->Controls[] = $this->innerTextProcessing($myTiroText);
 	}
 
 	/**
@@ -38,12 +38,12 @@ class Definitions extends TPage
 	$textXML->loadXML($textObject->getText());
 	
 	$textToHtmlSheet = new DOMDocument();
-		$textToHtmlSheet->load('tirotext_to_html.xsl');
+		$textToHtmlSheet->load('protected/pages/TextManagement/Plugins/Definitions/tirotext_to_html.xsl');
 	// Configure the transformer
 	$proc = new XSLTProcessor;
 		$proc->importStyleSheet($textToHtmlSheet); // attach the xsl rules
 	
-	return $proc->transformToXML($TextXML);
+	return $proc->transformToXML($textXML);
 	}
 	
 	function Load()

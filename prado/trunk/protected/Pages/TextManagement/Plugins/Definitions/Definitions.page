@@ -13,5 +13,6 @@
                 <com:TPlaceHolder ID='DefinitionAnchor' />
         </com:TPanel>
 
-		<%= $this->tiroText->getXML() %>
+	<com:THiddenField ID='PassbackObject' OnValueChanged='alert('1')'/>
+
 </com:TContent >
