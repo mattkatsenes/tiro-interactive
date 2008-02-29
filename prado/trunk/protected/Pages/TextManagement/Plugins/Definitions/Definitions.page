@@ -12,7 +12,7 @@ $$('.term').each(
                                 Event.observe(  item,'click',
                                                 function()
                                                 {
-                                                        alert(item.innerHTML + ' ' item.id-text);
+                                                        alert(item.innerHTML + ' ' + item.id-text);
                                                 //      newWordBox(this.innerHTML);
                                                 }
                                         );
