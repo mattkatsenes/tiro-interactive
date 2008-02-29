@@ -10,8 +10,13 @@
 
 <xsl:template match="term">
 	<xsl:element name="{name()}">
-		<xsl:attribute name="term-id"><xsl:value-of select="{generate-id()}" /></xsl:attribute>
+	<!--	<xsl:attribute name="term-id"><xsl:value-of select="{generate-id()}" /></xsl:attribute> -->
 		<xsl:apply-templates  select="@*|node()"/>
 	</xsl:element>
 </xsl:template>
+
+<xsl:template match="*">
+		<xsl:apply-templates  select="@*|node()"/>
+</xsl:template>
+
 </xsl:stylesheet>
