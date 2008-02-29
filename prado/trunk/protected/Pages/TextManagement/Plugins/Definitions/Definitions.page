@@ -31,3 +31,10 @@ Event.observe(window, 'load', associateTerms);
                 <span onclick='alert("<%= $this->LatinText->ClientID %>")'> - </span>
         </com:TPanel>
 
+        <com:TPanel>
+                <com:TPlaceHolder ID='DefinitionAnchor' />
+        </com:TPanel>
+
+	<com:THiddenField ID='PassbackObject' OnValueChanged='alert('1')'/>
+
+</com:TContent >
