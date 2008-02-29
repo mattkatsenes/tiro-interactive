@@ -3,7 +3,26 @@
 <com:TContent ID="guts" >
 <com:TClientScript ScriptUrl=<%~ js/wordbox.js %> />
 
-<com:TClientScript> alert(newWordBox) </com:TClientScript>
+<com:TClientScript>
+function associateTerms()
+{
+$$('.term').each(
+                        function(item)
+                        {
+                                Event.observe(  item,'click',
+                                                function()
+                                                {
+                                                        alert(item.innerHTML + ' ' item.id-text);
+                                                //      newWordBox(this.innerHTML);
+                                                }
+                                        );
+                        }
+                );
+
+}
+Event.observe(window, 'load', associateTerms);
+
+</com:TClientScript>
 
 <h1>Username:<com:TLabel ID='myName' OnLoad='Load'/></h1>
 
@@ -12,10 +31,3 @@
                 <span onclick='alert("<%= $this->LatinText->ClientID %>")'> - </span>
         </com:TPanel>
 
-        <com:TPanel>
-                <com:TPlaceHolder ID='DefinitionAnchor' />
-        </com:TPanel>
-
-	<com:THiddenField ID='PassbackObject' OnValueChanged='alert('1')'/>
-
-</com:TContent >
