@@ -41,7 +41,7 @@ class Definitions extends TPage
 		$textToHtmlSheet->load('protected/pages/TextManagement/Plugins/Definitions/tirotext_label.xsl');
 	$proc = new XSLTProcessor;
 		$proc->importStyleSheet($textToHtmlSheet); // attach the xsl rules
-	$textXML->loadXML($proc->transformToXML($textXML););	
+	$textXML->loadXML($proc->transformToXML($textXML));	
 	
 	$textToHtmlSheet = new DOMDocument();
 		$textToHtmlSheet->load('protected/pages/TextManagement/Plugins/Definitions/tirotext_to_html.xsl');
