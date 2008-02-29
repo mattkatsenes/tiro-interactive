@@ -8,28 +8,9 @@
 	</xsl:copy>
 </xsl:template>
 
-<xsl:template match="text">
-	<div>
-		<xsl:apply-templates  select="@*|node()"/>
-	</div>
-</xsl:template>
-
 <xsl:template match="term">
-	<span class="term" term-id="{generate-id()}">
+	<xsl:element name="{name()}">
+		<xsl:attribute name="term-id"><xsl:value-of select="{generate-id()}" /></xsl:attribute>
 		<xsl:apply-templates  select="@*|node()"/>
-	</span>
+	</xsl:element>
 </xsl:template>
-
-<xsl:template match="sp">
-	<div class="sp">
-		<xsl:apply-templates  select="@*|node()"/>
-	</div>
-</xsl:template>
-
-<xsl:template match="*">
-	<span class="{name()}">
-		<xsl:apply-templates  select="@*|node()"/>
-	</span>
-</xsl:template>
-
-</xsl:stylesheet>
