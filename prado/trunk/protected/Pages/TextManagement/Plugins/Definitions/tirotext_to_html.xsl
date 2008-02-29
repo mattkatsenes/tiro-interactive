@@ -15,7 +15,7 @@
 </xsl:template>
 
 <xsl:template match="term">
-	<span class="term" term-id="{generate-id()}">
+	<span class="term">
 		<xsl:apply-templates  select="@*|node()"/>
 	</span>
 </xsl:template>
