@@ -1,7 +1,10 @@
 <%@ MasterClass="Layout" %>
-
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
+<com:TClientScript ScriptUrl=<%~ js/wordbox.js %> />
+
+<com:TClientScript> alert(newWordBox) </com:TClientScript>
+
 <h1>Username:<com:TLabel ID='myName' OnLoad='Load'/></h1>
 
         <com:TPanel>
