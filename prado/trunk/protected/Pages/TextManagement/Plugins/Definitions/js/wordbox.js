@@ -14,7 +14,7 @@ function newWordBox(word, objFunction)
 {
 		if(objFunction == null) {objFunction=function(){};};
 		
-		new Ajax.Request("http://caltuslex.hopto.org:9191/pdftest/xmlForm.php", 
+		new Ajax.Request("http://www.tiro-interactive.org/frontend/protected/Pages/TextManagement/Plugins/Definitions/xmlForm.php?word=quibus", 
 				{ 
 					method: 'GET', 
 					parameters: "word="+word,
@@ -23,7 +23,7 @@ function newWordBox(word, objFunction)
 						var 	myRoot 	= document.createElement("div");
 						myRoot.id 	= "root_wordbox";
 						myRoot.innerHTML = req.responseText;
-						if($$("#root_wordbox").length > 0);
+						if($$("#root_wordbox").length > 0)
 						{
 							for(i =0; i<$$("#root_wordbox").length; i++)
 								$$("#root_wordbox")[i].remove();

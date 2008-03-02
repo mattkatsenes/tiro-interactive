@@ -2,6 +2,7 @@
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
 <com:TClientScript ScriptUrl=<%~ js/wordbox.js %> />
+<com:TClientScript PradoScripts="ajax, effects" />
 
 <com:TClientScript>
 function associateTerms()
