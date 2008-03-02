@@ -15,7 +15,7 @@ function newWordBox(word, objFunction, location)
 		if(location == null){location = document.body;}
 		if(objFunction == null) {objFunction=function(){};};
 		
-		new Ajax.Request("http://www.tiro-interactive.org/frontend/protected/Pages/TextManagement/Plugins/Definitions/xmlForm.php?word=quibus", 
+		new Ajax.Request("http://www.tiro-interactive.org/frontend/protected/Pages/TextManagement/Plugins/Definitions/xmlForm.php", 
 				{ 
 					method: 'GET', 
 					parameters: "word="+word,
