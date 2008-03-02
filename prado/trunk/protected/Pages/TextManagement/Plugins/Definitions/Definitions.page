@@ -18,7 +18,7 @@ $$('.term').each(
 																function(s)
 																{
 																alert(s.lemma);
-																$('<% $this->defJSON->ClientID %>').value = s.lemma;
+																$('<%= $this->defJSON->ClientID %>').value = s.lemma;
 																document.forms[0].submit();
 																},
 																$('guts')
