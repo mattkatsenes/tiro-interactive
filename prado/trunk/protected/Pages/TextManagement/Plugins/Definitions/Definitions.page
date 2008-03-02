@@ -10,11 +10,11 @@ function associateTerms()
 $$('.term').each(
                         function(item)
                         {
-                                Event.observe(  item,'click',
+                                item.observe('click',
                                                 function()
                                                 {
                                                         alert(item.innerHTML + ' ' + item.getAttribute('id-text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
-                                                //      newWordBox(this.innerHTML);
+											newWordBox(item.innerHTML, function(s){alert(s.lemma);},$('guts'));
                                                 }
                                         );
                         }
