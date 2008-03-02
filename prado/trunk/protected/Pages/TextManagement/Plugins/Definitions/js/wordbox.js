@@ -10,8 +10,9 @@ returnObject members:
 	returnObject.userdefinition;		//	Definition modified by user
 	returnObject.spanContainer;	//	html string of the <span> container for the selected lemma
 */
-function newWordBox(word, objFunction)
+function newWordBox(word, objFunction, location)
 {
+		if(location == null){location = document.body;}
 		if(objFunction == null) {objFunction=function(){};};
 		
 		new Ajax.Request("http://www.tiro-interactive.org/frontend/protected/Pages/TextManagement/Plugins/Definitions/xmlForm.php?word=quibus", 
@@ -28,7 +29,7 @@ function newWordBox(word, objFunction)
 							for(i =0; i<$$("#root_wordbox").length; i++)
 								$$("#root_wordbox")[i].remove();
 						}
-						document.body.appendChild(myRoot);
+						location.appendChild(myRoot);
 						$('wordbox').action="javascript:sendParse("+objFunction+")";
 					}
 				});
@@ -50,7 +51,6 @@ returnObject.lemma = valid_lemma.value;
 returnObject.queryword = $('query_word').innerHTML;
 returnObject.userdefinition = $('definition_area').value;
 returnObject.spanContainer = valid_lemma.parentNode;
-alert(returnObject.lemma + ":\n" + returnObject.userdefinition);
 
 objectFunction(returnObject);
 }
