@@ -12,4 +12,11 @@
 		<folder>Definitions</folder>
 		<friendly-url>/{id}/Definitions</friendly-url>
 	</plugin>
+	<plugin>
+		<name>Add Notes</name>
+		<desc>Use me to notes to this text.</desc>
+		<folder>Notes</folder>
+		<friendly-url>/{id}/Notes</friendly-url>
+	</plugin>
+	
 </plugins>
