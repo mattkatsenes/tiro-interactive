@@ -12,7 +12,7 @@ $$('.term').each(
                                 Event.observe(  item,'click',
                                                 function()
                                                 {
-                                                        alert(item.innerHTML + ' ' + item.id-text);
+                                                        alert(item.innerHTML + ' ' + item.getAttribute('id-text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
                                                 //      newWordBox(this.innerHTML);
                                                 }
                                         );
