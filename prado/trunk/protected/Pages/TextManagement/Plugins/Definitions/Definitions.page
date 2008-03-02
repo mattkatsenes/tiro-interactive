@@ -17,8 +17,7 @@ $$('.term').each(
 											newWordBox(item.innerHTML, 
 																function(s)
 																{
-																alert(s.lemma);
-																$('<%= $this->defJSON->ClientID %>').value = s.lemma;
+																$('<%= $this->defJSON->ClientID %>').value = Object.toJSON(s);
 																document.forms[0].submit();
 																},
 																$('guts')
@@ -33,11 +32,10 @@ Event.observe(window, 'load', associateTerms);
 
 </com:TClientScript>
 
-<h1>Username:<com:TLabel ID='myName' OnLoad='Load'/></h1>
+<h1>Posted-data:<h1><div><com:TLabel ID='myName' OnLoad='Load'/></div>
 
         <com:TPanel>
                 <com:TPlaceHolder ID='LatinText' />
-                <span onclick='alert("<%= $this->LatinText->ClientID %>")'> - </span>
         </com:TPanel>
 
         <com:TPanel>
