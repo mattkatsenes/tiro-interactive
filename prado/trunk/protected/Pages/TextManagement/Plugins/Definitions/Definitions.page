@@ -14,7 +14,15 @@ $$('.term').each(
                                                 function()
                                                 {
                                                         alert(item.innerHTML + ' ' + item.getAttribute('id-text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
-											newWordBox(item.innerHTML, function(s){alert(s.lemma);},$('guts'));
+											newWordBox(item.innerHTML, 
+																function(s)
+																{
+																alert(s.lemma);
+																$('<% $this->defJSON->ClientID %>').value = s.lemma;
+																document.forms[0].submit();
+																},
+																$('guts')
+																);
                                                 }
                                         );
                         }
@@ -36,6 +44,6 @@ Event.observe(window, 'load', associateTerms);
                 <com:TPlaceHolder ID='DefinitionAnchor' />
         </com:TPanel>
 
-	<com:THiddenField ID='PassbackObject' OnValueChanged='alert('1')'/>
+	<com:THiddenField ID='defJSON' OnValueChanged='defJSONHandler'/>
 
 </com:TContent >

@@ -58,5 +58,10 @@ class Definitions extends TPage
 	
 	}
 
+	function defJSONHandler()
+	{
+	$this->myName->Text = $this->defJSON->Value;	
+	}
+	
 }
 ?>
