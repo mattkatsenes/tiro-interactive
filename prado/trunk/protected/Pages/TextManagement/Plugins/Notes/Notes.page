@@ -1,0 +1,12 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+<com:TPanel>
+	<com:TPlaceHolder ID='LatinText' />
+	<com:TLabel ID="LatinLabel" />
+</com:TPanel>
+<com:TPanel>
+	<com:TPlaceHolder ID='NotesAnchor' />
+</com:TPanel>
+</com:TContent >

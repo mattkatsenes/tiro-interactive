@@ -8,7 +8,6 @@
  * @package tiro-input
  * @subpackage user-management
  * @version tiro-input-side v. 0.2
- * @todo Rewrite this to implement several different types of user
  */
 
 Prado::using('System.Security.TDbUserManager');

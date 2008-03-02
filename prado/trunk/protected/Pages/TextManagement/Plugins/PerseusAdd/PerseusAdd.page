@@ -2,6 +2,9 @@
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
+<com:TClientScript ScriptUrl=<%~ js/hopper.js %> />
+<h1>User: <%= $this->User->Name %>, Text: <%= $this->text->title %></h1>
+
 <com:TMultiView ID="ChoicesMultiView">
 <com:TView ID="AuthorView">
 <p>Choose an Author:</p>
@@ -30,7 +33,9 @@
 Text: <com:TLabel ID="ToCTextName" /><br />
 Perseus ID: <com:TLabel ID="ToCPerseus" /></p>
 
-<com:TButton Text="Submit" OnClick="ToCDisplay"/>
+<com:TButton Text="test" OnClick="addChunk"/>
+
+<com:TPlaceHolder ID="TableOfContents" />
 </com:TView>
 </com:TMultiView>
 

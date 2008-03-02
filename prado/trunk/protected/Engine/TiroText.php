@@ -7,7 +7,7 @@
  * @copyright Copyright (c) 2008 Matthew Katsenes
  * @package tiro-xml
  * @subpackage core
- * @version 0.0 - roughed out
+ * @version 0.2 - more or less working
  */
 class TiroText
 {
