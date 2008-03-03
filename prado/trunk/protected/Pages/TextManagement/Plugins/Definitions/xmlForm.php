@@ -76,8 +76,6 @@ echo "/>\n";
 echo "<span class='orth_form' id='{$lemma}-orth'>{$orth}, {$iparts}</span>\n";
 echo "<span class='misc' id='{$lemma}-misc'>{$gramInfo}</span>\n";
 echo "<span class='morph_analysis' id='{$lemma}-morph'>[{$morph}]</span>\n";
-$zipxml = gzcompress($definition->saveXML());
-echo "<span class='zipxml' id='{$lemma}-zipxml'>{$zipxml}</span>\n";
 echo "<br/>\n";
 
 	//Display each definition-group's actual set of definition texts.
@@ -91,6 +89,14 @@ echo "<br/>\n";
 	echo"		<span class='translation_value'>{$translation_value}</span>\n";
 	echo "		<br/>\n";
 	}
+	
+///This compresses and encodes the whole definition xml string for passing into the xml definition creation section.
+///It will be removed once these parts are made object oriented into tiro. Drew. 03/02/2008
+$localxml = new DOMDocument;
+$localxml->appendChild($localxml->importNode($definition,true));
+$zipxml = convert_uuencode(gzcompress($localxml->saveXML()));
+echo "<span class='zipxml' style='display:none' id='{$lemma}-zipxml'><![CDATA[{$zipxml}]]></span>\n";
+///
 	
 echo "</span>";
 echo  "<br/>\n";
