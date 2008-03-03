@@ -60,7 +60,19 @@ class Definitions extends TPage
 
 	function defJSONHandler()
 	{
-	$this->myName->Text = $this->defJSON->Value;	
+        function defJSONHandler()
+        {
+        $this->myName->Text = $this->defJSON->Value;
+
+        $json = json_decode($this->defJSON->Value,true);
+
+        $xml = base64_decode($json['xml']);
+        $xml = gzuncompress($xml);
+        
+	   //Test of xml transfer, to be removed.
+        $this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
+        }
+
 	}
 	
 }
