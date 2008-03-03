@@ -94,9 +94,10 @@ echo "<br/>\n";
 ///It will be removed once these parts are made object oriented into tiro. Drew. 03/02/2008
 $localxml = new DOMDocument;
 $localxml->appendChild($localxml->importNode($definition,true));
-$zipxml = convert_uuencode(gzcompress($localxml->saveXML()));
-echo "<span class='zipxml' style='display:none' id='{$lemma}-zipxml'><![CDATA[{$zipxml}]]></span>\n";
+$zipxml = base64_encode(gzcompress($localxml->saveXML()));
+echo "<span class='zipxml' id='{$lemma}-zipxml' style='display: none'>{$zipxml}</span>\n";
 ///
+
 	
 echo "</span>";
 echo  "<br/>\n";

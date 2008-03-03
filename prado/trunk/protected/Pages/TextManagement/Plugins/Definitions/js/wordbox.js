@@ -52,7 +52,7 @@ returnObject.lemma = valid_lemma.value;
 returnObject.queryword = $('query_word').innerHTML;
 returnObject.userdefinition = $('definition_area').value;
 returnObject.spanContainer = valid_lemma.parentNode;
-returnObject.xml = $(lemma+'-xml').innerHTML;
+returnObject.xml = $(valid_lemma.value+'-xml').innerHTML;
 
 objectFunction(returnObject);
 }
