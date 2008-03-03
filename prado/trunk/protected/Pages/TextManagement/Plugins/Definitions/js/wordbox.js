@@ -9,6 +9,7 @@ returnObject members:
 	returnObject.queryword;		//	Word passed to function originally
 	returnObject.userdefinition;		//	Definition modified by user
 	returnObject.spanContainer;	//	html string of the <span> container for the selected lemma
+	returnObject.xml;	//	xml tree of the selected lemma
 */
 function newWordBox(word, objFunction, location)
 {
@@ -51,6 +52,7 @@ returnObject.lemma = valid_lemma.value;
 returnObject.queryword = $('query_word').innerHTML;
 returnObject.userdefinition = $('definition_area').value;
 returnObject.spanContainer = valid_lemma.parentNode;
+returnObject.xml = $(lemma+'-xml').innerHTML;
 
 objectFunction(returnObject);
 }
