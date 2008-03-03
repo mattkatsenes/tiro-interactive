@@ -76,6 +76,8 @@ echo "/>\n";
 echo "<span class='orth_form' id='{$lemma}-orth'>{$orth}, {$iparts}</span>\n";
 echo "<span class='misc' id='{$lemma}-misc'>{$gramInfo}</span>\n";
 echo "<span class='morph_analysis' id='{$lemma}-morph'>[{$morph}]</span>\n";
+$zipxml = gzcompress($definition->saveXML());
+echo "<span class='zipxml' id='{$lemma}-zipxml'>{$zipxml}</span>\n";
 echo "<br/>\n";
 
 	//Display each definition-group's actual set of definition texts.
