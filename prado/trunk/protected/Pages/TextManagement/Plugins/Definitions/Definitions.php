@@ -77,7 +77,7 @@ class Definitions extends TPage
 	$sourceXML->loadXML($xml);
 		$xpath = new DOMXPath($sourceXML);
 	
-	$entry = $localDictionary->createElement('entry');
+	$entry = $this->localDictionary->createElement('entry');
 			//
 			$lemma = $xpath->query('//Definition/@lemma')->item(0);
 			$entry->setAttribute('xml:id','g.' . $lemma->value);
@@ -91,27 +91,27 @@ class Definitions extends TPage
 			$orth = $form->getElementsByTagName('orth')->item(0);
 				$itype = $xpath->query('//Definition/entry/gramGrp/itype')->item(0);
 			$orth->nodeValue = trim($orth->nodeValue) . ", " . trim($itype->nodeValue);
-			$entry->appendChild($localDictionary->importNode($form,true));
+			$entry->appendChild($this->localDictionary->importNode($form,true));
 			//
 			//
-			$gramGrp = $localDictionary->createElement('gramGrp');
+			$gramGrp = $this->localDictionary->createElement('gramGrp');
 			$gramSubs = $xpath->query('//Definition/entry/gramGrp/gen');	
 				for($i=0; $i < $gramSubs->length; $i++)
-					$gramGrp->appendChild($localDictionary->importNode($gramSubs->item($i),true));
+					$gramGrp->appendChild($this->localDictionary->importNode($gramSubs->item($i),true));
 			$gramPos = $xpath->query('//Definition/morphAnalysis')->item(0);
 			$gramPos = explode(' ',$gramPos->nodeValue);
 			$gramPos = $gramPos[0];
-				$gramPosNode = $localDictionary->createElement('pos');
+				$gramPosNode = $this->localDictionary->createElement('pos');
 				$gramPosNode->nodeValue = trim($gramPos);
 			$gramGrp->appendChild($gramPosNode);
 			$entry->appendChild($gramGrp);			
 			//
-			$definitionNode = $localDictionary->createElement('def');
+			$definitionNode = $this->localDictionary->createElement('def');
 			$definitionNode->nodeValue = trim($json['userdefinition']);
 				$entry->appendChild($definitionNode);
-	$localDictionary->firstChild->appendChild($entry);
+	$this->localDictionary->firstChild->appendChild($entry);
 	
-	$this->DefinitionAnchor->Controls[]="<![CDATA[". $localDictionary->saveXML() ."]]>";
+	$this->DefinitionAnchor->Controls[]="<![CDATA[". $this->localDictionary->saveXML() ."]]>";
 	}
 }
 
