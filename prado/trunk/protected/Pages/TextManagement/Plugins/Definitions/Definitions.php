@@ -74,46 +74,54 @@ class Definitions extends TPage
 		//	Test of xml transfer, to be removed.
 		//	$this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
 			
-	$sourceXML 		= new DOMDocument();
-	$sourceXML->loadXML($xml);
-		$xpath = new DOMXPath($sourceXML);
-	
-	$entry = $this->localDictionary->createElement('entry');
-			//
-			$lemma = $xpath->query('//Definition/@lemma')->item(0);
-			$entry->setAttribute('xml:id','g.' . $lemma->value);
-			//
-			//
-			$key = $xpath->query('//Definition/entry/@key')->item(0);
-			$entry->setAttribute('els_key', $key->value);
-			//
-			//
-			$form = $xpath->query('//Definition/entry/form')->item(0);
-			$orth = $form->getElementsByTagName('orth')->item(0);
-				$itype = $xpath->query('//Definition/entry/gramGrp/itype')->item(0);
-			$orth->nodeValue = trim($orth->nodeValue) . ", " . trim($itype->nodeValue);
-			$entry->appendChild($this->localDictionary->importNode($form,true));
-			//
-			//
-			$gramGrp = $this->localDictionary->createElement('gramGrp');
-			$gramSubs = $xpath->query('//Definition/entry/gramGrp/gen');	
-				for($i=0; $i < $gramSubs->length; $i++)
-					$gramGrp->appendChild($this->localDictionary->importNode($gramSubs->item($i),true));
-			$gramPos = $xpath->query('//Definition/morphAnalysis')->item(0);
-			$gramPos = explode(' ',$gramPos->nodeValue);
-			$gramPos = $gramPos[0];
-				$gramPosNode = $this->localDictionary->createElement('pos');
-				$gramPosNode->nodeValue = trim($gramPos);
-			$gramGrp->appendChild($gramPosNode);
-			$entry->appendChild($gramGrp);			
-			//
-			$definitionNode = $this->localDictionary->createElement('def');
-			$definitionNode->nodeValue = trim($json['userdefinition']);
-				$entry->appendChild($definitionNode);
+	$entry = $this->createEntry($xml,$json['userdefinition']);
 	$this->localDictionary->firstChild->appendChild($entry);
 	
 	$this->DefinitionAnchor->Controls[]="<![CDATA[". $this->localDictionary->saveXML() ."]]>";
 	}
+
+		private function createEntry($entryXML, $userdefinition)
+		{
+			$sourceXML 		= new DOMDocument();
+			$sourceXML->loadXML($entryXML);
+				$xpath = new DOMXPath($sourceXML);
+			
+			$entry = $this->localDictionary->createElement('entry');
+					//
+					$lemma = $xpath->query('//Definition/@lemma')->item(0);
+					$entry->setAttribute('xml:id','g.' . $lemma->value);
+					//
+					//
+					$key = $xpath->query('//Definition/entry/@key')->item(0);
+					$entry->setAttribute('els_key', $key->value);
+					//
+					//
+					$form = $xpath->query('//Definition/entry/form')->item(0);
+					$orth = $form->getElementsByTagName('orth')->item(0);
+						$itype = $xpath->query('//Definition/entry/gramGrp/itype')->item(0);
+					$orth->nodeValue = trim($orth->nodeValue) . ", " . trim($itype->nodeValue);
+					$entry->appendChild($this->localDictionary->importNode($form,true));
+					//
+					//
+					$gramGrp = $this->localDictionary->createElement('gramGrp');
+					$gramSubs = $xpath->query('//Definition/entry/gramGrp/gen');	
+						for($i=0; $i < $gramSubs->length; $i++)
+							$gramGrp->appendChild($this->localDictionary->importNode($gramSubs->item($i),true));
+					$gramPos = $xpath->query('//Definition/morphAnalysis')->item(0);
+					$gramPos = explode(' ',$gramPos->nodeValue);
+					$gramPos = $gramPos[0];
+						$gramPosNode = $this->localDictionary->createElement('pos');
+						$gramPosNode->nodeValue = trim($gramPos);
+					$gramGrp->appendChild($gramPosNode);
+					$entry->appendChild($gramGrp);			
+					//
+					$definitionNode = $this->localDictionary->createElement('def');
+					$definitionNode->nodeValue = trim($userdefinition);
+						$entry->appendChild($definitionNode);
+				
+			return $entry;
+		}
+	
 }
 
 ?>
