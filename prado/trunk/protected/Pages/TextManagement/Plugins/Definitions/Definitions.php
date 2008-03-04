@@ -18,8 +18,9 @@ class Definitions extends TPage
 	 */
 	function onLoad()
 	{
-	$localDictionary = new DOMDocument();
-	$localDictionary->loadXML('<div n="glossary" />');
+	$this->localDictionary = new DOMDocument();
+		$this->localDictionary->formatOutput = true;
+	$this->localDictionary->loadXML('<div n="glossary" />');
 	
 		global $ABS_PATH,$USERS_PREFIX;
 		$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
