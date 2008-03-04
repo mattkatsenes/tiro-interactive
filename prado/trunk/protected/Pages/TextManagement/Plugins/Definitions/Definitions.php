@@ -8,7 +8,7 @@ class Definitions extends TPage
 {
 
 	public $tiroText;
-	private $localDictionary = new DOMDocument();
+	private $localDictionary;
 
 	/**
 	 * This runs as soon as the page loads.
@@ -70,8 +70,8 @@ class Definitions extends TPage
         
 	//	Test of xml transfer, to be removed.
 	//	$this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
-	
-	$localDictionary->loadXML('<div n="glossary">');
+	$localDictionary = new DOMDocument();
+	$localDictionary->loadXML('<div n="glossary" />');
 	
 	$sourceXML 		= new DOMDocument();
 	$sourceXML->loadXML($xml);
