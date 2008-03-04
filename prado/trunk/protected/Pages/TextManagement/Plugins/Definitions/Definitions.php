@@ -18,6 +18,9 @@ class Definitions extends TPage
 	 */
 	function onLoad()
 	{
+	$localDictionary = new DOMDocument();
+	$localDictionary->loadXML('<div n="glossary" />');
+	
 		global $ABS_PATH,$USERS_PREFIX;
 		$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
 		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
@@ -62,22 +65,19 @@ class Definitions extends TPage
 	function defJSONHandler()
 	{
         $this->myName->Text = $this->defJSON->Value;
-
         $json = json_decode($this->defJSON->Value,true);
 
+		//This is temporary until the page becomes properly object oriented.
         $xml = base64_decode($json['xml']);
         $xml = gzuncompress($xml);
-        
-	//	Test of xml transfer, to be removed.
-	//	$this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
-	$localDictionary = new DOMDocument();
-	$localDictionary->loadXML('<div n="glossary" />');
-	
+		//	Test of xml transfer, to be removed.
+		//	$this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
+			
 	$sourceXML 		= new DOMDocument();
 	$sourceXML->loadXML($xml);
 		$xpath = new DOMXPath($sourceXML);
 	
-		$entry = $localDictionary->createElement('entry');
+	$entry = $localDictionary->createElement('entry');
 			//
 			$lemma = $xpath->query('//Definition/@lemma')->item(0);
 			$entry->setAttribute('xml:id','g.' . $lemma->value);
@@ -106,11 +106,10 @@ class Definitions extends TPage
 			$gramGrp->appendChild($gramPosNode);
 			$entry->appendChild($gramGrp);			
 			//
-	
-	$definitionNode = $localDictionary->createElement('def');
-	$definitionNode->nodeValue = trim($json['userdefinition']);
-	$entry->appendChild($definitionNode);
-	$localDictionary->appendChild($entry);
+			$definitionNode = $localDictionary->createElement('def');
+			$definitionNode->nodeValue = trim($json['userdefinition']);
+				$entry->appendChild($definitionNode);
+	$localDictionary->firstChild->appendChild($entry);
 	
 	$this->DefinitionAnchor->Controls[]="<![CDATA[". $localDictionary->saveXML() ."]]>";
 	}
