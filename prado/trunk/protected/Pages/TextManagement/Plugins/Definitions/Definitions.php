@@ -109,7 +109,7 @@ class Definitions extends TPage
 	
 	$definitionNode = $localDictionary->createElement('def');
 	$definitionNode->nodeValue = trim($json['userdefinition']);
-	$entry->appendChild($defintionNode);
+	$entry->appendChild($definitionNode);
 	$localDictionary->appendChild($entry);
 	
 	$this->DefinitionAnchor->Controls[]="<![CDATA[". $localDictionary->saveXML() ."]]>";
