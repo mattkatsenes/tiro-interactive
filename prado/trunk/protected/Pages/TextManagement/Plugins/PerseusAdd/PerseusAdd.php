@@ -1,5 +1,7 @@
 <?php
 
+Prado::Using('Application.Engine.*');
+
 /**
  * Add text chosen from Perseus.
  * 
@@ -25,7 +27,9 @@ class PerseusAdd extends TPage
 	{
 		$this->text = TextRecord::finder()->findByPk($_GET['id']);
 		
-		if(!$this->IsPostBack)
+		if($_GET['doc'])
+			$this->confirmChunk($_GET['doc']);
+		elseif(!$this->IsPostBack)
 			$this->loadAuthorView();
 	}
 	
@@ -58,20 +62,10 @@ class PerseusAdd extends TPage
 		$this->ToCTextName->Text = $sender->Items->offsetGet($param->Index)->Text;
 		$this->ToCPerseus->Text = $sender->Items->offsetGet($param->Index)->Value;
 		
-		$this->ChoicesMultiView->ActiveView = $this->ToCView;
-	}
-	
-	/**
-	 * Add Button clicked
-	 * 
-	 * Check to see if the author has another text with this title.
-	 * Check for a non-unique 'directory' since this is the PK.
-	 * Make the directories and default files.
-	 */
-	public function addChunk($sender, $param)
-	{
+		/**
+		 * Load up the Perseus TOC
+		 */
 		global $PERSEUS_SERVER;
-		
 		require_once "HTTP/Request.php";
 
 		$req =& new HTTP_Request($PERSEUS_SERVER . 'xmltoc.jsp?doc=' . $this->ToCPerseus->Text);
@@ -89,6 +83,46 @@ class PerseusAdd extends TPage
 		$tocXml->loadXML($proc->transformToXML($tocXml));
 
 		$this->TableOfContents->Controls[] = $tocXml->saveHTML();
+		
+		$this->ChoicesMultiView->ActiveView = $this->ToCView;
+	}
+	
+	/**
+	 * Chunk Chosen
+	 */
+	public function confirmChunk($chunk_id)
+	{
+		if($this->IsPostBack)
+			$this->addChunk($chunk_id);
+		else
+		{
+			$this->ChoicesMultiView->ActiveView = $this->ChunkView;
+			global $PERSEUS_SERVER;
+			require_once "HTTP/Request.php";
+
+			$req =& new HTTP_Request($PERSEUS_SERVER . 'xmlchunk.jsp?doc=' . $chunk_id);
+			if (!PEAR::isError($req->sendRequest()))
+				$chunkString = $req->getResponseBody();
+			
+			$this->ChunkText->Controls[] = $chunkString;
+		
+			$submit = new TButton;
+			$submit->Text = 'Insert this text';
+		
+			$this->ChunkText->Controls[] = $submit;
+		}
+	}
+	
+	public function addChunk($chunk_id)
+	{
+		$perseusChunk = new PerseusChunk($chunk_id);
+
+		global $ABS_PATH,$USERS_PREFIX;
+		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$this->text->dir_name;
+		$myTiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$this->text->dir_name);
+		
+		$myTiroText->addPerseusChunk($perseusChunk);
+		$myTiroText->saveText();
 	}
 }
 ?>

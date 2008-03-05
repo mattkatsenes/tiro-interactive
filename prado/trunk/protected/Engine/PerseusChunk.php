@@ -27,7 +27,7 @@ class PerseusChunk
 	/**
 	 * This will set up everything based on id.
 	 */
-	public function __construct($id,$chunk)
+	public function __construct($id,$chunk = '')
 	{
 		/**
 		 * @global string the persesus text directory.
@@ -54,7 +54,7 @@ class PerseusChunk
 		$textTag = $this->new_dom->createElement('body');
 		$root->appendChild($textTag);
 		foreach($body->childNodes as $child)
-			$this->tagify($child,$chunk . ':word=',$textTag);
+			$this->tagify($child,$id . ':word=',$textTag);
 	}
 	
 	public function getXML()
@@ -73,14 +73,14 @@ class PerseusChunk
 		if($node->nodeType == XML_TEXT_NODE)
 		{
 			$text = $node->nodeValue;
+			$text = preg_replace('/\n/','',$text);
 			$words = explode(' ',$text);
 				
 			foreach($words as $word)
-				if($word !=' ' && $word != '')
+				if($word !=' ' && $word != '' && $word != '\n')
 				{
-					$entry = $this->new_dom->createElement('entry',$word);
+					$entry = $this->new_dom->createElement('term',$word);
 					$appendee->appendChild($entry);
-					$entry->setAttribute('xml:id',$prefix . $word);
 			 	}
 		}
 		elseif($node->nodeType == XML_ELEMENT_NODE)
