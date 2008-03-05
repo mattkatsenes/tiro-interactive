@@ -28,7 +28,11 @@ class TiroText
 		if(file_exists($path . '/text.xml'))
 			$this->xml->load($path . '/text.xml');
 		else
+		{
+			global $ABS_PATH;
+			$this->xml->load($ABS_PATH.'/protected/Data/tiro_default.xml');
 			$this->xml->save($path . '/text.xml');
+		}
 		
 		$this->xml_file = $path . '/text.xml';
 	}
