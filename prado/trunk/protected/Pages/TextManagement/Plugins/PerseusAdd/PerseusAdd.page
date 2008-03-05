@@ -33,9 +33,10 @@
 Text: <com:TLabel ID="ToCTextName" /><br />
 Perseus ID: <com:TLabel ID="ToCPerseus" /></p>
 
-<com:TButton Text="test" OnClick="addChunk"/>
-
 <com:TPlaceHolder ID="TableOfContents" />
+</com:TView>
+<com:TView ID="ChunkView">
+<com:TPlaceHolder ID="ChunkText" />
 </com:TView>
 </com:TMultiView>
 
