@@ -119,7 +119,7 @@ $xpath 	= new DOMXPath($doc);
  * @param string $query_term_url Output of <query ref="query_term_url"> from morph2.jsp
  * @return string an XML formatted document containing the definition of the given latin lemma signified by $query_term_url
  */
-function getDefinition($query_term_url, $return_type = "xml")
+function getDefinition($query_term_url, $return_type = "xml", $short_definition=null)
 {
 //Create our perseus api query
 $xml_chunker = "http://www.tiro-interactive.org/hopper/xmlchunk.jsp?doc=";
@@ -154,6 +154,18 @@ foreach($LemmaEntry_nodes as $LemmaEntry_node)
 
 //Create the shortDef element for adding the new definition data to.
 	$QuickDefinition_node = $result_doc->createElement("shortDef");	
+
+if($short_definition != null)
+{
+		$CreatedTranslation_node = $result_doc->createElement("trans");
+		$CreatedTranslation_node->setAttribute('created','true');
+		$CreatedTranslation_node->setAttribute("opt","n");
+		$CreatedTranslation_node->nodeValue = $short_definition;
+		
+		$QuickDefinition_node->appendChild($CreatedTranslation_node);
+}
+else
+{	
 	//We probably only want the first three <trans> entries, all the ones later are usually latin quotes or minor notes.	
 	$Translation_nodes		=	$xpath->query('//trans[position() <= 3]', $LemmaEntry_node);	
 	if($Translation_nodes->length > 0)
@@ -184,6 +196,8 @@ foreach($LemmaEntry_nodes as $LemmaEntry_node)
 		//Add our <trans> node to the <shortDef> node.
 		$QuickDefinition_node->appendChild($Translation_node);
 	}
+}
+
 //Add our <shortDef> node to the <entry> node, (placing it first in the list), which is now prepared for returning.
 $QuickDefinition_node = $ImportedLemmaEntry_node->insertBefore($QuickDefinition_node,$ImportedLemmaEntry_node->childNodes->item(0));	
 
