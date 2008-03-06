@@ -76,7 +76,7 @@ class Definitions extends TPage
 			
 	$entry = $this->createEntry($xml,$json['userdefinition']);
 	$this->localDictionary->firstChild->appendChild($entry);
-	
+		
 	$this->DefinitionAnchor->Controls[]="<![CDATA[". $this->localDictionary->saveXML() ."]]>";
 	}
 
@@ -91,10 +91,12 @@ class Definitions extends TPage
 					$lemma = $xpath->query('//Definition/@lemma')->item(0);
 					$entry->setAttribute('xml:id','g.' . $lemma->value);
 					//
+					
 					//
 					$key = $xpath->query('//Definition/entry/@key')->item(0);
 					$entry->setAttribute('els_key', $key->value);
 					//
+					
 					//
 					$form = $xpath->query('//Definition/entry/form')->item(0);
 					$orth = $form->getElementsByTagName('orth')->item(0);
@@ -102,6 +104,7 @@ class Definitions extends TPage
 					$orth->nodeValue = trim($orth->nodeValue) . ", " . trim($itype->nodeValue);
 					$entry->appendChild($this->localDictionary->importNode($form,true));
 					//
+					
 					//
 					$gramGrp = $this->localDictionary->createElement('gramGrp');
 					$gramSubs = $xpath->query('//Definition/entry/gramGrp/gen');	
@@ -115,6 +118,7 @@ class Definitions extends TPage
 					$gramGrp->appendChild($gramPosNode);
 					$entry->appendChild($gramGrp);			
 					//
+					
 					$definitionNode = $this->localDictionary->createElement('def');
 					$definitionNode->nodeValue = trim($userdefinition);
 						$entry->appendChild($definitionNode);
