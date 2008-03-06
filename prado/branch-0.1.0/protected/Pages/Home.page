@@ -1,0 +1,6 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+Welcome to Tiro.
+</com:TContent >

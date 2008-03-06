@@ -1,0 +1,9 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+
+Preferences for <%= $this->Application->getModule('auth')->User->Name %>:
+
+
+</com:TContent >

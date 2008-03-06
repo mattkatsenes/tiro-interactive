@@ -1,0 +1,47 @@
+<%@ MasterClass="Layout" %>
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+<com:TClientScript ScriptUrl=<%~ js/wordbox.js %> />
+<com:TClientScript PradoScripts="ajax, effects" />
+
+<com:TClientScript>
+function associateTerms()
+{
+$$('.term').each(
+                        function(item)
+                        {
+                                item.observe('click',
+                                                function()
+                                                {
+                                                        alert(item.innerHTML + ' ' + item.getAttribute('id-text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
+											newWordBox(item.innerHTML, 
+																function(s)
+																{
+																$('<%= $this->defJSON->ClientID %>').value = Object.toJSON(s);
+																document.forms[0].submit();
+																},
+																$('guts')
+																);
+                                                }
+                                        );
+                        }
+                );
+
+}
+Event.observe(window, 'load', associateTerms);
+
+</com:TClientScript>
+
+<h1>Posted-data:</h1><div><com:TLabel ID='myName' OnLoad='Load'/></div>
+
+        <com:TPanel>
+                <com:TPlaceHolder ID='LatinText' />
+        </com:TPanel>
+
+        <com:TPanel>
+                <com:TPlaceHolder ID='DefinitionAnchor' />
+        </com:TPanel>
+
+	<com:THiddenField ID='defJSON' OnValueChanged='defJSONHandler'/>
+
+</com:TContent >

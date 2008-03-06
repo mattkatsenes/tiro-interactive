@@ -1,0 +1,105 @@
+/*
+ * PageHeader Styles
+ * author: Matt Katsenes
+ * date: 11/12/2007
+*/
+
+body {
+	margin: 0px 0px 0px 0px;
+}
+
+#logo {
+	float: left;
+}
+
+#welcome {
+
+	border-bottom: solid 1px;
+}
+
+#sidebar {
+	float: right;
+	border: solid 2px Navy;
+	width: 20em;
+	background-color: Lavender;
+	padding: 10px;
+}
+
+#mainColumn {
+	clear: left;
+	width: 100%;
+	border-top: solid 2px Navy;
+}
+
+#menubar {
+	width: 100%;
+}
+
+#menubar ul {
+	padding: .2em 0;
+	margin: 0;
+	list-style-type: none;
+	background-color: RoyalBlue;
+	color: #FFF;
+	width: 100%;
+}
+
+#menubar ul li {
+	display: inline;
+	border-right: 1px dotted white;
+	padding-right: 1.5em;
+	padding-left: 1.5em;
+}
+
+#menubar ul li a {
+	text-decoration: none;
+	background-color: RoyalBlue;
+	color: #FFF;
+}
+
+#menubar ul li a:hover {
+	background-color: CornflowerBlue;
+	color: #fff;
+}
+
+#guts {
+	width: 100%;
+	padding: 10px;
+}
+
+#credits {
+	clear: both;
+	border-top: solid 2px Navy;
+	width: 100%;
+	float: left;
+	vertical-align: middle;
+	color: Navy;
+}
+
+#credits ul {
+	padding: .2em 0;
+	margin: 0;
+	list-style-type: none;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#credits ul li {
+	display: inline;
+	border-right: 1px dotted Navy;
+	vertical-align: middle;
+	padding-right: 1.5em;
+	padding-left: 1.5em;
+}
+
+.title2	{
+	padding-left: 1.5em;
+	font-size: x-large;
+}
+
+.info-box {
+	background: AntiqueWhite;
+	width: 70%;
+	margin: auto;
+}

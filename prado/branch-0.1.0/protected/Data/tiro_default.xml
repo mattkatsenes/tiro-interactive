@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<TEI>
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title/>
+				<author/>
+				<respStmt>
+					<resp/>
+					<name/>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<p>Prepared for publication using Tiro Interactive (http://www.tiro-interactive.org)</p>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Source of the text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<refsDecl />
+		</encodingDesc>
+	</teiHeader>
+	
+	<text>
+		<body />
+	</text>
+</TEI>
