@@ -1,0 +1,11 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+Delete: <%= $this->text->title %> ?
+<br />
+<com:TButton Text="Yes" OnClick="deleteClicked" />
+ or 
+<com:TButton text="No" OnClick="goHome" />
+
+</com:TContent>
