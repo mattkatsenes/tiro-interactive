@@ -124,5 +124,6 @@ class PerseusAdd extends TPage
 		$myTiroText->addPerseusChunk($perseusChunk);
 		$myTiroText->saveText();
 	}
+
 }
 ?>
