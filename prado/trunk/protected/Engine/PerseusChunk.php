@@ -23,6 +23,7 @@ class PerseusChunk
 	public $dom;
 	public $new_dom;
 	public $new_xml;
+	private $id_count;
 
 	/**
 	 * This will set up everything based on id.
@@ -34,6 +35,7 @@ class PerseusChunk
 		 */
 		global $PERSEUS_SERVER;
 		
+		$this->id_count=0;
 		$this->perseus_id = $id;
 		$this->chunk_string = $chunk;
 		$this->xml = simplexml_load_file($PERSEUS_SERVER . 'xmlchunk.jsp?doc=' . $this->perseus_id . $chunk);
@@ -77,9 +79,10 @@ class PerseusChunk
 			$words = explode(' ',$text);
 				
 			foreach($words as $word)
-				if($word !=' ' && $word != '' && $word != '\n')
+				if($word !=' ' && $word != '')
 				{
 					$entry = $this->new_dom->createElement('term',$word);
+					// If adding ID termwise,  do so here.  
 					$appendee->appendChild($entry);
 			 	}
 		}
@@ -99,5 +102,6 @@ class PerseusChunk
 				$this->tagify($child,$prefix,$appendee);
 		}
 	}
+
 }
 ?>

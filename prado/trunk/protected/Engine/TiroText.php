@@ -35,6 +35,8 @@ class TiroText
 		}
 		
 		$this->xml_file = $path . '/text.xml';
+		
+		$this->calculateIDs();
 	}
 	
 	
@@ -55,6 +57,8 @@ class TiroText
 			$clone = $insertMe->cloneNode(true);
 			$mountPointDOM->appendChild($clone);
 		}
+		
+		$this->calculateIDs();
 	}
 	
 	/**
@@ -165,5 +169,24 @@ class TiroText
 		$this->xml->save($this->xml_file);
 	}
 	
+	public function calculateIDs()
+	{
+		$id = 0;
+		
+		$XPath = new DomXPath($this->xml);
+		$IDList = $XPath->query('//term/@id-text');
+		$termListNoID = $XPath->query('//term[not(@id-text)]');
+		
+		foreach($IDList as $newID)
+			if((int)$newID->nodeValue > $id)
+				$id = (int)$newID->nodeValue;
+		
+		foreach($termListNoID as $term)
+			if(!$term->hasAttribute('id-text'))
+			{
+				$term->setAttribute('id-text',$id);
+				$id++;
+			}
+	}
 }
 ?>
