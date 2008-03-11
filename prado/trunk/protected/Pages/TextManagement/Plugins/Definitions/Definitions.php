@@ -18,15 +18,31 @@ class Definitions extends TPage
 	 */
 	function onLoad()
 	{
-	$this->localDictionary = new DOMDocument();
-		$this->localDictionary->formatOutput = true;
-	$this->localDictionary->loadXML('<div n="glossary" />');
+	global $ABS_PATH,$USERS_PREFIX;
+	echo "0";
+
+			$this->localDictionary = new DOMDocument();
+				$this->localDictionary->formatOutput = true;
+			$this->localDictionary->loadXML('<div n="glossary" />');
 	
-		global $ABS_PATH,$USERS_PREFIX;
-		$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
-		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
-		$myTiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name);
-		$this->LatinText->Controls[] = $this->innerTextProcessing($myTiroText);
+			$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
+			$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
+			$myTiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name);
+			$this->LatinText->Controls[] = $this->innerTextProcessing($myTiroText);
+			
+			$this->LatinText->Controls->add("<br/><br/><br/>");
+		if(!$this->IsPostBack)
+		{
+			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions');
+			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
+		}
+		else
+		{
+			echo "-".$this->tiroText."-";
+			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions');
+			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
+		}
+		
 	}
 
 	/**
@@ -41,12 +57,14 @@ class Definitions extends TPage
 			$textXML->formatOutput = true;
 			$textXML->preserveWhiteSpace =true;
 	$textXML->loadXML($textObject->getText());
-	
+
+/*	
 	$textToHtmlSheet = new DOMDocument();
 		$textToHtmlSheet->load('protected/Pages/TextManagement/Plugins/Definitions/tirotext_label.xsl');
 	$proc = new XSLTProcessor();
 		$proc->importStyleSheet($textToHtmlSheet); // attach the xsl rules
 	$textXML->loadXML($proc->transformToXML($textXML));	
+*/
 	
 	$textToHtmlSheet = new DOMDocument();
 		$textToHtmlSheet->load('protected/Pages/TextManagement/Plugins/Definitions/tirotext_to_html.xsl');
@@ -67,7 +85,24 @@ class Definitions extends TPage
 	{
         $this->myName->Text = $this->defJSON->Value;
         $json = json_decode($this->defJSON->Value,true);
-
+	   
+	   //Handles saving 'defined' tag into xml text document
+		$myTiroText = new DOMDocument();
+			$myTiroText->formatOutput = true;
+			$myTiroText->preserveWhiteSpace =true;
+		$myTiroText->loadXML($this->tiroText->getText());
+		$xpath = new DOMXPath($myTiroText);
+			$idvalue = $json['id_text'];
+			echo $idvalue;
+			$entry = $xpath->query("//term[@id-text='$idvalue']");
+			$entry = $entry->item(0);
+		$entry->setAttribute('defined','true');
+		
+		$this->tiroText->setText($myTiroText->getElementsByTagName('text')->item(0));	//Needed instead of ->saveXML() in order to stop <> escaping
+		$this->tiroText->saveText();
+		
+	   //End defined tag call.
+	   
 		//This is temporary until the page becomes properly object oriented.
         $xml = base64_decode($json['xml']);
         $xml = gzuncompress($xml);
@@ -101,6 +136,11 @@ class Definitions extends TPage
 					$form = $xpath->query('//Definition/entry/form')->item(0);
 					$orth = $form->getElementsByTagName('orth')->item(0);
 						$itype = $xpath->query('//Definition/entry/gramGrp/itype')->item(0);
+						if(!isset($itype))
+							{
+							$itype = $sourceXML->createElement('itype');
+							$itype->nodeValue = "-";
+							}
 					$orth->nodeValue = trim($orth->nodeValue) . ", " . trim($itype->nodeValue);
 					$entry->appendChild($this->localDictionary->importNode($form,true));
 					//

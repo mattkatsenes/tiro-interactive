@@ -11,12 +11,12 @@ returnObject members:
 	returnObject.spanContainer;	//	html string of the <span> container for the selected lemma
 	returnObject.xml;	//	xml tree of the selected lemma
 */
-function newWordBox(word, objFunction, location)
+function newWordBox(word, id_text, objFunction, location)
 {
 		if(location == null){location = document.body;}
 		if(objFunction == null) {objFunction=function(){};};
 		
-		new Ajax.Request("http://www.tiro-interactive.org/frontend/protected/Pages/TextManagement/Plugins/Definitions/xmlForm.php", 
+		new Ajax.Request("/frontend/protected/Pages/TextManagement/Plugins/Definitions/xmlForm.php", 
 				{ 
 					method: 'GET', 
 					parameters: "word="+word,
@@ -31,13 +31,13 @@ function newWordBox(word, objFunction, location)
 								$$("#root_wordbox")[i].remove();
 						}
 						location.appendChild(myRoot);
-						$('wordbox').action="javascript:sendParse("+objFunction+")";
+						$('wordbox').action="javascript:sendParse("+objFunction+",'"+id_text+"')";
 					}
 				});
 }
 
 
-function sendParse( objectFunction)
+function sendParse( objectFunction, id_text)
 {
 var returnObject = new Object();
 
@@ -49,6 +49,7 @@ for( var i = 0; i < $$('.lemma').length; i++)
 	}
 
 returnObject.lemma = valid_lemma.value;
+returnObject.id_text = id_text;
 returnObject.queryword = $('query_word').innerHTML;
 returnObject.userdefinition = $('definition_area').value;
 returnObject.spanContainer = valid_lemma.parentNode;

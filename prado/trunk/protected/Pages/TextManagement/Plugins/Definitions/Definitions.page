@@ -10,11 +10,14 @@ function associateTerms()
 $$('.term').each(
                         function(item)
                         {
+						if(item.attributes['defined']){	if(item.attributes['defined'].nodeValue == "true")
+						{item.setStyle(	{fontWeight: 'bold'});}}
+			    
                                 item.observe('click',
                                                 function()
                                                 {
                                                         alert(item.innerHTML + ' ' + item.getAttribute('id-text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
-											newWordBox(item.innerHTML, 
+											newWordBox(item.innerHTML, item.getAttribute('id-text'), 
 																function(s)
 																{
 																$('<%= $this->defJSON->ClientID %>').value = Object.toJSON(s);
