@@ -19,7 +19,6 @@ class Definitions extends TPage
 	function onLoad()
 	{
 	global $ABS_PATH,$USERS_PREFIX;
-	echo "0";
 
 			$this->localDictionary = new DOMDocument();
 				$this->localDictionary->formatOutput = true;
@@ -38,17 +37,17 @@ class Definitions extends TPage
 		}
 		else
 		{
-			echo "-".$this->tiroText."-";
 			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions');
-			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
+			//$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
 		}
 		
 	}
-
+	
 	/**
 	 * 
 	 * 
-	 * 
+	 /'.'protected/Pages/TextManagement/Plugins/Definitions');
+			$this->LatinText->Controls->add($this->innerTe* 
 	 * 
 	 */
 	function innerTextProcessing(TiroText $textObject)
@@ -93,14 +92,13 @@ class Definitions extends TPage
 		$myTiroText->loadXML($this->tiroText->getText());
 		$xpath = new DOMXPath($myTiroText);
 			$idvalue = $json['id_text'];
-			echo $idvalue;
 			$entry = $xpath->query("//term[@id-text='$idvalue']");
 			$entry = $entry->item(0);
 		$entry->setAttribute('defined','true');
 		
 		$this->tiroText->setText($myTiroText->getElementsByTagName('text')->item(0));	//Needed instead of ->saveXML() in order to stop <> escaping
 		$this->tiroText->saveText();
-		
+			$this->LatinText->Controls[2] = $this->innerTextProcessing($this->tiroText);
 	   //End defined tag call.
 	   
 		//This is temporary until the page becomes properly object oriented.
@@ -165,7 +163,12 @@ class Definitions extends TPage
 				
 			return $entry;
 		}
-	
+
+	function myclick()
+	{
+	$this->setViewState('tiro','gg');
+	}
+		
 }
 
 ?>

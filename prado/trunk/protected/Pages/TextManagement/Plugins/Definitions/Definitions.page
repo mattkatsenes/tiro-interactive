@@ -36,7 +36,7 @@ Event.observe(window, 'load', associateTerms);
 </com:TClientScript>
 
 <h1>Posted-data:</h1><div><com:TLabel ID='myName' OnLoad='Load'/></div>
-
+<com:TButton OnClick='myclick'/>
         <com:TPanel>
                 <com:TPlaceHolder ID='LatinText' />
         </com:TPanel>
