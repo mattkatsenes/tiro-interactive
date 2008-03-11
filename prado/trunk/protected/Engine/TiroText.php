@@ -158,6 +158,15 @@ class TiroText
 		$temp = simplexml_import_dom($text);
 		return $temp->asXML();
 	}
+
+	/**
+	 * Set the XML for the text portion only.
+	 */	
+	public function setText($text_node)
+	{
+	$body_text_node = $this->xml->getElementsByTagName('text')->item(0);
+	$body_text_node->parentNode->replaceChild($this->xml->importNode($text_node,true),$body_text_node);
+	}
 	
 	/**
 	 * Save text.xml file into memory.
