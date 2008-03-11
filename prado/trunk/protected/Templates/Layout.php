@@ -105,7 +105,12 @@ class Layout extends TTemplateControl
 			$this->SideBarLabel->Text = "Please login.";
 			$this->SideBarList->DataSource = Array("Please Login");
 		} */
-		if($this->User->Roles[0] == 'teacher')
+		
+		$exist = false;
+		if(isset($this->User->Roles[0]))
+			$exist = true;
+
+		if($exist == true && ($this->User->Roles[0] == 'teacher'))
 		{
 			$this->SideBarLabel->Text = "My Texts:";
 			$username = $this->User->Name;
@@ -118,7 +123,7 @@ class Layout extends TTemplateControl
 			$this->SideBarList->DataSource = $textArray;
 			$this->SideBarList->databind();
 		}
-		elseif($this->User->Roles[0] == 'student')
+		elseif( ($exist == true) && $this->User->Roles[0] == 'student')
 		{
 			$teacherRecord = StudentRecord::finder()->withTeacher()->findByPk($this->User->Name)->teacher;
 			
