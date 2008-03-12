@@ -79,7 +79,7 @@ echo "<span class='morph_analysis' id='{$lemma}-morph'>[{$morph}]</span>\n";
 echo "<br/>\n";
 
 	//Display each definition-group's actual set of definition texts.
-	$translations = $xpath->query('entry/shortDef/trans/tr',$definition);
+	$translations = $xpath->query('entry/shortDef/sense/trans/tr',$definition);
 	foreach($translations as $translation)
 	{
 	$translation_value = trim($translation->nodeValue);
