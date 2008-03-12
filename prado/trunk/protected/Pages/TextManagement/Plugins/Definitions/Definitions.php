@@ -166,7 +166,7 @@ class Definitions extends TPage
 
 	function myclick()
 	{
-	$this->setViewState('tiro','gg');
+			$this->LatinText->Controls[0] = $this->tiroText->getText();
 	}
 		
 }

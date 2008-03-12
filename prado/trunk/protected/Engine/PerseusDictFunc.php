@@ -152,59 +152,75 @@ foreach($LemmaEntry_nodes as $LemmaEntry_node)
 	// if there is more than one entry, we want all of them copied over, and thier children.
 	$ImportedLemmaEntry_node = $result_doc->importNode($LemmaEntry_node,true);
 
-//Create the shortDef element for adding the new definition data to.
+	//Create the shortDef element for adding the new definition data to.
 	$QuickDefinition_node = $result_doc->createElement("shortDef");	
 
-if($short_definition != null)
-{
-		$CreatedTranslation_node = $result_doc->createElement("trans");
-		$CreatedTranslation_node->setAttribute('created','true');
-		$CreatedTranslation_node->setAttribute("opt","n");
-		$CreatedTranslation_node->nodeValue = $short_definition;
-		
-		$QuickDefinition_node->appendChild($CreatedTranslation_node);
-}
-else
-{	
-	//We probably only want the first three <trans> entries, all the ones later are usually latin quotes or minor notes.	
-	$Translation_nodes		=	$xpath->query('//trans[position() <= 3]', $LemmaEntry_node);	
-	if($Translation_nodes->length > 0)
+	if($short_definition != null)
 	{
-		foreach($Translation_nodes as $Translation_node)
-			{
-				$ImportedTranslation_node = $result_doc->importNode($Translation_node,true);
-				$QuickDefinition_node->appendChild($ImportedTranslation_node);
-			} 
-	}
-	else	//If the number of <trans> nodes is 0, then we need to create a definition for this word.
-	{
-		//Create the same node type as perseus, god only knows what 'opt=n' signifies, but thats what is returned by perseus.
-		$Translation_node = $result_doc->createElement("trans");
-			$Translation_node->setAttribute("opt","n");
+			$CreatedTranslation_node = $result_doc->createElement("trans");
+			$CreatedTranslation_node->setAttribute('created','true');
+			$CreatedTranslation_node->setAttribute("opt","n");
+			$CreatedTranslation_node->nodeValue = $short_definition;
 			
-			//Grab only the first string of non-child text in the <sense> node within all selected <entry> nodes
-			$Sense_textnodes = $xpath->query('//sense/text()[position() = 1]', $LemmaEntry_node);
-			foreach($Sense_textnodes as $Sense_textnode)
-			{
-			//Once again, create <tr> definition node to match perseus format.
-			$TranslationText_node = $result_doc->createElement("tr");
-				$TranslationText_node->setAttribute("opt","n");
-				$TranslationText_node->appendChild($result_doc->importNode($Sense_textnode,true));
-			//Add our definition text <tr> to <trans> node.
-			$Translation_node->appendChild($TranslationText_node);
-			}
-		//Add our <trans> node to the <shortDef> node.
-		$QuickDefinition_node->appendChild($Translation_node);
+			$QuickDefinition_node->appendChild($CreatedTranslation_node);
 	}
-}
+	else
+	{	
+		$Sense_nodes = $xpath->query('sense',$LemmaEntry_node);
+		foreach($Sense_nodes as $Sense_node)
+		{
+			$new_doc = new DOMDocument();
+				$new_doc->appendChild($new_doc->importNode($Sense_node,true));
+			$val =  trim(strip_tags($new_doc->saveXML()));
+				$matches=explode('&#x2014;',$val);
+			 
+			 foreach($matches as $key => $match)
+			{
+			$match = trim($match);
+				if(!empty($match))
+				{
+				$first_match = strpos($match,':');
+						if($first_match > 10)
+							$match = substr($match,0,$first_match);
+						else
+						{ 
+							$second_match = strpos($match,':',$first_match+1);
+							if( ($second_match <= 0) || ($second_match === false))
+								$second_match = strlen($match);
+							$match = substr($match,0, $second_match);	//Get second string match
+						}
+				}
+			$match = preg_replace("/[0-9]? [A-Z]+-[\,\.\;]?/","",$match);	//Get rid of etymological notes, "1 CUR-"
+			$match = trim($match);
+			$matches[$key] = $match;
+			}
+							
+			$matches = array_filter($matches, "notEmpty");
+			
+			$sense = $QuickDefinition_node->ownerDocument->importNode($Sense_node,false);
+			foreach($Sense_node->attributes as $attrs)
+				$sense->setAttribute($attrs->nodeName,$attrs->nodeValue);
 
+			foreach($matches as $match)
+			{
+				$trans_node 	= $result_doc->createElement('trans');
+					$trans_node->setAttribute("opt","n");
+					$tr_node	= $result_doc->createElement('tr');
+						$tr_node->setAttribute("opt","n");
+						$tr_node->nodeValue = $match;
+			
+					$trans_node->appendChild($tr_node);
+				$sense->appendChild($trans_node);
+			}
+		$QuickDefinition_node->appendChild($sense);
+		}
+	}
 //Add our <shortDef> node to the <entry> node, (placing it first in the list), which is now prepared for returning.
 $QuickDefinition_node = $ImportedLemmaEntry_node->insertBefore($QuickDefinition_node,$ImportedLemmaEntry_node->childNodes->item(0));	
 
 //Add our new modified <entry> node to the root <Definition> node;
 $result_doc_root->appendChild($ImportedLemmaEntry_node);
 }
-
 return $result_doc->saveXML();
 }
 
@@ -245,4 +261,13 @@ function uniord($c) {
         return false;
     }
 }
+
+			function notEmpty($givenValue)
+							{ 
+								if(strlen($givenValue) > 5) 
+								return true; 
+								else 
+								return false;
+							};
+
 ?>
