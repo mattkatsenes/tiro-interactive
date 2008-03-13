@@ -69,7 +69,7 @@ else
 
 //Begin creating the form body	
 echo "<span class='lemma_choice'>";
-echo "<input onclick=\"javascript: move_lemma(this.value) \" type='radio' class='lemma' name='lemma' ";
+echo "<input onclick=\"javascript: move_lemma(this.attributes.getNamedItem('value').value); \" type='radio' class='lemma' name='lemma' ";
 echo "value='{$lemma}' ";
 echo "id='{$lemma}' ";
 echo "/>\n";
@@ -80,14 +80,16 @@ echo "<br/>\n";
 
 	//Display each definition-group's actual set of definition texts.
 	$translations = $xpath->query('entry/shortDef/sense/trans/tr',$definition);
-	foreach($translations as $translation)
+	if($translations->length > 5 )
 	{
-	$translation_value = trim($translation->nodeValue);
-	echo "		<input onclick=\"javascript:move_trans(this.value) \" type='checkbox' class='translations' name='translations' ";
-	echo "value='{$translation_value}' ";
-	echo "/>\n";
-	echo"		<span class='translation_value'>{$translation_value}</span>\n";
-	echo "		<br/>\n";
+		$short_list = array();
+		for($i=0; $i<5; $i++)
+			$short_list[] = $translations->item($i);
+		createTranslationText($lemma,$short_list, $translations);
+	}
+	else
+	{
+		createTranslationText($lemma,$translations);
 	}
 	
 ///This compresses and encodes the whole definition xml string for passing into the xml definition creation section.
@@ -105,11 +107,49 @@ echo  "<br/>\n";
 
 //Create user editable area for definitions.  Because no dictionary definition will be quite perfect for a user, on selecting each
 //possible definition, the definition data is moved into this edit box by javascript. 
-echo "<span id='definition_area_title'>Definition:</span><br/>";
+echo "Term: <input id='definition_area_title' disabled='true' style='width: 20em; color: black; background-color: white; border: 0px;' value=' '> </input><br/>";
 echo "<textarea rows='10' cols='50' id='definition_area' value=' '></textarea>";
 
 echo "<input type='submit'/>";
 echo "</form>";
 echo "</span>";
+
+function createTranslationText($lemma,$short_list, $long_list = null)
+{
+		if($long_list == null)
+			$long_list = $short_list;
+
+		foreach($short_list as $translation)
+		{
+		$translation_value = trim($translation->nodeValue);
+		echo "		<input onclick=\"javascript:move_trans(this.value) \" type='checkbox' class='translations' name='translations' ";
+		echo "value=\"{$translation_value}\" ";
+		echo "/>\n";
+		echo"		<span class='translation_value'>{$translation_value}</span>\n";
+		echo "		<br/>\n";
+		}
+		
+		$length = 0;
+		if(!is_array($long_list))
+			$length = $long_list->length;
+		else
+			$length = count($long_list);
+		
+		$js_call = "javascript:$('{$lemma}').checked='true';move_lemma($('{$lemma}').attributes.getNamedItem('value').value,false); move_trans(this.lastChild.innerHTML);";
+		echo "<span onclick=\"{$js_call}\"	style='font-size: small; font-decoration:underline;'>Copy all ($length) entries";
+		echo "<span style='display: none;' class='translations_all' id='flame'>";
+			$outputstring ="";
+			foreach($long_list as $key => $translation)
+			{
+			$translation_value = trim($translation->nodeValue,",.");
+				if($key > 0)
+					$outputstring .="-";	//Add dashes for readablity
+			$outputstring .= "{$translation_value}" . ". ";
+			}
+			$outputstring = trim($outputstring);
+		echo $outputstring;
+		echo "</span></span><br/>\n";
+		
+}
 
 ?>
