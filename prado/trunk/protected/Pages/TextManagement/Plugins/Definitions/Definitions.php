@@ -20,9 +20,7 @@ class Definitions extends TPage
 	{
 	global $ABS_PATH,$USERS_PREFIX;
 
-			$this->localDictionary = new DOMDocument();
-				$this->localDictionary->formatOutput = true;
-			$this->localDictionary->loadXML('<div n="glossary" />');
+			$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','def.xml');
 	
 			$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
 			$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
@@ -38,7 +36,7 @@ class Definitions extends TPage
 		else
 		{
 			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions');
-			//$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
+			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
 		}
 		
 	}
@@ -46,8 +44,7 @@ class Definitions extends TPage
 	/**
 	 * 
 	 * 
-	 /'.'protected/Pages/TextManagement/Plugins/Definitions');
-			$this->LatinText->Controls->add($this->innerTe* 
+	 * 
 	 * 
 	 */
 	function innerTextProcessing(TiroText $textObject)
@@ -108,9 +105,11 @@ class Definitions extends TPage
 		//	$this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
 			
 	$entry = $this->createEntry($xml,$json['userdefinition']);
-	$this->localDictionary->firstChild->appendChild($entry);
+
+	$this->localDictionary->insertNode($entry);
+	$this->localDictionary->saveText();
 		
-	$this->DefinitionAnchor->Controls[]="<![CDATA[". $this->localDictionary->saveXML() ."]]>";
+	//$this->DefinitionAnchor->Controls[]="<!--<![CDATA[". $this->localDictionary->saveXML() ."]]>-->";
 	}
 
 		private function createEntry($entryXML, $userdefinition)
@@ -166,7 +165,20 @@ class Definitions extends TPage
 
 	function myclick()
 	{
-			$this->LatinText->Controls[0] = $this->tiroText->getText();
+	global $ABS_PATH,$USERS_PREFIX;
+			$entry_node = $this->localDictionary->createElement('entry');
+				$entry_node->setAttribute('xml:id','g.flamer');
+				$entry_node->nodeValue = time();
+			$entry_node2 = $this->localDictionary->createElement('entry');
+				$entry_node2->setAttribute('xml:id','g.flamer-');
+				$entry_node2->nodeValue = time();
+
+	$this->localDictionary->insertNode($entry_node);	
+	$this->localDictionary->insertNode($entry_node2);
+				
+	$this->localDictionary->sortNodes("link","@targets");
+	$this->localDictionary->sortNodes("entry","@xml:id");
+	$this->localDictionary->saveText();
 	}
 		
 }

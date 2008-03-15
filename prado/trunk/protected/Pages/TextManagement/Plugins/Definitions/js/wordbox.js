@@ -52,6 +52,7 @@ returnObject.lemma = valid_lemma.value;
 returnObject.id_text = id_text;
 returnObject.queryword = $('query_word').innerHTML;
 returnObject.userdefinition = $('definition_area').value;
+returnObject.usertitle = $('definition_area_title').value;
 returnObject.spanContainer = valid_lemma.parentNode;
 returnObject.xml = $(valid_lemma.value+'-zipxml').innerHTML;
 
@@ -64,14 +65,18 @@ function move_trans(input)
  $('definition_area').value += input+'; ';
 }
 
-function move_lemma(input)
+function move_lemma(input, clear)
 {
+html = $(input+'-orth').innerHTML + " ";
+html += $(input+'-misc').innerHTML;
 
-$html = $(input+'-orth').innerHTML + " ";
-$html += $(input+'-misc').innerHTML
-
-$('definition_area_title').innerHTML = $html;
-
+$('definition_area_title').value = html;
 $('definition_area').value = "";
-$$('.translations').each(function(item){item.checked=false});
+
+
+obj_root = $(input).parentNode.id = input + '-root';
+	if((clear == null) || (clear == true))
+		$$('.translations').each(function(item){item.checked=false;});
+	else
+		$(obj_root).getElementsBySelector('.translations').each(function(item){item.checked=true;});
 }

@@ -180,7 +180,7 @@ foreach($LemmaEntry_nodes as $LemmaEntry_node)
 				if(!empty($match))
 				{
 				$first_match = strpos($match,':');
-						if($first_match > 10)
+						if($first_match > 20)
 							$match = substr($match,0,$first_match);
 						else
 						{ 
@@ -192,6 +192,7 @@ foreach($LemmaEntry_nodes as $LemmaEntry_node)
 				}
 			$match = preg_replace("/[0-9]? [A-Z]+-[\,\.\;]?/","",$match);	//Get rid of etymological notes, "1 CUR-"
 			$match = trim($match);
+			$match = ucfirst($match);
 			$matches[$key] = $match;
 			}
 							
@@ -262,12 +263,12 @@ function uniord($c) {
     }
 }
 
-			function notEmpty($givenValue)
-							{ 
+function notEmpty($givenValue)
+	{ 
 								if(strlen($givenValue) > 5) 
 								return true; 
 								else 
 								return false;
-							};
+	};
 
 ?>
