@@ -14,7 +14,7 @@ class TiroText
 	/**
 	 * DOMDocument holding the TEI-compliant xml
 	 */
-	private $xml;
+	protected $xml;
 
 	/**
 	 * String for the path to text.xml
@@ -23,7 +23,9 @@ class TiroText
 	
 	function __construct($path)
 	{
-		$this->xml = new DomDocument;
+		$this->xml = new DomDocument();
+		$this->xml->formatOutput=true;
+		$this->xml->preserveWhiteSpace=true;
 		
 		if(file_exists($path . '/text.xml'))
 			$this->xml->load($path . '/text.xml');
