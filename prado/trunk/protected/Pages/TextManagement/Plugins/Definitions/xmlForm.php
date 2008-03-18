@@ -19,7 +19,7 @@ include_once('/Library/WebServer/Documents/tiro/prado/trunk/protected/Engine/Per
 
 
 $word = $_GET['word'];
-$xmlDoc = getParse($word);
+$xmlDoc = getParse($word,'xml',false); //getParse($latin_word, $is_test_run = false)
 
 //Create the containing span, and the form.  A containing span is used to provide for easy ajax insertion into a webpage.
 echo <<<HTML
