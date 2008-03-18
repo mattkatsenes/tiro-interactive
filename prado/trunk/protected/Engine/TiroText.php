@@ -199,5 +199,10 @@ class TiroText
 				$id++;
 			}
 	}
+
+	public function getDOMDoc()
+	{
+	return $this->xml;
+	}
 }
 ?>
