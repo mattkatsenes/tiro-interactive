@@ -20,7 +20,16 @@ class Definitions extends TPage
 	{
 	global $ABS_PATH,$USERS_PREFIX;
 
-			$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','def.xml');
+			if(file_exists($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions/-def.xml'))
+			{
+				$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','def.xml');
+			}
+			else
+				{
+				$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','-def.xml');
+				$this->localDictionary->loadTemplate("glossary","entry","link");
+				$this->localDictionary->saveText();
+				}
 	
 			$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
 			$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
@@ -38,7 +47,7 @@ class Definitions extends TPage
 			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions');
 			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
 		}
-		
+	echo "<a href='/prado/protected/Pages/TextManagement/Plugins/Definitions/def.xml'>def.xml</a>";
 	}
 	
 	/**
@@ -70,16 +79,9 @@ class Definitions extends TPage
 	return $proc->transformToXML($textXML);
 	}
 	
-	function Load()
-	{
-	
-	$this->myName->Text = $this->User->Name;
-	
-	}
-
 	function defJSONHandler()
 	{
-        $this->myName->Text = $this->defJSON->Value;
+     //   $this->myName->Text = $this->defJSON->Value;
         $json = json_decode($this->defJSON->Value,true);
 	   
 	   //Handles saving 'defined' tag into xml text document
@@ -89,9 +91,15 @@ class Definitions extends TPage
 		$myTiroText->loadXML($this->tiroText->getText());
 		$xpath = new DOMXPath($myTiroText);
 			$idvalue = $json['id_text'];
-			$entry = $xpath->query("//term[@id-text='$idvalue']");
-			$entry = $entry->item(0);
-		$entry->setAttribute('defined','true');
+			$entry = $xpath->query("//term[@id_text='$idvalue']");
+			if($entry = $entry->item(0))
+			{
+				$entry->setAttribute('defined','true');
+			}
+			else
+			{
+				echo "failure to find //term[@id_text='$idvalue']";
+			}
 		
 		$this->tiroText->setText($myTiroText->getElementsByTagName('text')->item(0));	//Needed instead of ->saveXML() in order to stop <> escaping
 		$this->tiroText->saveText();
@@ -105,10 +113,15 @@ class Definitions extends TPage
 		//	$this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
 			
 	$entry = $this->createEntry($xml,$json['userdefinition']);
-
 	$this->localDictionary->insertNode($entry);
+	
+	$link = $this->createLink($json["lemma"],$json["id_text"]);
+	$this->localDictionary->insertNode($link);
+
+	$this->localDictionary->sortNodes("link","@targets");
+	$this->localDictionary->sortNodes("entry","@xml:id");
 	$this->localDictionary->saveText();
-		
+	
 	//$this->DefinitionAnchor->Controls[]="<!--<![CDATA[". $this->localDictionary->saveXML() ."]]>-->";
 	}
 
@@ -163,6 +176,75 @@ class Definitions extends TPage
 			return $entry;
 		}
 
+		private function createLink($lemma, $id_text)
+		{
+		//Lemma link creation
+		$lemma_link = "#g." . $lemma;
+		//
+		
+		//Position link
+		$position_link = "";
+			$xpath = new DOMXPath($this->tiroText->getDOMDoc());
+				$term = $xpath->query("//term[@id_text = '$id_text']");
+
+			if( $term->length == 1)
+				$term = $term->item(0);
+			else
+				return null;
+			
+			if( $term->parentNode->nodeName == "l")
+				$position_link = $term->parentNode->attributes->getNamedItem('id')->nodeValue;
+			else
+				return null;
+		$position_link = "#" . $position_link . "." . $term->nodeValue;
+		//
+		
+		
+		$link_entry =  $this->localDictionary->createElement("link");
+		$new_entry = true;
+			//Determine if the lemma already has a glossary link in the local_dictionary text
+			// if it does, remove that old node, since we are modifying the attributes.
+			$dict_xpath = new DOMXPath($this->localDictionary->getDOMDoc());
+				$links = $dict_xpath->query("//link");
+				foreach($links as $link)
+				{
+					if( strpos($link->attributes->getNamedItem('targets')->nodeValue,$lemma_link) !== false)
+					{
+					$new_entry= false;
+					$link_entry = $link->parentNode->removeChild($link);		//N.B.  This is NOT HOW THINGS SHOULD BE DONE!! Drew.
+					}
+				}
+			if($new_entry == true)
+				$link_entry->setAttribute('targets',$lemma_link);
+			//End lemma check
+			
+			//If lemma has been defined before, check targets attribute to see if our target has been defined before.
+			if($new_entry == true)
+				{
+				$link_entry->attributes->getNamedItem('targets')->nodeValue .= " ". $position_link;
+				}
+			else
+				{	//Check to see if our position is already defined
+				$found = false;
+					foreach(explode(" ",$link_entry->attributes->getNamedItem('targets')->nodeValue) as $position)
+						{
+							$position = trim($position);
+							if($position == $position_link)
+								$found = true;
+						}
+					if( !$found)
+						{
+						$link_entry->attributes->getNamedItem('targets')->nodeValue .= " ". $position_link;
+						}
+					else	{};
+				}
+			//End target check
+			
+		//End link_entry creation
+		//Note that at this stage, if a <link> containing the same lemma as the given word was in the local dictionary, it no longer is.
+		return $link_entry;
+		}
+		
 	function myclick()
 	{
 	global $ABS_PATH,$USERS_PREFIX;
@@ -178,7 +260,8 @@ class Definitions extends TPage
 				
 	$this->localDictionary->sortNodes("link","@targets");
 	$this->localDictionary->sortNodes("entry","@xml:id");
-	$this->localDictionary->saveText();
+	//$this->localDictionary->saveText();
+	$this->localDictionary->loadTemplate("<root/>","entry","link");
 	}
 		
 }
