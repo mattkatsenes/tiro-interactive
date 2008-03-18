@@ -29,8 +29,7 @@ function __construct($path,$filename = null)
 			}
 		else
 			{
-			global $ABS_PATH;
-			$this->xml->load($ABS_PATH.'/protected/Data/tiro_default.xml');
+			$this->xml->loadXML("<root/>");
 			$this->xml->save($path . '/' . $filename);
 			}
 		$this->xml_file = $path . '/' . $filename;
@@ -178,19 +177,42 @@ function importNode($element, $value=false)
 	return $this->xml->importNode($element, $value);
 }
 
+function loadTemplate($div_type)
+{
+	$this->xml->loadXML("<div />");
+		$this->xml->getElementsByTagName("div")->item(0)->setAttribute("n",$div_type);
+
+	$arg_array = array();
+	foreach(func_get_args() as $arg)
+		$arg_array[] = $arg;
+	$arg_array = array_slice($arg_array,1);
+	
+	$this->arrayToXML($this->xml->getElementsByTagName($this->xml->documentElement->tagName)->item(0), $arg_array);
+}
+
 private function sameDOMAttributes(DOMNode $element1, DOMNode $element2)
 {
 	if($element1->nodeName == $element2->nodeName)
 	{
-		if($element1->attributes->length == $element2->attributes->length)
+		if($element1->attributes->length <= $element2->attributes->length)	
 		{
 		for($i = 0; $i < $element1->attributes->length; $i++)
 			{
-			if($element1->attributes->item($i)->nodeValue != $element2->attributes->item($i)->nodeValue)
+			$el_1_attribute = $element1->attributes->item($i);
+				//This is rediculous, but someone just HAD to use namespaces!!!
+					$NS_offset = strpos($element1->attributes->item($i)->nodeName,":");
+					if ($NS_offset === false)
+						$NS_offset = 0;
+					else
+						$NS_offset++;
+				$el_1_nodeName_NoNS = substr($element1->attributes->item($i)->nodeName,$NS_offset);
+				//
+			
+			if($el_1_attribute->nodeValue != $element2->attributes->getNamedItem($el_1_nodeName_NoNS)->nodeValue)
 				{
 				return false;
 				}
-			if($element1->attributes->item($i)->nodeName != $element2->attributes->item($i)->nodeName)
+			if($el_1_attribute->nodeName != $element2->attributes->getNamedItem($el_1_nodeName_NoNS)->nodeName)
 				{
 				return false;
 				}
@@ -207,6 +229,37 @@ private function sameDOMAttributes(DOMNode $element1, DOMNode $element2)
 	}
 
 return true;	
+}
+
+public function arrayToXML(DOMNode &$xmlroot)
+{
+	foreach(func_get_args() as $subelement)
+	{
+		if($subelement == null)
+			return false;
+		elseif ( (!is_array($subelement)) && is_string($subelement)	)
+			$xmlroot->appendChild($xmlroot->ownerDocument->createElement($subelement));
+		elseif( is_array($subelement)	)
+			{
+			foreach($subelement as $key => $arrayitem)
+			{
+				if(is_array($arrayitem))
+					{
+					$newroot = $xmlroot->appendChild($xmlroot->ownerDocument->createElement($key));
+					$this->arrayToXML($newroot, $arrayitem);
+					}
+				else
+					{
+					$this->arrayToXML($xmlroot,$arrayitem);
+					}
+			}
+			}
+		else
+			{
+			
+			}
+	}
+return true;
 }
 
 function getErrors()
