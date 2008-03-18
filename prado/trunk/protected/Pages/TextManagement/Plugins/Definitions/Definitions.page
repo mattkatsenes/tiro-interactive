@@ -16,8 +16,8 @@ $$('.term').each(
                                 item.observe('click',
                                                 function()
                                                 {
-                                                        alert(item.innerHTML + ' ' + item.getAttribute('id-text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
-											newWordBox(item.innerHTML, item.getAttribute('id-text'), 
+                                                        alert(item.innerHTML + ' ' + item.getAttribute('id_text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
+											newWordBox(item.innerHTML, item.getAttribute('id_text'), 
 																function(s)
 																{
 																$('<%= $this->defJSON->ClientID %>').value = Object.toJSON(s);
@@ -35,8 +35,6 @@ Event.observe(window, 'load', associateTerms);
 
 </com:TClientScript>
 
-<h1>Posted-data:</h1><div><com:TLabel ID='myName' OnLoad='Load'/></div>
-<com:TButton OnClick='myclick'/>
         <com:TPanel>
                 <com:TPlaceHolder ID='LatinText' />
         </com:TPanel>
@@ -46,5 +44,5 @@ Event.observe(window, 'load', associateTerms);
         </com:TPanel>
 
 	<com:THiddenField ID='defJSON' OnValueChanged='defJSONHandler'/>
-
+<com:TButton OnClick='myclick'/>
 </com:TContent >

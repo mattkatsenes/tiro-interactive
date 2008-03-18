@@ -26,10 +26,16 @@
 	</div>
 </xsl:template>
 
+<xsl:template match="l">
+        <span class="{name()}">
+               <xsl:apply-templates select="@*|node()" />
+        </span>
+</xsl:template>
+
 <xsl:template match="*">
-	<span class="{name()}">
+	<element name="{name()}">
 		<xsl:apply-templates  select="@*|node()"/>
-	</span>
+	</element>
 </xsl:template>
 
 </xsl:stylesheet>

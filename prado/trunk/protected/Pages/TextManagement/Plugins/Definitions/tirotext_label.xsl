@@ -10,14 +10,14 @@
 
 <xsl:template match="term">
         <xsl:element name="{name()}">
-        <xsl:attribute name="id-text"><xsl:value-of select="generate-id()"/></xsl:attribute>
-                <xsl:apply-templates />
+        <xsl:attribute name="id_text"><xsl:value-of select="generate-id()"/></xsl:attribute>
+                <xsl:apply-templates  select="@*|node()"/>
         </xsl:element>
 </xsl:template>
 
 <xsl:template match="*">
         <xsl:element name="{name()}">
-                <xsl:apply-templates />
+                <xsl:apply-templates select="@*|node()"/>
         </xsl:element>
 </xsl:template>
 
