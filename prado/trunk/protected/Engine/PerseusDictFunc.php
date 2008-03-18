@@ -12,14 +12,16 @@
  * @param string $query_term an inflected latin word.
  * @return DOMDocument an XML formatted document containing the possible parsings/definition of the given word
  */
-function getParse($query_term, $return_type = "xml")
+function getParse($query_term, $return_type = "xml", $is_test_run = false)
 {
 global $PERSEUS_SERVER;
 //Create our perseus api query
 $xml_chunker = $PERSEUS_SERVER . "xmlmorph2.jsp?";
 $perseus_query = $xml_chunker ."lang=la" ."&" ."lookup=". $query_term;
 //
-
+if($is_test_run == true)
+	$perseus_query = "xmlmorph2.cursus.xml";
+	
 //Load the perseus parsing result into $doc.
 $doc = new DOMDocument();
 		$doc->formatOutput = true;
@@ -80,7 +82,7 @@ $xpath 	= new DOMXPath($doc);
 					$previouslyDefdLemma_array[] = $lemma;		//Adds <lemma> into defdLemma array for future comparison
 				
 					if($analysisQuery_node->getAttribute('name') == "Elem. Lewis")	//Make sure we're pulling the right type of definition.  May need to be changed later.
-						$temp_definitionXML = getDefinition($analysisQuery_node->getAttribute('ref'));  //pull <query @ref="defintion_url">, push to getDefinition(defintion_url) which returns the entry;
+						$temp_definitionXML = getDefinition($analysisQuery_node->getAttribute('ref'),"xml",null, $is_test_run);  //pull <query @ref="defintion_url">, push to getDefinition(defintion_url) which returns the entry;
 					else
 						$temp_definitionXML = "<Definition lemma='invalid dictionary'></Definition>";
 					
@@ -119,12 +121,15 @@ $xpath 	= new DOMXPath($doc);
  * @param string $query_term_url Output of <query ref="query_term_url"> from morph2.jsp
  * @return string an XML formatted document containing the definition of the given latin lemma signified by $query_term_url
  */
-function getDefinition($query_term_url, $return_type = "xml", $short_definition=null)
+function getDefinition($query_term_url, $return_type = "xml", $short_definition=null, $is_test_run = false)
 {
 //Create our perseus api query
 $xml_chunker = "http://www.tiro-interactive.org/hopper/xmlchunk.jsp?doc=";
 $perseus_query = $xml_chunker . $query_term_url;
 //
+if($is_test_run)
+	$perseus_query = "xmlchunk.cursus.xml";
+
 
 //Load the perseus dictionary entry into $doc.
 $doc = new DOMDocument();
