@@ -11,7 +11,7 @@ require_once("TiroText.php");
  */
 class TiroText_addendum extends TiroText{
 protected $xpath;
-protected $errors;
+public $errors;
 
 function __construct($path,$filename = null)
 {
@@ -53,7 +53,7 @@ if($forceNodeAddition == false)
 		$matches = $this->xpath->query('//'.$newNode->nodeName);
 		foreach($matches as $match)
 		{
-			if( $this->sameDOMAttributes($match, $newNode) )
+			if( $this->sameDOMAttributes($newNode, $match) )
 			{
 				$this->errors .= "Matching node found. <{$newNode->nodeName}>{$newNode->nodeValue}</{$newNode->nodeName}> not added. ";
 				return false;
@@ -115,8 +115,12 @@ $parent_node = null;
 	}
 
 	$matches = $parent_node->getElementsByTagName($newNode->nodeName);
-	if( ($matches->length == 1) && ($matches->item(0)->nodeValue == "") )
+
+	if( ($matches->length == 1) && ($matches->item(0)->nodeValue == "") && ($matches->item(0)->attributes->item(0) == null) )
+		{
+		echo "1";
 		$parent_node->replaceChild($newNode, $matches->item(0));
+		}
 	else
 		$parent_node->appendChild($newNode);
 
@@ -154,8 +158,15 @@ $xslt_string ="<?xml version='1.0' encoding='utf-8'?>\n
 		$proc->importStyleSheet($xslt_sheet); // attach the xsl rules
 		
 	$result = $proc->transformToXML($this->xml);
-	$result = preg_replace("/(\t)+(\n)/",'',$result);
+	$count = 0;
+	$result = preg_replace("/(>)/","$1\n",$result,-1,$count);
+	echo $count;
+	$result = preg_replace("/(\t)+(\n)/",'',$result,-1,$count);
+	echo $count;
+	$result = preg_replace("/\n\n/","\n",$result,-1,$count);
+	echo $count;
 	$this->xml->loadXML($result);
+	$this->xml->normalizeDocument();
 }
 
 function showXML()

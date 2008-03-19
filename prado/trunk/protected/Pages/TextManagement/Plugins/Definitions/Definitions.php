@@ -20,13 +20,13 @@ class Definitions extends TPage
 	{
 	global $ABS_PATH,$USERS_PREFIX;
 
-			if(file_exists($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions/-def.xml'))
+			if(file_exists($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions/def.xml'))
 			{
 				$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','def.xml');
 			}
 			else
 				{
-				$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','-def.xml');
+				$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','def.xml');
 				$this->localDictionary->loadTemplate("glossary","entry","link");
 				$this->localDictionary->saveText();
 				}
