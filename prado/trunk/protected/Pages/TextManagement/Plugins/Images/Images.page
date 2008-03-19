@@ -1,0 +1,15 @@
+<%@ MasterClass="Wide" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+<com:TClientScript ScriptUrl=<%~ js/prototype.js %> />
+<com:TClientScript ScriptUrl=<%~ js/expander.js %> />
+
+<h1>Image Uploader</h1>
+Text: <%= $this->text->title %>
+
+<com:TPlaceHolder ID="TextTree" />
+
+
+
+</com:TContent >
