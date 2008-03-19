@@ -2,7 +2,7 @@
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
-<h1><%= $this->text->title %></h1>
+<h1>Project Title: <%= $this->text->title %></h1>
 <br />
 
 <com:TTable ID="Plugins">
@@ -12,4 +12,8 @@
 		<com:TTableHeaderCell Text="In use?" />
 	</com:TTableHeaderRow>
 </com:TTable>
+
+<h2>Text Preview:</h2>
+<com:TPlaceHolder ID="LatinPreview"/>
+
 </com:TContent>
