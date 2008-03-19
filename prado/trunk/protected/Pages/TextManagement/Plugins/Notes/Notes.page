@@ -1,12 +1,45 @@
 <%@ MasterClass="Layout" %>
-
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
+<com:TClientScript>
+function associateTerms()
+{
+$('<%= $this->NotesAnchor->ClientID %>').setStyle( {display: 'none'} );
+
+$$('.term').each(
+                        function(item)
+                        {
+						if(item.attributes['noted']){	if(item.attributes['noted'].nodeValue == "true")
+							{item.parentNode.setStyle(	{fontWeight: 'bold'});}}
+						
+						Event.observe(item,'click', function(s){
+																				$('<%= $this->NotesAnchor->ClientID %>').toggle();
+																			alert(item.attributes['id_text'].value);
+																			$('<%= $this->notesJSON->ClientID %>').value = "";
+																			$('<%= $this->notesJSON->ClientID %>').value = item.attributes['id_text'].nodeValue;																			
+																			}
+											);
+					}
+                         );
+					
+}
+Event.observe(window, 'load', associateTerms);
+</com:TClientScript>
+
 <com:TPanel>
 	<com:TPlaceHolder ID='LatinText' />
-	<com:TLabel ID="LatinLabel" />
 </com:TPanel>
+
 <com:TPanel>
-	<com:TPlaceHolder ID='NotesAnchor' />
+	<com:TTextBox
+	ID='NotesAnchor' 
+	TextMode="MultiLine"
+	Wrap="true"
+	Columns="50"
+	AutoPostBack="true"
+	/>
 </com:TPanel>
+
+
+<com:THiddenField ID='notesJSON' OnValueChanged='noteHandler' />
 </com:TContent >
