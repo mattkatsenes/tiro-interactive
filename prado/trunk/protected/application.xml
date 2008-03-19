@@ -24,6 +24,8 @@
     	    <url ServiceParameter="TextManagement.Plugins.Definitions.Definitions" pattern="/{id}/Definitions" parameters.id="\d+" />
     	    <url ServiceParameter="TextManagement.Plugins.PerseusAdd.PerseusAdd" pattern="/{id}/PerseusAdd" parameters.id="\d+" />
     	    <url ServiceParameter="TextManagement.Plugins.Notes.Notes" pattern="/{id}/Notes" parameters.id="\d+" />
+    	  	<url ServiceParameter="TextManagement.Plugins.Images.Images" pattern="/{id}/Images" parameters.id="\d+" />
+    	  	<url ServiceParameter="TextManagement.Plugins.Delete.Delete" pattern="/{id}/Delete" parameters.id="\d+" />
     	</module>
 	</modules>
 
