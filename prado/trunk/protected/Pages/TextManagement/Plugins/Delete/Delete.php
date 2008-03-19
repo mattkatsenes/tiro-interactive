@@ -5,7 +5,7 @@ class Delete extends TPage
 	
 	public function onLoad()
 	{
-		$this->text = TextRecord::finder()->findBydir_name($_GET['id']);
+		$this->text = TextRecord::finder()->findById($_GET['id']);
 	}
 	
 	public function deleteClicked()
