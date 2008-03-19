@@ -1,7 +1,7 @@
 /*
- * PageHeader Styles
+ * Wide Styles for use when editing text.
  * author: Matt Katsenes
- * date: 11/12/2007
+ * date: 03/18/2008
 */
 
 body {
@@ -17,35 +17,11 @@ body {
 	text-align: left;
 }
 
-#logo {
-	border-bottom: solid 2px Navy;
-	padding-bottom: 10px;
-	margin-bottom: 10px;
-}
-
-#welcome {
-	border-bottom: solid 1px Navy;
-	padding: 10px;
-}
-
-#sidebar {
-	float: left;
-	border-right: solid 2px Navy;
-	width: 301px;
-	padding-bottom: 10px;
-	height: 402px;
-	overflow: hidden;
-}
-#sidebar_content {
-	padding: 10px;
-	height: 104px;
-	overflow: auto;
-}
 
 #mainColumn {
 	float: left;
 	margin: 0px 0px 0px 0px;
-	width: 497px;
+	width: 800px;
 	height: 412px;
 	overflow: hidden;
 }
@@ -84,12 +60,12 @@ body {
 
 #guts {
 	float: left;
-	width: 486px;
+	width: 790px;
 	padding-top: 10px;
 	padding-bottom: 10px;
 	padding-left: 10px;
 	margin: 0px 0px 0px 0px;
-	height: 368px;
+	height: 370px;
 	overflow: auto;
 }
 
@@ -128,4 +104,8 @@ body {
 	background: AntiqueWhite;
 	width: 70%;
 	margin: auto;
+}
+
+.tocDiv {
+	padding-left: 1em;
 }
