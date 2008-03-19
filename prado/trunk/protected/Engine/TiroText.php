@@ -38,7 +38,7 @@ class TiroText
 		
 		$this->xml_file = $path . '/text.xml';
 		
-		$this->calculateIDs();
+//		$this->calculateIDs();
 	}
 	
 	
@@ -185,17 +185,17 @@ class TiroText
 		$id = 0;
 		
 		$XPath = new DomXPath($this->xml);
-		$IDList = $XPath->query('//term/@id-text');
-		$termListNoID = $XPath->query('//term[not(@id-text)]');
+		$IDList = $XPath->query('//text//*/@id_text');
+		$ListNoID = $XPath->query('//text//*[not(@id_text)]');
 		
 		foreach($IDList as $newID)
 			if((int)$newID->nodeValue > $id)
 				$id = (int)$newID->nodeValue;
 		
-		foreach($termListNoID as $term)
-			if(!$term->hasAttribute('id-text'))
+		foreach($ListNoID as $item)
+			if(!$item->hasAttribute('id_text'))
 			{
-				$term->setAttribute('id-text',$id);
+				$item->setAttribute('id_text',$id);
 				$id++;
 			}
 	}
