@@ -1,22 +1,6 @@
 <?php
 
-/**
- * The default template for the whole project.
- * 
- * This template wraps around every page.  It provides
- * a header, nav-bar, and side-bar for each page.
- * It's built on @link http://www.pradosoft.com Prado PHP Framework.
- * 
- * UPDATE: The template now works properly using Prado's TBulletedList class.
- * 
- * @author Matthew Katsenes <psalakanthos@gmail.com>
- * @copyright Copyright (c) 2007 Matthew Katsenes
- * @package tiro-input
- * @subpackage layout
- * @version tiro-input side v. 0.2
- * 
- */
-class Layout extends TTemplateControl
+class Wide extends TTemplateControl
 {
 	/**
 	 * Layout Constructor.
@@ -39,13 +23,7 @@ class Layout extends TTemplateControl
 		$authManager=$this->Application->getModule('auth');
 		$logged_in = !$authManager->User->IsGuest;
 		
-		if($logged_in)
-			$this->WelcomeMultiView->activeView=$this->WelcomeUser;
-		else
-			$this->WelcomeMultiView->activeView=$this->WelcomeGuest;
-		
 		$this->menuBar($logged_in);
-		$this->sideBar($logged_in);
 	}
 	
 	/**
@@ -95,52 +73,6 @@ class Layout extends TTemplateControl
 			$this->MenuList->databind();
 		}
 	}
-
-	/**
-	 * Binds the data for the SideBar.
-	 */
-	public function sideBar($logged_in)
-	{	
-/*		if(!$logged_in)
-		{
-			$this->SideBarLabel->Text = "Please login.";
-			$this->SideBarList->DataSource = Array("Please Login");
-		} */
-		
-		$exist = false;
-		if(isset($this->User->Roles[0]))
-			$exist = true;
-
-		if($exist == true && ($this->User->Roles[0] == 'teacher'))
-		{
-			$this->SideBarLabel->Text = "My Texts:";
-			$username = $this->User->Name;
-			$my_texts = TextRecord::finder()->findAllByAuthor_id($username);
-
-			$textArray = Array("index.php?page=TextManagement.NewText" => "New Text");
-			foreach($my_texts as $text)
-				$textArray[$this->Application->Request->ApplicationUrl . "/$text->id"] = $text->title;
-				
-			$this->SideBarList->DataSource = $textArray;
-			$this->SideBarList->databind();
-		}
-		elseif( ($exist == true) && $this->User->Roles[0] == 'student')
-		{
-			$teacherRecord = StudentRecord::finder()->withTeacher()->findByPk($this->User->Name)->teacher;
-			
-			$this->SideBarLabel->Text = "Teacher: $teacherRecord->first_name $teacherRecord->middle_name $teacherRecord->last_name";
-			
-			$textArray = Array();
-			
-			$teacherTexts= TextRecord::finder()->findAllByAuthor_id($teacherRecord->username);
-			foreach($teacherTexts as $text)
-				if($text->status > 0)
-					$textArray["index.php?page=Student.View&id=$text->dir_name"] = $text->title;
-			
-			$this->SideBarList->DataSource = $textArray;
-			$this->SideBarList->databind();
-		}
-	}
 	
 	public function logoutButtonClicked()
 	{
@@ -150,5 +82,4 @@ class Layout extends TTemplateControl
 		$this->Response->redirect($url);
 	}
 }
-
 ?>
