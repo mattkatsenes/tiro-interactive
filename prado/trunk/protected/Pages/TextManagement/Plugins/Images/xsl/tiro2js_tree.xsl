@@ -6,8 +6,6 @@
 
 <!-- Entry Point -->
 	<xsl:template match="/">
-<h1>Testing</h1>
-<p>Click the arrows to expand sections.  Click the link to attach the image to the whole section.  Click a single word to attach an image to an individual word.</p>
 		<xsl:apply-templates/>
 	</xsl:template>
 

@@ -13,6 +13,15 @@ class Images extends TPage
 		$this->text = TextRecord::finder()->findById($_GET['id']);
 		$this->tiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$this->text->dir_name);
 		
+		if(!$this->IsPostBack)
+			$this->addText();		
+		elseif($_POST['id_text'])
+			$this->imageSetup($_POST['id_text']);
+		
+	}
+
+	function addText()
+	{
 		$tiroDom = new DomDocument;
 		$tiroDom->loadXML($this->tiroText->getText());
 		$stylesheet = new DomDocument;
@@ -22,6 +31,28 @@ class Images extends TPage
 		$proc->importStylesheet($stylesheet);
 		
 		$this->TextTree->Controls[] = $proc->transformToXml($tiroDom);
+
+		$this->ImageUploader->ActiveView = $this->SelectTextPortion;
 	}
+	
+	function imageSetup($id_text)
+	{
+		$tiroDom = new DomDocument;
+		$tiroDom->loadXML($this->tiroText->getText());
+		
+		$XPath = new DomXPath($tiroDom);	
+		$noteNode = $XPath->query("//*[@id_text=".substr($id_text,5)."]");
+		
+		$this->NoteAnchor->Controls[] = $noteNode->item(0)->textContent;
+				
+		$this->ImageUploader->ActiveView = $this->InsertNote;
+	}
+	
+	function saveImage($sender)
+	{
+		
+		$this->ImageUploader->ActiveView = $this->ImageUploaded;
+	}
+	
 }
 ?>

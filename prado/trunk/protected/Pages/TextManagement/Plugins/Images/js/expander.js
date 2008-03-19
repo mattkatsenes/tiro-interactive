@@ -27,5 +27,6 @@ function toggleExpand(branch_id)
 
 function attach(tiro_id)
 {
-	
+	$('id_text').writeAttribute('value',tiro_id);
+	document.forms[0].submit();
 }

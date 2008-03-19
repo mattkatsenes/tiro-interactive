@@ -8,8 +8,21 @@
 <h1>Image Uploader</h1>
 Text: <%= $this->text->title %>
 
+<com:TMultiView ID="ImageUploader">
+<com:TView ID="SelectTextPortion">
+<p>Click the arrows to expand sections.  Click the link to attach the image to the whole section.  Click a single word to attach an image to an individual word.</p>
 <com:TPlaceHolder ID="TextTree" />
+</com:TView>
+<com:TView ID="InsertNote">
+<p>Attach an image to this piece of text: <com:TPlaceHolder ID="NoteAnchor" /></p>
+<p>Choose your Image: <com:TFileUpload ID="ImageFile" OnFileUpload="saveImage"/>
+</p>
+<com:TButton ButtonType="Submit" Text="Submit"/>
+</com:TView>
+<com:TView ID="ImageUploaded">
+success!
+</com:TView>
+</com:TMultiView>
 
-
-
+<input type="hidden" name="id_text" id="id_text"/>
 </com:TContent >
