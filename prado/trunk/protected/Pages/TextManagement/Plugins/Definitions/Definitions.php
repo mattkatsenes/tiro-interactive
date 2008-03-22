@@ -6,7 +6,6 @@ prado::Using('Application.Engine.*');
 
 class Definitions extends TPage
 {
-
 	public $tiroText;
 	private $localDictionary;
 
@@ -19,32 +18,29 @@ class Definitions extends TPage
 	function onLoad()
 	{
 	global $ABS_PATH,$USERS_PREFIX;
-
-			if(file_exists($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions/def.xml'))
+		$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
+		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
+		$this->tiroText = new TiroText($path);
+		
+			if(file_exists($path . '/def.xml'))
 			{
-				$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','def.xml');
+				$this->localDictionary = new TiroText_addendum($path,'def.xml');
 			}
 			else
 				{
-				$this->localDictionary = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions','def.xml');
+				$this->localDictionary = new TiroText_addendum($path,'def.xml');
 				$this->localDictionary->loadTemplate("glossary","entry","link");
 				$this->localDictionary->saveText();
 				}
 	
-			$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
-			$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
-			$myTiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name);
-			$this->LatinText->Controls[] = $this->innerTextProcessing($myTiroText);
-			
-			$this->LatinText->Controls->add("<br/><br/><br/>");
+			//$this->LatinText->Controls[] = $this->innerTextProcessing($myTiroText);
+			//$this->LatinText->Controls->add("<br/><br/><br/>");
 		if(!$this->IsPostBack)
 		{
-			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions');
 			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
 		}
 		else
 		{
-			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions');
 			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
 		}
 	echo "<a href='/prado/protected/Pages/TextManagement/Plugins/Definitions/def.xml'>def.xml</a>";
@@ -103,7 +99,7 @@ class Definitions extends TPage
 		
 		$this->tiroText->setText($myTiroText->getElementsByTagName('text')->item(0));	//Needed instead of ->saveXML() in order to stop <> escaping
 		$this->tiroText->saveText();
-			$this->LatinText->Controls[2] = $this->innerTextProcessing($this->tiroText);
+			$this->LatinText->Controls[0] = $this->innerTextProcessing($this->tiroText);
 	   //End defined tag call.
 	   
 		//This is temporary until the page becomes properly object oriented.
@@ -208,11 +204,14 @@ class Definitions extends TPage
 				$links = $dict_xpath->query("//link");
 				foreach($links as $link)
 				{
+				if($link->attributes->getNamedItem('targets'))
+				{
 					if( strpos($link->attributes->getNamedItem('targets')->nodeValue,$lemma_link) !== false)
 					{
 					$new_entry= false;
 					$link_entry = $link->parentNode->removeChild($link);		//N.B.  This is NOT HOW THINGS SHOULD BE DONE!! Drew.
 					}
+				}
 				}
 			if($new_entry == true)
 				$link_entry->setAttribute('targets',$lemma_link);
