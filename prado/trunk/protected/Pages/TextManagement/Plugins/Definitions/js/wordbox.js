@@ -32,6 +32,7 @@ function newWordBox(word, id_text, objFunction, location)
 						}
 						location.appendChild(myRoot);
 						$('wordbox').action="javascript:sendParse("+objFunction+",'"+id_text+"')";
+						centerWordBox();  //See below
 					}
 				});
 }
@@ -79,4 +80,26 @@ obj_root = $(input).parentNode.id = input + '-root';
 		$$('.translations').each(function(item){item.checked=false;});
 	else
 		$(obj_root).getElementsBySelector('.translations').each(function(item){item.checked=true;});
+}
+
+function centerWordBox()
+{
+$('root_wordbox').setStyle({
+	border: "1px solid black",
+	background: "white", 
+	padding:"5px",
+	position:"absolute", 
+	top:	$('guts').offsetTop-1, 
+	left:	$('guts').offsetLeft+1,
+	width: $('guts').clientWidth+9,
+	height: $('guts').clientHeight-11,
+	overflow: "auto"
+	});
+	
+close_button = document.createElement("span");	
+close_button.id="close_button";
+close_button.setStyle({cssFloat: "right"});
+close_button.innerHTML="[X]";
+Event.observe(close_button,'click',function(){$('root_wordbox').remove();});
+$('root_wordbox').insertBefore(close_button,$('root_wordbox').childNodes[0]);
 }

@@ -118,7 +118,7 @@ $parent_node = null;
 
 	if( ($matches->length == 1) && ($matches->item(0)->nodeValue == "") && ($matches->item(0)->attributes->item(0) == null) )
 		{
-		echo "1";
+		//echo "1";
 		$parent_node->replaceChild($newNode, $matches->item(0));
 		}
 	else
