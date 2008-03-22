@@ -135,7 +135,7 @@ class TiroText
 		/**
 		 * If they're the same, RECURSE!!!
 		 */
-		if($sameness &! $theyHaveDifferentAttributes)
+		if($sameness && !$theyHaveDifferentAttributes)
 			foreach($gift->childNodes as $giftedChild)
 				return $this->combineTrees($recipient, $giftedChild, $testingXPath);
 		else
