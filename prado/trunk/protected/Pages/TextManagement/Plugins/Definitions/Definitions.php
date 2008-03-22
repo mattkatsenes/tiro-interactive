@@ -115,7 +115,7 @@ class Definitions extends TPage
 	$this->localDictionary->insertNode($link);
 
 	$this->localDictionary->sortNodes("link","@targets");
-	$this->localDictionary->sortNodes("entry","@xml:id");
+	$this->localDictionary->sortNodes("entry","@id_text");
 	$this->localDictionary->saveText();
 	
 	//$this->DefinitionAnchor->Controls[]="<!--<![CDATA[". $this->localDictionary->saveXML() ."]]>-->";
@@ -130,7 +130,7 @@ class Definitions extends TPage
 			$entry = $this->localDictionary->createElement('entry');
 					//
 					$lemma = $xpath->query('//Definition/@lemma')->item(0);
-					$entry->setAttribute('xml:id','g.' . $lemma->value);
+					$entry->setAttribute('id_text','g.' . $lemma->value);
 					//
 					
 					//
@@ -189,10 +189,10 @@ class Definitions extends TPage
 				return null;
 			
 			if( $term->parentNode->nodeName == "l")
-				$position_link = $term->parentNode->attributes->getNamedItem('id')->nodeValue;
+				$position_link = $term->parentNode->attributes->getNamedItem('id_text')->nodeValue;
 			else
 				return null;
-		$position_link = "#" . $position_link . "." . $term->nodeValue;
+		$position_link = "#" . $position_link; //. "." . $term->nodeValue;
 		//
 		
 		

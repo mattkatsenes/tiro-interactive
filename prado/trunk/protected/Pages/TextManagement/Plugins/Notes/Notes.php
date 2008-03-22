@@ -115,7 +115,7 @@ private function createNote($id_text, $value)
 				return null;
 			
 			if( $term->parentNode->nodeName == "l")
-				$parent_line = $term->parentNode->attributes->getNamedItem('id')->nodeValue;
+				$parent_line = $term->parentNode->attributes->getNamedItem('id_text')->nodeValue;
 			else
 				return null;
 	//
@@ -139,7 +139,7 @@ private function createNote($id_text, $value)
 		$note_node->setAttribute("anchored", "false");
 		$note_node->setAttribute("place", "foot");
 		$note_node->setAttribute("type", "editorial");
-	$note_node->setAttribute("xml:id", $parent_line.".n");
+	$note_node->setAttribute("text_id", $parent_line);
 	$note_node->setAttribute("target","#".$parent_line);
 		if($previous_node != null)
 			$note_node->nodeValue = $previous_node->nodeValue;
@@ -162,7 +162,7 @@ private function createLink($id_text)
 				return null;
 			
 			if( $term->parentNode->nodeName == "l")
-				$parent_line = $term->parentNode->attributes->getNamedItem('id')->nodeValue;
+				$parent_line = $term->parentNode->attributes->getNamedItem('id_text')->nodeValue;
 			else
 				return null;
 	//		
