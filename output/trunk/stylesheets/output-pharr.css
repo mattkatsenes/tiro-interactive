@@ -23,7 +23,7 @@ This css design should resemble Pharr's Aeneid (Bolchazy-Carducci).
 .l {
 	position: relative;
 	left: 40px;
-	font-style: italic;
+	font-style: normal;
 }
 .line_number{
 	position: absolute;
@@ -31,7 +31,7 @@ This css design should resemble Pharr's Aeneid (Bolchazy-Carducci).
 
 
 .defined_term {
-	font-style: normal;
+	font-weight: bold;
 	cursor:help;
 }
 

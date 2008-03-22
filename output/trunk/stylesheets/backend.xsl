@@ -27,7 +27,10 @@
 		</div>
 	</xsl:template>
 
-
+<!-- Misc. -->
+	<xsl:template match="head">
+	
+	</xsl:template>
 <!-- Lines -->
 	<xsl:template match="l">
 		<xsl:if test="@n mod 5 = 0">
@@ -69,7 +72,7 @@
 <!-- Glossed Terms -->
 	<xsl:template match="term">
 		<xsl:variable name="ident">
-			<xsl:value-of select="@xml:id" />
+			<xsl:value-of select="@id_text" />
 		</xsl:variable>
 		
 		<xsl:variable name="def_ident">
@@ -80,23 +83,31 @@
 			</xsl:call-template>
 		</xsl:variable>
 		
-		<span class="defined_term" id="{$ident}" def_id="{$def_ident}">
-			<xsl:apply-templates />
-		</span>
+		<xsl:choose>
+			<xsl:when test="$def_ident != 'g.'">
+				<span class="defined_term" id="{$ident}" def_id="{$def_ident}">
+					<xsl:apply-templates />
+				</span>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates />
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 	
 	<xsl:template name="match_def">
 		<xsl:param name="term_ident" />
 		<xsl:variable name="link_string">
-			<xsl:value-of select="//attribute::targets[contains(.,$term_ident)]" />
+			<xsl:value-of select="//attribute::targets[substring-after(.,' #') = $term_ident]" />
 		</xsl:variable>
 		
 		<xsl:variable name="def_ident_num">
 			<xsl:value-of select="substring-after(substring-before($link_string,concat(' #',$term_ident)),'#g.')" />
 		</xsl:variable>
 		
-		<xsl:choose>
-			<xsl:when test="contains($def_ident_num,'#I.')">				
+		<xsl:choose>			
+			<!-- Has more than one term per entry NOT WORKING -->
+			<xsl:when test="contains($def_ident_num,'#I.')">
 				<xsl:text>g.</xsl:text><xsl:value-of select="substring-before($def_ident_num,' #I.')" />
 			</xsl:when>
 			<xsl:otherwise>
@@ -109,7 +120,7 @@
 	
 	<xsl:template name="entry" match="entry">
 		<xsl:variable name="ident">
-			<xsl:value-of select="@xml:id" />
+			<xsl:value-of select="@id_text" />
 		</xsl:variable>
 		<xsl:variable name="term_numbers">
 			<xsl:call-template name="match_terms">
@@ -119,9 +130,9 @@
 			</xsl:call-template>
 		</xsl:variable>
 		
-		<xsl:if test="//l[contains($term_numbers,@n)]">
+		<xsl:if test="//term[@id_text = $term_numbers]">
 		
-			<span class="entry" id="{$ident}">
+			<span class="entry" id="{$ident}" term_numbers="{$term_numbers}">
 				<xsl:apply-templates />
 			</span>
 		
@@ -134,7 +145,7 @@
 			<xsl:value-of select="//attribute::targets[contains(.,$g_ident)]" />
 		</xsl:variable>
 		
-		<xsl:value-of select="$link_string" />
+		<xsl:value-of select="substring-after($link_string,' #' )" />
 	
 	</xsl:template>
 	
