@@ -44,5 +44,4 @@ Event.observe(window, 'load', associateTerms);
         </com:TPanel>
 
 	<com:THiddenField ID='defJSON' OnValueChanged='defJSONHandler'/>
-<com:TButton OnClick='myclick'/>
 </com:TContent >
