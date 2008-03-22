@@ -35,4 +35,11 @@
 		<friendly-url>/{id}/Delete</friendly-url>
 		<implemented>yes</implemented>
 	</plugin>
+	<plugin>
+		<name>Output Project</name>
+		<desc>Take all the information you've created already and display it beautifully.</desc>
+		<folder>Output</folder>
+		<friendly-url>/{id}/Output</friendly-url>
+		<implemented>no</implemented>
+	</plugin>
 </plugins>
