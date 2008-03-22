@@ -27,7 +27,7 @@ class PerseusAdd extends TPage
 	{
 		$this->text = TextRecord::finder()->findByPk($_GET['id']);
 		
-		if($_GET['doc'])
+		if(isset($_GET['doc']))
 			$this->confirmChunk($_GET['doc']);
 		elseif(!$this->IsPostBack)
 			$this->loadAuthorView();
