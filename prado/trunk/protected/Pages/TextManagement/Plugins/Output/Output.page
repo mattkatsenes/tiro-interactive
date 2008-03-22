@@ -1,0 +1,11 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+<h1>User: <%= $this->User->Name %>, Text: <%= $this->text->title %></h1>
+
+<p>Combining all the information ...</p>
+
+<com:TPlaceHolder ID="MsgHolder" />
+
+</com:TContent >
