@@ -166,9 +166,9 @@
 			</map:match>	
 			
 			<map:match pattern="output.html">
-				<map:generate src="eclogue1_mymarkup.xml"/>
+				<map:generate src="output.xml"/>
 				<map:transform src="stylesheets/tei2html.xsl"/>
-				<map:serialize type="xml"/>
+				<map:serialize type="html"/>
 			</map:match>
 
 			<map:match pattern="output(*).xml">
