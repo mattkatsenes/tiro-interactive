@@ -21,32 +21,28 @@ private 	$localNotes;
 function onLoad()
 	{
 	global $ABS_PATH,$USERS_PREFIX;
-
-			if(file_exists($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Notes/notes.xml'))
+		$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
+		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
+		$this->tiroText = new TiroText($path);	
+	
+			if(file_exists($path . '/notes.xml'))
 			{
-				$this->localNotes = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Notes','notes.xml');
+				$this->localNotes = new TiroText_addendum($path,'notes.xml');
 			}
 			else
 			{
-				$this->localNotes = new TiroText_addendum($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Notes','notes.xml');
+				$this->localNotes = new TiroText_addendum($path,'notes.xml');
 				$this->localNotes->loadTemplate("notes","note","link");
 				$this->localNotes->saveText();
 			}
-	
-			$dbRecord = TextRecord::finder()->findByPk($_GET['id']);
-			$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name;
-			$myTiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$dbRecord->dir_name);
-			$this->LatinText->Controls[] = $this->innerTextProcessing($myTiroText);
+			$this->LatinText->Controls[0] = $this->innerTextProcessing($this->tiroText);
 			
-			$this->LatinText->Controls->add("<br/><br/><br/>");
 		if(!$this->IsPostBack)
 		{
-			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions/');
 			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
 		}
 		else
 		{
-			$this->tiroText = new TiroText($ABS_PATH.'/'.'protected/Pages/TextManagement/Plugins/Definitions/');
 			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
 		}
 	echo "<a href='/prado/protected/Pages/TextManagement/Plugins/Notes/notes.xml'>notes.xml</a>";
@@ -91,18 +87,18 @@ $note_word_id		= $this->notesJSON->Value;
 		
 		$this->tiroText->setText($myTiroText->getElementsByTagName('text')->item(0));	//Needed instead of ->saveXML() in order to stop <> escaping
 		$this->tiroText->saveText();
-			$this->LatinText->Controls[2] = $this->innerTextProcessing($this->tiroText);
+			$this->LatinText->Controls[0] = $this->innerTextProcessing($this->tiroText);
 	   //End noted tag call.
 
 	$note = $this->createNote($note_word_id, $note_value);
 	$this->localNotes->insertNode($note);
-	echo "<pre>" .htmlentities($this->localNotes->errors) ."</pre>";
+//echo "<pre>" .htmlentities($this->localNotes->errors) ."</pre>";
 	$link = $this->createLink($note_word_id);
 	$this->localNotes->insertNode($link);
-echo "<pre>" .htmlentities($this->localNotes->errors) ."</pre>";
+//echo "<pre>" .htmlentities($this->localNotes->errors) ."</pre>";
 	$this->localNotes->sortNodes("link","@targets");
 	$this->localNotes->sortNodes("note","@xml:id");
-	echo "<pre>" .htmlentities($this->localNotes->getDOMDoc()->saveXML()) ."</pre>";
+//echo "<pre>" .htmlentities($this->localNotes->getDOMDoc()->saveXML()) ."</pre>";
 	$this->localNotes->saveText();   
 }
 
@@ -128,7 +124,7 @@ private function createNote($id_text, $value)
 	$previous_node = null;
 		$notexpath = new DOMXPath($this->localNotes->getDOMDoc());
 		$previous_node = $notexpath->query("//note[@xml:id='$parent_line']");
-			echo $previous_node->length;
+		//	echo $previous_node->length;
 			if ($previous_node->length == 1) 
 				{
 				$previous_node = $previous_node->item(0);
@@ -149,7 +145,7 @@ private function createNote($id_text, $value)
 			$note_node->nodeValue = $previous_node->nodeValue;
 	$note_node->nodeValue .= $value;
 	
-echo "-" . $parent_line . "-";
+//echo "-" . $parent_line . "-";
 return $note_node;
 }
 
