@@ -18,18 +18,21 @@
 	<span class="term">
 		<xsl:apply-templates  select="@*|node()"/>
 	</span>
+	<xsl:text> </xsl:text>
 </xsl:template>
 
 <xsl:template match="sp">
 	<div class="sp">
 		<xsl:apply-templates  select="@*|node()"/>
 	</div>
+	<br />
 </xsl:template>
 
 <xsl:template match="l">
         <span class="{name()}">
                <xsl:apply-templates select="@*|node()" />
         </span>
+		<br />
 </xsl:template>
 
 <xsl:template match="*">
