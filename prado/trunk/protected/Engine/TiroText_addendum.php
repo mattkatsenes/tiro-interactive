@@ -160,11 +160,11 @@ $xslt_string ="<?xml version='1.0' encoding='utf-8'?>\n
 	$result = $proc->transformToXML($this->xml);
 	$count = 0;
 	$result = preg_replace("/(>)/","$1\n",$result,-1,$count);
-	echo $count;
+//	echo $count;
 	$result = preg_replace("/(\t)+(\n)/",'',$result,-1,$count);
-	echo $count;
+//	echo $count;
 	$result = preg_replace("/\n\n/","\n",$result,-1,$count);
-	echo $count;
+//	echo $count;
 	$this->xml->loadXML($result);
 	$this->xml->normalizeDocument();
 }
