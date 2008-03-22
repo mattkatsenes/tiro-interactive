@@ -109,10 +109,16 @@ class Definitions extends TPage
 		//	$this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
 			
 	$entry = $this->createEntry($xml,$json['userdefinition']);
-	$this->localDictionary->insertNode($entry);
+	if( $entry != null)
+		$this->localDictionary->insertNode($entry);
+	else
+		echo "Unable to create entry";
 	
 	$link = $this->createLink($json["lemma"],$json["id_text"]);
-	$this->localDictionary->insertNode($link);
+	if($link != null)
+		$this->localDictionary->insertNode($link);
+	else
+		echo "Unable to create link, are there &lt;l&gt; tags in the xml-text file?";
 
 	$this->localDictionary->sortNodes("link","@targets");
 	$this->localDictionary->sortNodes("entry","@id_text");
