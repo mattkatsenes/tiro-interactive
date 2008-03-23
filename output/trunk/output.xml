@@ -14,7 +14,7 @@
 				<p>Prepared for publication using Tiro Interactive (http://www.tiro-interactive.org)</p>
 			</publicationStmt>
 			<sourceDesc>
-				<bibl>Perseus Digital Library</bibl>
+				<bibl>Source of the text.</bibl>
 			</sourceDesc>
 		</fileDesc>
 		<encodingDesc>
@@ -23,135 +23,55 @@
 	</teiHeader>
 	
 	<text>
-		<body id_text="0">
-			<div1 type="Poem" n="2" org="uniform" sample="complete" id_text="1">
-				<head id_text="2">
-					<term id_text="3">ECLOGA</term>
-					<term id_text="4">II.</term>
-				</head>
-				<l id_text="5">
-					<term id_text="6">Formosum</term>
-					<term id_text="7">pastor</term>
-					<term id_text="8">Corydon</term>
-					<term id_text="9">ardebat</term>
-					<term id_text="10">Alexim,</term>
-				</l>
-				<l id_text="11">
-					<term id_text="12">delicias</term>
-					<term id_text="13">domini,</term>
-					<term id_text="14">nec</term>
-					<term id_text="15">quid</term>
-					<term id_text="16">speraret</term>
-					<term id_text="17">habebat;</term>
-				</l>
-				<l id_text="18">
-					<term id_text="19">tantum</term>
-					<term id_text="20">inter</term>
-					<term id_text="21">densas,</term>
-					<term id_text="22">umbrosa</term>
-					<term id_text="23">cacumina,</term>
-					<term id_text="24">fagos</term>
-				</l>
-				<l id_text="25">
-					<term id_text="26">adsidue</term>
-					<term id_text="27">veniebat.</term>
-					<term id_text="28">Ibi</term>
-					<term id_text="29">haec</term>
-					<term id_text="30">incondita</term>
-					<term id_text="31">solus</term>
-				</l>
-				<l n="5" id_text="32">
-					<term id_text="33">montibus</term>
-					<term id_text="34">et</term>
-					<term id_text="35">silvis</term>
-					<term id_text="36">studio</term>
-					<term id_text="37">iactabat</term>
-					<term id_text="38">inani:</term>
-				</l>
-				<l id_text="39">
-					<term id_text="40">O</term>
-					<term id_text="41">crudelis</term>
-					<term id_text="42">Alexi,</term>
-					<term id_text="43">nihil</term>
-					<term id_text="44">mea</term>
-					<term id_text="45">carmina</term>
-					<term id_text="46">curas?</term>
-				</l>
-				<l id_text="47">
-					<term id_text="48">Nil</term>
-					<term id_text="49">nostri</term>
-					<term id_text="50">miserere?</term>
-					<term id_text="51">Mori</term>
-					<term id_text="52">me</term>
-					<term id_text="53">denique</term>
-					<term id_text="54">coges.</term>
-				</l>
-				<l id_text="55">
-					<term id_text="56">nunc</term>
-					<term id_text="57">etiam</term>
-					<term id_text="58">pecudes</term>
-					<term id_text="59">umbras</term>
-					<term id_text="60">et</term>
-					<term id_text="61">frigora</term>
-					<term id_text="62">captant;</term>
-				</l>
-				<l id_text="63">
-					<term id_text="64">nunc</term>
-					<term id_text="65">viridis</term>
-					<term id_text="66">etiam</term>
-					<term id_text="67">occultant</term>
-					<term id_text="68">spineta</term>
-					<term id_text="69">lacertos,</term>
-				</l>
-				<l n="10" id_text="70">
-					<term id_text="71">Thestylis</term>
-					<term id_text="72">et</term>
-					<term id_text="73">rapido</term>
-					<term id_text="74">fessis</term>
-					<term id_text="75">messoribus</term>
-					<term id_text="76">aestu</term>
-				</l>
-				<l id_text="77">
-					<term id_text="78">alia</term>
-					<term id_text="79">serpyllumque</term>
-					<term id_text="80">herbas</term>
-					<term id_text="81">contundit</term>
-					<term id_text="82">olentis.</term>
-				</l>
-			</div1>
-			<div n="glossary">
-				<link targets="#g.spinetum #68"></link>
-				<link targets="#g.crudelis #41"></link>
-				<link targets="#g.adsidue #26"></link>
-				<entry id_text="g.adsidue" els_key="u_ro">
-					<form opt="n">
-						<orth extent="full" lang="la" opt="n">adsidue</orth>
-					</form>
-					<gramGrp>
-						<pos>adv</pos>
-					</gramGrp>
-					<def>continually, constantly, regularly</def>
-				</entry>
-				<entry id_text="g.crudelis" els_key="pla^ce^o">
-					<form opt="n">
-						<orth extent="full" lang="la" opt="n">crudelis, e</orth>
-					</form>
-					<gramGrp>
-						<pos>adj</pos>
-					</gramGrp>
-					<def>cruel/hardhearted/unmerciful/severe, bloodthirsty/savage/inhuman; harsh/bitter</def>
-				</entry>
-				<entry id_text="g.spinetum" els_key="mu_nus">
-					<form opt="n">
-						<orth extent="full" lang="la" opt="n">spinetum, spineti</orth>
-					</form>
-					<gramGrp>
-						<pos>noun</pos>
-						<gen opt="n">n</gen>
-					</gramGrp>
-					<def>thicket (of thorn-bushes)</def>
-				</entry>
-			</div>
-		</body>
+		<body id_text="0"><div1 type="poem" n="1" org="uniform" sample="complete" id_text="1"><l id_text="2"><term id_text="3">Tandem</term><term id_text="4">venit</term><term id_text="5" defined="true">amor,</term><term id_text="6">qualem</term><term id_text="7">texisse</term><term id_text="8">pudori</term></l><l rend="indent" id_text="9"><term id_text="10">quam</term><term id_text="11">nudasse</term><term id_text="12" defined="true">alicui</term><term id_text="13">sit</term><term id_text="14">mihi</term><term id_text="15">fama</term><term id_text="16">magis.</term></l><l id_text="17"><term id_text="18">Exorata</term><term id_text="19">meis</term><term id_text="20">illum</term><term id_text="21">Cytherea</term><term id_text="22">Camenis</term></l><l rend="indent" id_text="23"><term id_text="24">attulit</term><term id_text="25">in</term><term id_text="26">nostrum</term><term id_text="27">deposuitque</term><term id_text="28">sinum.</term></l><l n="5" id_text="29"><term id_text="30">Exsolvit</term><term id_text="31">promissa</term><term id_text="32">Venus:</term><term id_text="33">mea</term><term id_text="34">gaudia</term><term id_text="35">narret,</term></l><l rend="indent" id_text="36"><term id_text="37">dicetur</term><term id_text="38">si</term><term id_text="39">quis</term><term id_text="40">non</term><term id_text="41">habuisse</term><term id_text="42">sua.</term></l><l id_text="43"><term id_text="44">Non</term><term id_text="45">ego</term><term id_text="46">signatis</term><term id_text="47">quicquam</term><term id_text="48">mandare</term><term id_text="49">tabellis,</term></l><l rend="indent" id_text="50"><term id_text="51">ne</term><term id_text="52">legat</term><term id_text="53">id</term><term id_text="54">nemo</term><term id_text="55">quam</term><term id_text="56">meus</term><term id_text="57">ante,</term><term id_text="58">velim.</term></l><l id_text="59"><term id_text="60">Sed</term><term id_text="61">peccasse</term><term id_text="62">iuvat,</term><term id_text="63">vultus</term><term id_text="64">componere</term><term id_text="65">famae</term></l><l rend="indent" id_text="66"><term id_text="67">taedet:</term><term id_text="68" defined="true">cum</term><term id_text="69">digno</term><term id_text="70">digna</term><term id_text="71">fuisse</term><term id_text="72">ferar.</term></l></div1><div n="glossary">
+  
+  
+
+
+<link targets="#g.aliqui #12">
+</link>
+<link targets="#g.amor #5">
+</link>
+<link targets="#g.cum #68">
+</link>
+<entry id_text="g.aliqui" els_key="a^li^qui">
+<form opt="n">
+      <orth extent="full" lang="la" opt="n">
+aliqu&#x12B;, aliqua, aliquod,</orth>
+    </form>
+<gramGrp>
+<pos>
+pron</pos>
+</gramGrp>
+<def>
+Ali- + qui, some, any;</def>
+</entry>
+<entry id_text="g.amor" els_key="a^mor">
+<form opt="n">
+      <orth extent="full" lang="la" opt="n">
+amor, &#x14D;ris,</orth>
+    </form>
+<gramGrp>
+<gen opt="n">
+m</gen>
+<pos>
+noun</pos>
+</gramGrp>
+<def>
+AM-, love, affection, strong friendly feeling; Esp. of sexual love: in amore haec sunt vitia, T.;</def>
+</entry>
+<entry id_text="g.cum" els_key="cum1">
+<form opt="n">
+      <orth extent="full" lang="la" opt="n">
+cum, -</orth>
+    </form>
+<gramGrp>
+<pos>
+conj</pos>
+</gramGrp>
+<def>
+With abl. of circumstance, manner, etc., with, in, under, in the midst of, among, to, at;</def>
+</entry>
+</div></body>
 	</text>
 </TEI>
