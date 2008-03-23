@@ -2,9 +2,47 @@
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
 <com:TClientScript>
+function cleanWord(latin_word)
+{
+latin_word = latin_word.replace(/&lt;/g,"");
+latin_word = latin_word.replace(/&gt;/g,"");
+latin_word = latin_word.replace(/[.,?!:;'\-"<>\{\}\[\]]+/g,"");
+
+	var rExps=[ /[\xC0-\xC2]/g, /[\xE0-\xE2]/g,/[\xC8-\xCA]/g, /[\xE8-\xEB]/g,/[\xCC-\xCE]/g, /[\xEC-\xEE]/g,/[\xD2-\xD4]/g, /[\xF2-\xF4]/g,/[\xD9-\xDB]/g, /[\xF9-\xFB]/g ];
+	var repChar=['A','a','E','e','I','i','O','o','U','u'];
+		for(var i=0; i<rExps.length; i++)
+		latin_word=latin_word.replace(rExps[i],repChar[i]);
+return latin_word;
+}
+function centerNotesBox(value)
+{
+var Box = "<%= $this->NotesRoot->ClientID %>";
+$(Box).setStyle({
+	border: "1px solid black",
+	background: "white", 
+	padding:"5px",
+	position:"absolute", 
+	top:	$('guts').offsetTop-1, 
+	left:	$('guts').offsetLeft+1,
+	width: $('guts').clientWidth+7,
+	height: $('guts').clientHeight-11,
+	overflow: "auto"
+	});
+$('<%= $this->NotesAnchor->ClientID %>').value = "<b>" + value + "</b>: ";	
+
+if ($('close_button'))
+	$('close_button').remove();
+close_button = document.createElement("span");
+close_button.id="close_button";
+close_button.setStyle({cssFloat: "right"});
+close_button.innerHTML="[X]";
+Event.observe(close_button,'click',function(){$(Box).toggle();});
+$(Box).insertBefore(close_button,$(Box).childNodes[0]);
+}
+
 function associateTerms()
 {
-$('<%= $this->NotesAnchor->ClientID %>').setStyle( {display: 'none'} );
+$('<%= $this->NotesRoot->ClientID %>').setStyle( {display: 'none'} );
 
 $$('.term').each(
                         function(item)
@@ -13,7 +51,8 @@ $$('.term').each(
 							{item.parentNode.setStyle(	{fontWeight: 'bold'});}}
 						
 						Event.observe(item,'click', function(s){
-																				$('<%= $this->NotesAnchor->ClientID %>').toggle();
+																			centerNotesBox(item.innerHTML);
+																			$('<%= $this->NotesRoot->ClientID %>').toggle();
 																			alert(item.attributes['id_text'].value);
 																			$('<%= $this->notesJSON->ClientID %>').value = "";
 																			$('<%= $this->notesJSON->ClientID %>').value = item.attributes['id_text'].nodeValue;																			
@@ -30,13 +69,13 @@ Event.observe(window, 'load', associateTerms);
 	<com:TPlaceHolder ID='LatinText' />
 </com:TPanel>
 
-<com:TPanel>
+<com:TPanel ID='NotesRoot'>
 	<com:TTextBox
 	ID='NotesAnchor' 
 	TextMode="MultiLine"
 	Wrap="true"
 	Columns="50"
-	AutoPostBack="true"
+	AutoPostBack="false"
 	/>
 </com:TPanel>
 
