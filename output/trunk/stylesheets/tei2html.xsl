@@ -54,7 +54,7 @@
 						<xsl:sort select="orth" />
 					</xsl:apply-templates>
 				</div>
-				
+				<br/>
 				<span id="notes_heading">Notes:</span>
 				<div id="notes">
 					<xsl:apply-templates select="text/body/div[@n='notes']" />

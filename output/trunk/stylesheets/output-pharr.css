@@ -48,7 +48,6 @@ This css design should resemble Pharr's Aeneid (Bolchazy-Carducci).
 	margin-bottom:0px;
 	text-align: left;
 	border-top: 1px solid black;
-	border-bottom: 1px solid black;
 }
 
 #definitions_heading {
@@ -99,11 +98,13 @@ This css design should resemble Pharr's Aeneid (Bolchazy-Carducci).
 }
 
 #defCol1 {
-float: left;
-padding-right:30px;
+	float: left;
+	padding-right:30px;
+	width: 45%;
 }
 
 #defCol2 {
+
 }
 
 .headword {
