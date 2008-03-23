@@ -29,7 +29,7 @@ $$('.term').each(
                                 item.observe('click',
                                                 function()
                                                 {
-                                                        alert(cleanWord(item.innerHTML) + ' ' + item.getAttribute('id_text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
+                                                  //      alert(cleanWord(item.innerHTML) + ' ' + item.getAttribute('id_text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
 											newWordBox(cleanWord(item.innerHTML), item.getAttribute('id_text'), 
 																function(s)
 																{

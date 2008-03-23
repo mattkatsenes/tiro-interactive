@@ -51,9 +51,9 @@ $$('.term').each(
 							{item.parentNode.setStyle(	{fontWeight: 'bold'});}}
 						
 						Event.observe(item,'click', function(s){
-																			centerNotesBox(item.innerHTML);
+																			centerNotesBox(cleanWord(item.innerHTML));
 																			$('<%= $this->NotesRoot->ClientID %>').toggle();
-																			alert(item.attributes['id_text'].value);
+																			//alert(item.attributes['id_text'].value);
 																			$('<%= $this->notesJSON->ClientID %>').value = "";
 																			$('<%= $this->notesJSON->ClientID %>').value = item.attributes['id_text'].nodeValue;																			
 																			}
@@ -77,6 +77,7 @@ Event.observe(window, 'load', associateTerms);
 	Columns="50"
 	AutoPostBack="false"
 	/>
+<com:TButton Text="Submit" />
 </com:TPanel>
 
 
