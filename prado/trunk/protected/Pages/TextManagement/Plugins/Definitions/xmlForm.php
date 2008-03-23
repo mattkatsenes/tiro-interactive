@@ -96,7 +96,7 @@ echo "<br/>\n";
 ///It will be removed once these parts are made object oriented into tiro. Drew. 03/02/2008
 $localxml = new DOMDocument;
 $localxml->appendChild($localxml->importNode($definition,true));
-$zipxml = base64_encode(gzcompress($localxml->saveXML()));
+$zipxml = base64_encode($localxml->saveXML()); //$zipxml = base64_encode(gzcompress($localxml->saveXML()));
 echo "<span class='zipxml' id='{$lemma}-zipxml' style='display: none'>{$zipxml}</span>\n";
 ///
 
