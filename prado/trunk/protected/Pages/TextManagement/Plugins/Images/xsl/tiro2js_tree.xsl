@@ -36,7 +36,7 @@
 					<xsl:attribute name="id">tiro_<xsl:value-of select="@id_text"/></xsl:attribute>
 					<xsl:attribute name="onclick">javascript:attach('tiro_<xsl:value-of select="@id_text"/>')</xsl:attribute>
 					<xsl:attribute name="class">leaf</xsl:attribute>
-					<xsl:value-of select="."/>
+					<xsl:value-of select="."/><xsl:text> </xsl:text>
 				</xsl:element>
 			</xsl:otherwise>
 		</xsl:choose>
