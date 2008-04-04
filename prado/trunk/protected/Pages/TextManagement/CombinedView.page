@@ -8,10 +8,12 @@
 
 <p><b>Instructions:</b> Choose a word to annotate, then you will be prompted for the type of annotation.</p>
 
-<div id="tiroText" style="float: left;">
+<div id="tiroText" style="float: left;z-index: 1;">
 <com:TPlaceHolder ID="LatinPreview" />
 </div>
 
-<div id="annotationBox">
+<div id="annotationBox" style="position:absolute; display:none; background-color:#FFFFCC; z-index:2; width:200; height:140;">
 </div>
+
+
 </com:TContent>
