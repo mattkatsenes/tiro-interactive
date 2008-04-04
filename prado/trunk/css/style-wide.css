@@ -109,3 +109,7 @@ body {
 .tocDiv {
 	padding-left: 1em;
 }
+
+.annotated {
+	font-weight: bold;
+}
