@@ -1,0 +1,17 @@
+<%@ MasterClass="Wide" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+<com:TClientScriptLoader PackagePath="Application.Data.js" PackageScripts="expander,annotator" />
+
+<h1>Project Title: <%= $this->text->title %></h1>
+
+<p><b>Instructions:</b> Choose a word to annotate, then you will be prompted for the type of annotation.</p>
+
+<div id="tiroText" style="float: left;">
+<com:TPlaceHolder ID="LatinPreview" />
+</div>
+
+<div id="annotationBox">
+</div>
+</com:TContent>

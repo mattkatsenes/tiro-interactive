@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<application id="test" mode="Debug">
+
+  <paths>
+    <using namespace="Application.Templates.*" />
+    <using namespace="Application.Database.*" />
+    <using namespace="System.Web.UI.ActiveControls.*" />
+  </paths>
+
+	<modules>
+
+		<module id="db_tiro" class="System.Data.TDataSourceConfig">
+			<database ConnectionString="sqlite:protected/Data/tiro.db" />
+		</module>
+
+		<module id="users" class="System.Security.TDbUserManager" UserClass="Application.Engine.TiroUser" ConnectionID="db_tiro" />
+		<module id="auth" class="System.Security.TAuthManager" UserManager="users" LoginPage="UserManagement.Login" />
+
+		<module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db_tiro" />
+		<module id="request" class="THttpRequest" UrlManager="friendly-url" />
+	    <module id="friendly-url" class="System.Web.TUrlMapping">
+	    	<url ServiceParameter="TextManagement.View" pattern="/{id}" parameters.id="\d+" />
+    	    <url ServiceParameter="TextManagement.Plugins.Definitions.Definitions" pattern="/{id}/Definitions" parameters.id="\d+" />
+    	    <url ServiceParameter="TextManagement.Plugins.PerseusAdd.PerseusAdd" pattern="/{id}/PerseusAdd" parameters.id="\d+" />
+    	    <url ServiceParameter="TextManagement.Plugins.Notes.Notes" pattern="/{id}/Notes" parameters.id="\d+" />
+    	  	<url ServiceParameter="TextManagement.Plugins.Images.Images" pattern="/{id}/Images" parameters.id="\d+" />
+    	  	<url ServiceParameter="TextManagement.Plugins.Delete.Delete" pattern="/{id}/Delete" parameters.id="\d+" />
+    	  	<url ServiceParameter="TextManagement.Plugins.Output.Output" pattern="/{id}/Output" parameters.id="\d+" />
+    	  	<url ServiceParameter="TextManagement.CombinedView" pattern="/{id}/Combined" parameters.id="\d+" />
+    	</module>
+	</modules>
+
+<!-- configuration for available services -->
+	<services>
+		<service id="page" class="TPageService" DefaultPage="Home" />
+	</services>
+
+</application>
