@@ -1,0 +1,60 @@
+<%@ MasterClass="Layout" %>
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+<com:TClientScript ScriptUrl=<%~ js/wordbox.js %> />
+<com:TClientScript PradoScripts="ajax, effects" />
+
+<com:TClientScript>
+function cleanWord(latin_word)
+{
+latin_word = latin_word.replace(/&lt;/g,"");
+latin_word = latin_word.replace(/&gt;/g,"");
+latin_word = latin_word.replace(/[.,?!:;'\-"<>\{\}\[\]]+/g,"");
+
+	var rExps=[ /[\xC0-\xC2]/g, /[\xE0-\xE2]/g,/[\xC8-\xCA]/g, /[\xE8-\xEB]/g,/[\xCC-\xCE]/g, /[\xEC-\xEE]/g,/[\xD2-\xD4]/g, /[\xF2-\xF4]/g,/[\xD9-\xDB]/g, /[\xF9-\xFB]/g ];
+	var repChar=['A','a','E','e','I','i','O','o','U','u'];
+		for(var i=0; i<rExps.length; i++)
+		latin_word=latin_word.replace(rExps[i],repChar[i]);
+return latin_word;
+}
+
+function associateTerms()
+{
+$$('.term').each(
+                        function(item)
+                        {
+						if(item.attributes['defined']){	if(item.attributes['defined'].nodeValue == "true")
+						{item.setStyle(	{fontWeight: 'bold'});}}
+			    
+                                item.observe('click',
+                                                function()
+                                                {
+                                                  //      alert(cleanWord(item.innerHTML) + ' ' + item.getAttribute('id_text')); // item.id-text did not access the attribute (as I figured it ought to have done)...
+											newWordBox(cleanWord(item.innerHTML), item.getAttribute('id_text'), 
+																function(s)
+																{
+																$('<%= $this->defJSON->ClientID %>').value = Object.toJSON(s);
+																document.forms[0].submit();
+																},
+																$('guts')
+																);
+                                                }
+                                        );
+                        }
+                );
+
+}
+Event.observe(window, 'load', associateTerms);
+
+</com:TClientScript>
+
+        <com:TPanel>
+                <com:TPlaceHolder ID='LatinText' />
+        </com:TPanel>
+
+        <com:TPanel>
+                <com:TPlaceHolder ID='DefinitionAnchor' />
+        </com:TPanel>
+
+	<com:THiddenField ID='defJSON' OnValueChanged='defJSONHandler'/>
+</com:TContent >

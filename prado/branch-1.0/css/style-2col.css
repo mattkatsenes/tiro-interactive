@@ -1,0 +1,131 @@
+/*
+ * PageHeader Styles
+ * author: Matt Katsenes
+ * date: 11/12/2007
+*/
+
+body {
+	text-align:center;
+	margin-top: 30px;
+}
+
+#container {
+	width: 800px;
+	border: solid 2px Navy;	
+	overflow: hidden;
+	margin: auto;
+	text-align: left;
+}
+
+#logo {
+	border-bottom: solid 2px Navy;
+	padding-bottom: 10px;
+	margin-bottom: 10px;
+}
+
+#welcome {
+	border-bottom: solid 1px Navy;
+	padding: 10px;
+}
+
+#sidebar {
+	float: left;
+	border-right: solid 2px Navy;
+	width: 301px;
+	padding-bottom: 10px;
+	height: 402px;
+	overflow: hidden;
+}
+#sidebar_content {
+	padding: 10px;
+	height: 104px;
+	overflow: auto;
+}
+
+#mainColumn {
+	float: left;
+	margin: 0px 0px 0px 0px;
+	width: 497px;
+	height: 412px;
+	overflow: hidden;
+}
+
+#menubar {
+	width: 100%;
+	margin: 0px 0px 0px 0px;
+}
+
+#menubar ul {
+	padding: .2em 0px;
+	margin: 0px;
+	list-style-type: none;
+	background-color: RoyalBlue;
+	color: #FFF;
+	width: 100%;
+}
+
+#menubar ul li {
+	display: inline;
+	border-right: 1px dotted white;
+	padding-right: 1.5em;
+	padding-left: 1.5em;
+}
+
+#menubar ul li a {
+	text-decoration: none;
+	background-color: RoyalBlue;
+	color: #FFF;
+}
+
+#menubar ul li a:hover {
+	background-color: CornflowerBlue;
+	color: #fff;
+}
+
+#guts {
+	float: left;
+	width: 486px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin: 0px 0px 0px 0px;
+	height: 368px;
+	overflow: auto;
+}
+
+#credits {
+	clear: both;
+	border-top: solid 2px Navy;
+	width: 100%;
+	float: left;
+	vertical-align: middle;
+	color: Navy;
+}
+
+#credits ul {
+	padding: .2em 0px;
+	margin: 0px;
+	list-style-type: none;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#credits ul li {
+	display: inline;
+	border-right: 1px dotted Navy;
+	vertical-align: middle;
+	padding-right: 1.5em;
+	padding-left: 1.5em;
+}
+
+.title2	{
+	padding-left: 1.5em;
+	font-size: x-large;
+}
+
+.info-box {
+	background: AntiqueWhite;
+	width: 70%;
+	margin: auto;
+}

@@ -1,0 +1,13 @@
+<%@ MasterClass="Layout" %>
+
+<!-- The Main portion of the page. -->
+<com:TContent ID="guts" >
+Descriptive Filename: <com:TTextBox ID="Title" />
+<com:TRequiredFieldValidator
+    ControlToValidate="Title"
+    Display="Dynamic"
+    Text="Please input a filename." />
+<br />
+<com:TButton Text="Submit" OnClick="Create" CausesValidation="true"/>
+
+</com:TContent >

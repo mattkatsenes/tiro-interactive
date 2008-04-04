@@ -1,0 +1,116 @@
+<?xml version="1.0"?>
+<!-- <!DOCTYPE TEI PUBLIC "-//TEI P5//DTD Main Document Type//EN" "/Users/mkat/Sites/tei/P5/dtd/tei.dtd" [
+	<!ENTITY % TEI.header 'INCLUDE' >
+	<!ENTITY % TEI.core 'INCLUDE' >
+	<!ENTITY % TEI.textstructure 'INCLUDE' >
+	<!ENTITY % TEI.analysis 'INCLUDE' >
+	<!ENTITY % TEI.drama 'INCLUDE' >
+	<!ENTITY % TEI.dictionaries 'INCLUDE' >
+	<!ENTITY % TEI.linking 'INCLUDE' >
+]> -->
+<TEI>
+	<teiHeader>
+		
+		<fileDesc>
+			<titleStmt>
+				<title>Ecloga Prima</title>
+				<author>P. Vergilius Maro</author>
+				<editor>Matthew G. Katsenes</editor>
+				<respStmt>
+					<name key="mk">Matthew G. Katsenes</name>
+					<resp>Creation and digitization of the notes and vocabulary.</resp>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<pubPlace>Amherst, MA</pubPlace>
+				<date>2007</date>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Thanks to http://www.thelatinlibrary.net for the source text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+		
+		<encodingDesc>
+			<projectDesc>
+				<p>This annotation was originally completed as a project for Prof. Breed's Vergil course.  Digitization is for the purpose of displaying the capabilities of XSLT and Javascript.</p>
+			</projectDesc>
+			<editorialDecl>
+				<p>Vocabulary glossed herein includes all words not on Clyde Pharr's pullout.  Notes are aimed at an AP level.</p>
+			</editorialDecl>
+			
+			<refsDecl xml:id="canonical">
+				<cRefPattern matchPattern="(.+).(.+)" replacementPattern="#xpath1(//div[@type='poem' and @n='$1']//l[$2])">
+					<p>This pointer pattern extracts and references the <q>poem</q> and <q>line number</q> from the Eclogues.</p>
+				</cRefPattern>
+				<cRefPattern matchPattern="(.+)" replacementPattern="#xpath1(//div[@type='poem' and @n='$1'])">
+					<p>This pointer pattern extracts and references just the <q>poem</q>.</p>
+				</cRefPattern>
+			</refsDecl>
+		</encodingDesc>
+		
+		<profileDesc>
+			<creation>
+				<date value="2007-05-31">May 31, 2007</date>
+			</creation>
+			<langUsage>
+				<language ident="la">Latin</language>
+				<language ident="en">English</language>
+				<language ident="gk">Greek</language>
+			</langUsage>
+		</profileDesc>
+		<revisionDesc>
+		<change date="2008-02-25">
+				<name>Drew</name>
+				<description>Removed definitions/notes section and added term tags to every word to use file as temp input data for the definitions module.  Note that terms should NOT include . ? : etc inside tags but I was too lazy for this test example.</description>
+		</change>
+		<change date="2007-06-01">
+				<name>Matthew</name>
+				<description>Finished the teiHeader info and began entering the text.</description>
+		</change>
+		</revisionDesc>
+	</teiHeader>
+	
+	<text>
+		<body>
+			<div n="I" type="poem" xml:lang="la">
+				<sp who="#ti">
+					<l xml:id="I.19" n="19"><term id_text="id2325170" id-text="0">Urbem</term> <term id_text="id2298861" id-text="1" noted="true" defined="true">quam</term> <term id_text="id2298864" id-text="2">dicunt</term> <term id_text="id2373475" id-text="3">Romam,</term> <term id_text="id2373478" id-text="4">Meliboee,</term> <term id_text="id2373482" id-text="5" noted="true">putavi</term></l>
+					<l xml:id="I.20" n="20"><term id_text="id2298742" id-text="6">stultus</term> <term id_text="id2298745" id-text="7">ego</term> <term id_text="id2325246" id-text="8">huic</term> <term id_text="id2325250" id-text="9">nostrae</term> <term id_text="id2325253" id-text="10">similem,</term> <term id_text="id2298346" id-text="11">cui</term> <term id_text="id2298350" id-text="12" noted="true">saepe</term> <term id_text="id2298353" id-text="13">solemus</term></l>
+					<l xml:id="I.21" n="21"><term id_text="id2298496" id-text="14">pastores</term> <term id_text="id2298499" id-text="15">ovium</term> <term id_text="id2298428" id-text="16">teneros</term> <term id_text="id2298432" id-text="17">depellere</term> <term id_text="id2298435" id-text="18">fetus.</term></l>
+					<l xml:id="I.22" n="22"><term id_text="id2325214" id-text="19">sic</term> <term id_text="id2325218" id-text="20">canibus</term> <term id_text="id2325221" id-text="21">catulos</term> <term id_text="id2298606" id-text="22">similes,</term> <term id_text="id2298610" id-text="23">sic</term> <term id_text="id2298613" id-text="24" noted="true">matribus</term> <term id_text="id2298616" id-text="25">haedos</term></l>
+					<l xml:id="I.23" n="23"><term id_text="id2417786" id-text="26">noram,</term> <term id_text="id2417789" id-text="27">sic</term> <term id_text="id2417808" id-text="28">parvis</term> <term id_text="id2417811" id-text="29">componere</term> <term id_text="id2417814" id-text="30">magna</term> <term id_text="id2417818" id-text="31">solebam.</term></l>
+					<l xml:id="I.24" n="24"><term id_text="id2382495" id-text="32">verum</term> <term id_text="id2382498" id-text="33">haec</term> <term id_text="id2382502" id-text="34">tantum</term> <term id_text="id2298504" id-text="35">alias</term> <term id_text="id2298508" id-text="36">inter</term> <term id_text="id2298511" id-text="37">caput</term> <term id_text="id2298515" id-text="38" noted="true">extulit</term> <term id_text="id2298518" id-text="39">urbes</term></l>
+					<l xml:id="I.25" n="25"><term id_text="id2298448" id-text="40">quantum</term> <term id_text="id2298451" id-text="41">lenta</term> <term id_text="id2298455" id-text="42">solent</term> <term id_text="id2298564" id-text="43">inter</term> <term id_text="id2298568" id-text="44" noted="true">viburna</term> <term id_text="id2298571" id-text="45">cupressi.</term></l>
+				</sp>
+				<sp who="#me">
+					<l xml:id="I.26" n="26"><term id_text="id2298527" id-text="46">Et</term> <term id_text="id2298531" id-text="47">quae</term> <term id_text="id2298534" id-text="48">tanta</term> <term id_text="id2298537" id-text="49">fuit</term> <term id_text="id2298632" id-text="50">Romam</term> <term id_text="id2298636" id-text="51">tibi</term> <term id_text="id2298639" id-text="52">causa</term> <term id_text="id2298642" id-text="53">videndi?</term></l> 
+				</sp>
+				<sp who="#ti">
+					<l xml:id="I.27" n="27"><term id_text="id2422613" id-text="54">Libertas,</term> <term id_text="id2422616" id-text="55">quae</term> <term id_text="id2422620" id-text="56">sera</term> <term id_text="id2298458" id-text="57">tamen</term> <term id_text="id2298461" id-text="58">respexit</term> <term id_text="id2298465" id-text="59">inertem,</term></l> 
+					<l xml:id="I.28" n="28"><term id_text="id2298475" id-text="60" defined="true" noted="true">candidior</term> <term id_text="id2298479" id-text="61">postquam</term> <term id_text="id2325310" id-text="62">tondenti</term> <term id_text="id2325313" id-text="63">barba</term> <term id_text="id2325317" id-text="64">cadebat,</term></l> 
+					<l xml:id="I.29" n="29"><term id_text="id2325326" id-text="65">respexit</term> <term id_text="id2325330" id-text="66">tamen</term> <term id_text="id2427527" id-text="67">et</term> <term id_text="id2427530" id-text="68">longo</term> <term id_text="id2427534" id-text="69">post</term> <term id_text="id2427537" id-text="70" noted="true">tempore</term> <term id_text="id2427541" id-text="71">venit,</term></l> 
+					<l xml:id="I.30" n="30"><term id_text="id2427550" id-text="72">postquam</term> <term id_text="id2417694" id-text="73">nos</term> <term id_text="id2417697" id-text="74">Amaryllis</term> <term id_text="id2417701" id-text="75">habet,</term> <term id_text="id2417704" id-text="76">Galatea</term> <term id_text="id2417708" id-text="77">reliquit.</term></l> 
+					<l xml:id="I.31" n="31"><term id_text="id2417718" id-text="78" noted="true">namque</term> - <term id_text="id2325343" id-text="79">fatebor</term> <term id_text="id2325346" id-text="80">enim</term> - <term id_text="id2325350" id-text="81">dum</term> <term id_text="id2325353" id-text="82">me</term> <term id_text="id2325356" id-text="83">Galatea</term> <term id_text="id2325359" id-text="84">tenebat,</term></l> 
+					<l xml:id="I.32" n="32"><term id_text="id2325370" id-text="85">nec</term> <term id_text="id2417729" id-text="86">spes</term> <term id_text="id2417732" id-text="87">libertatis</term> <term id_text="id2417735" id-text="88">erat</term> <term id_text="id2417739" id-text="89">nec</term> <term id_text="id2417742" id-text="90">cura</term> <term id_text="id2417746" id-text="91">peculi.</term></l> 
+					<l xml:id="I.33" n="33"><term id_text="id2417756" id-text="92" noted="true">quamvis</term> <term id_text="id2417759" id-text="93">multa</term> <term id_text="id2417762" id-text="94">meis</term> <term id_text="id2417766" id-text="95">exiret</term> <term id_text="id2417769" id-text="96">victima</term> <term id_text="id2417773" id-text="97">saeptis</term></l> 
+					<l xml:id="I.34" n="34"><term id_text="id2298366" id-text="98">pinguis</term> <term id_text="id2298369" id-text="99">et</term> <term id_text="id2298373" id-text="100">ingratae</term> <term id_text="id2298376" id-text="101">premeretur</term> <term id_text="id2298380" id-text="102">caseus</term> <term id_text="id2298383" id-text="103">urbi,</term></l> 
+					<l xml:id="I.35" n="35"><term id_text="id2298393" id-text="104">non</term> <term id_text="id2298396" id-text="105" noted="true">umquam</term> <term id_text="id2298400" id-text="106">gravis</term> <term id_text="id2298403" id-text="107">aere</term> <term id_text="id2427454" id-text="108">domum</term> <term id_text="id2427458" id-text="109">mihi</term> <term id_text="id2427461" id-text="110">dextra</term> <term id_text="id2427465" id-text="111">redibat.</term></l> 
+				</sp>
+				<sp who="#me">
+					<l xml:id="I.36" n="36"><term id_text="id2427480" id-text="112">Mirabar</term> <term id_text="id2427483" id-text="113">quid</term> <term id_text="id2427486" id-text="114">maesta</term> <term id_text="id2427490" id-text="115">deos,</term> <term id_text="id2427493" id-text="116">Amarylli,</term> <term id_text="id2427497" id-text="117" noted="true">vocares,</term></l> 
+					<l xml:id="I.37" n="37"><term id_text="id2440955" id-text="118">cui</term> <term id_text="id2440958" id-text="119">pendere</term> <term id_text="id2440961" id-text="120">sua</term> <term id_text="id2440965" id-text="121" noted="true">patereris</term> <term id_text="id2440968" id-text="122">in</term> <term id_text="id2440972" id-text="123">arbore</term> <term id_text="id2440976" id-text="124">poma.</term></l> 
+					<l xml:id="I.38" n="38"><term id_text="id2440986" id-text="125">Tityrus</term> <term id_text="id2440989" id-text="126">hinc</term> <term id_text="id2440992" id-text="127">aberat.</term> <term id_text="id2440996" id-text="128">ipsae</term> <term id_text="id2440999" id-text="129">te,</term> <term id_text="id2441003" id-text="130">Tityre,</term> <term id_text="id2441006" id-text="131">pinus,</term></l> 
+					<l xml:id="I.39" n="39"><term id_text="id2422729" id-text="132">ipsi</term> <term id_text="id2422733" id-text="133">te</term> <term id_text="id2422736" id-text="134">fontes,</term> <term id_text="id2422739" id-text="135">ipsa</term> <term id_text="id2422743" id-text="136">haec</term> <term id_text="id2422746" id-text="137">arbusta</term> <term id_text="id2422750" id-text="138">vocabant.</term></l> 
+				</sp>
+				<sp who="#ti">
+					<l xml:id="I.40" n="40"><term id_text="id2422766" id-text="139">Quid</term> facerem? <term id_text="id2422769" id-text="140">neque</term> <term id_text="id2422772" id-text="141">servitio</term> <term id_text="id2422776" id-text="142">me</term> <term id_text="id2422779" id-text="143">exire</term> <term id_text="id2422783" id-text="144">licebat</term></l> 
+					<l xml:id="I.41" n="41"><term id_text="id2422628" id-text="145">nec</term> <term id_text="id2422631" id-text="146">tam</term> <term id_text="id2422634" id-text="147">praesentis</term> <term id_text="id2422638" id-text="148">alibi</term> <term id_text="id2422641" id-text="149">cognoscere</term> <term id_text="id2422644" id-text="150">divos.</term></l> 
+					<l xml:id="I.42" n="42"><term id_text="id2422655" id-text="151">hic</term> <term id_text="id2422658" id-text="152">illum</term> <term id_text="id2422662" id-text="153">vidi</term> <term id_text="id2422665" id-text="154">iuvenem,</term> <term id_text="id2422668" id-text="155">Meliboee,</term> <term id_text="id2422672" id-text="156" noted="true">quot</term> <term id_text="id2422675" id-text="157" noted="true">annis</term></l> 
+					<l xml:id="I.43" n="43"><term id_text="id2422686" id-text="158">bis</term> <term id_text="id2422689" id-text="159" noted="true">senos</term> <term id_text="id2422692" id-text="160">cui</term> <term id_text="id2422696" id-text="161">nostra</term> <term id_text="id2422699" id-text="162">dies</term> <term id_text="id2422703" id-text="163">altaria</term> <term id_text="id2422706" id-text="164">fumant,</term></l> 
+					<l xml:id="I.44" n="44"><term id_text="id2422792" id-text="165">hic</term> <term id_text="id2422796" id-text="166">mihi</term> <term id_text="id2422799" id-text="167">responsum</term> <term id_text="id2422802" id-text="168">primus</term> <term id_text="id2422806" id-text="169">dedit</term> <term id_text="id2422809" id-text="170">ille</term> <term id_text="id2422813" id-text="171">petenti</term>:</l>
+					<l xml:id="I.45" n="45"><term id_text="id2422824" id-text="172">'pascite</term> <term id_text="id2422827" id-text="173">ut</term> <term id_text="id2422831" id-text="174">ante</term> <term id_text="id2422834" id-text="175">boves,</term> <term id_text="id2422838" id-text="176">pueri,</term> <term id_text="id2422841" id-text="177">submittite</term> <term id_text="id2422845" id-text="178">tauros</term>.'</l>
+				</sp>
+			</div>
+		</body>		
+	</text>
+</TEI>
