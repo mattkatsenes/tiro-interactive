@@ -18,7 +18,7 @@ function attachAnnotation(tiro_id)
 };
 
 annotateLeaf = function(tiro_id){
-	var content = "<h2>Annotation type:</h2><p>"+$(tiro_id).innerHTML+"<ul><li>Type 1</li><li>Type 2</li></ul></p>";
+	var content = "<h2>Annotation type:</h2><p>"+$(tiro_id).innerHTML+"<ul><li><a href=\"javascript:attachDefinition('"+tiro_id+"')\">Definition</a></li><li><a href=\"javascript:attachNote('"+tiro_id+"')\">Textual Note</a></li><li><a href=\"javascript:attachLink('"+tiro_id+"')\">Hyperlink</a></li><li><a href=\"javascript:attachImage('"+tiro_id+"')\">Image</a></li></ul></p>";
 	$('annotationBox').update(content);
 	$('annotationBox').clonePosition($(tiro_id),{setWidth:false, setHeight:false,offsetLeft:100,offsetTop:-80});
 	$('annotationBox').show();
@@ -26,6 +26,25 @@ annotateLeaf = function(tiro_id){
 };
 
 annotateBranch = function(tiro_id){
-	var content = "<h2>Annotation type:</h2><p>"+$(tiro_id).innerHTML+"<ul><li>Type 1</li><li>Type 2</li></ul></p>";
+	var content = "<h2>Annotation type:</h2><p>"+$(tiro_id).innerHTML+"<ul><li><a href=\"javascript:attachNote('"+tiro_id+"')\">Textual Note</a></li><li><a href=\"javascript:attachLink('"+tiro_id+"')\">Hyperlink</a></li><li><a href=\"javascript:attachImage('"+tiro_id+"')\">Image</a></li></ul></p>";
 	$('annotationBox').update(content);
+	$('annotationBox').clonePosition($(tiro_id),{setWidth:false, setHeight:false,offsetLeft:100,offsetTop:-80});
+	$('annotationBox').show();
+	new Effect.BlindDown('annotationBox');
+};
+
+attachDefinition = function(tiro_id) {
+
+};
+
+attachNote = function(tiro_id) {
+
+};
+
+attachLink = function(tiro_id) {
+
+};
+
+attachImage = function(tiro_id) {
+
 };
