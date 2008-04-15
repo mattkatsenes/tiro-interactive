@@ -37,6 +37,7 @@ class Output extends TPage
 		
 		$this->text = TextRecord::finder()->findById($_GET['id']);
 		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$this->text->dir_name;
+		$final_path = "/usr/share/tomcat5.5/webapps/cocoon/output";
 		$this->tiroText = new TiroText($path);
 		
 		$this->output = new DomDocument;
@@ -46,8 +47,14 @@ class Output extends TPage
 		foreach($this->ADDENDUM_ARR as $file)
 			if(file_exists($path . '/' . $file))
 				$this->processAddendum($path . '/' . $file);
-				
+		
+		$this->MsgHolder->Controls[] = "Saving to $path/output.xml<br />";
 		$this->output->save($path .'/output.xml');
+		
+		$success = copy("$path/output.xml","$final_path/output.xml");
+		$this->MsgHolder->Controls[] = "Moving output.xml to $final_path - $success<br />";
+		if($success)
+		$this->MsgHolder->Controls[] = "<br/><a href='/output/output(1)'>output file</a>";
 		
 //		$this->MsgHolder->Controls[] = $this->output->saveHTML();
 	}
@@ -59,12 +66,12 @@ class Output extends TPage
 	 */
 	function processAddendum($addendum)
 	{
-		$this->MsgHolder->Controls[] = "PRocessing addendum: $addendum into the following div: $div";
+		$this->MsgHolder->Controls[] = "Processing addendum: $addendum. <br />";
 		
 		$addendumDom = new DOMDocument;
 		$addendumDom->load($addendum);
 		
-		$this->MsgHolder->Controls[] = $addendumDom->saveHTML();
+	//	$this->MsgHolder->Controls[] = $addendumDom->saveHTML();
 		
 		$addendum_inContext = $this->output->importNode($addendumDom->documentElement,true);
 		
