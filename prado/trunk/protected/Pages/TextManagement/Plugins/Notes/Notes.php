@@ -91,10 +91,18 @@ $note_word_id		= $this->notesJSON->Value;
 	   //End noted tag call.
 
 	$note = $this->createNote($note_word_id, $note_value);
+if($note != null)
 	$this->localNotes->insertNode($note);
+else
+	throw new Exception("bad note");
+	
 //echo "<pre>" .htmlentities($this->localNotes->errors) ."</pre>";
 	$link = $this->createLink($note_word_id);
+if($link != null)
 	$this->localNotes->insertNode($link);
+else
+	throw new Exception("bad link");
+	
 //echo "<pre>" .htmlentities($this->localNotes->errors) ."</pre>";
 	$this->localNotes->sortNodes("link","@targets");
 	$this->localNotes->sortNodes("note","@xml:id");
@@ -117,7 +125,7 @@ private function createNote($id_text, $value)
 			if( $term->parentNode->nodeName == "l")
 				$parent_line = $term->parentNode->attributes->getNamedItem('id_text')->nodeValue;
 			else
-				return null;
+				$parent_line = $term->parentNode->attributes->getNamedItem('id_text')->nodeValue;
 	//
 	
 	//Remove previous instance of note, but keep nodeValue
@@ -164,7 +172,7 @@ private function createLink($id_text)
 			if( $term->parentNode->nodeName == "l")
 				$parent_line = $term->parentNode->attributes->getNamedItem('id_text')->nodeValue;
 			else
-				return null;
+				$parent_line = $term->parentNode->attributes->getNamedItem('id_text')->nodeValue;
 	//		
 		
 	$link_node = $this->localNotes->createElement("link");
