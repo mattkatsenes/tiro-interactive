@@ -28,6 +28,7 @@
     	  	<url ServiceParameter="TextManagement.Plugins.Delete.Delete" pattern="/{id}/Delete" parameters.id="\d+" />
     	  	<url ServiceParameter="TextManagement.Plugins.Output.Output" pattern="/{id}/Output" parameters.id="\d+" />
     	  	<url ServiceParameter="TextManagement.CombinedView" pattern="/{id}/Combined" parameters.id="\d+" />
+    	  	<url ServiceParameter="TextManagement.Plugins.Hyperlink.Hyperlink" pattern="/{id}/Link" parameters.id="\d+" parameters.id_text="\d+" />
     	</module>
 	</modules>
 
