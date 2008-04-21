@@ -1,0 +1,13 @@
+<com:TMultiView ID="LinkMultiView">
+<com:TView ID="Input">
+<h2>Attach Link</h2>
+<input name="tiro_id_hidden" type="hidden" value="<%= $_GET['id_text'] %>"/>
+Link: <input name="HyperLinkURL" type="text" id="HyperLinkURL" />
+<a href="javascript:completeLink(document.forms[0].tiro_id_hidden.value,document.forms[0].HyperLinkURL.value)">submit</a>
+</com:TView>
+
+<com:TView ID="Success">
+Success!!! <br />
+link: <%= $_GET['link'] %>
+</com:TView>
+</com:TMultiView>

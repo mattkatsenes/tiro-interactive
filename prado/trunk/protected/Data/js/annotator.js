@@ -18,10 +18,11 @@ function attachAnnotation(tiro_id)
 };
 
 annotateLeaf = function(tiro_id){
-	var content = "<h2>Annotation type:</h2><p>"+$(tiro_id).innerHTML+"<ul><li><a href=\"javascript:attachDefinition('"+tiro_id+"')\">Definition</a></li><li><a href=\"javascript:attachNote('"+tiro_id+"')\">Textual Note</a></li><li><a href=\"javascript:attachLink('"+tiro_id+"')\">Hyperlink</a></li><li><a href=\"javascript:attachImage('"+tiro_id+"')\">Image</a></li></ul></p>";
+	var header = "<div style=\"float: right;\" onClick=\"annotationCancel('"+tiro_id+"')\">[X]</div><h2>Annotation Box</h2>";
+	var content = header + $(tiro_id).innerHTML+"<ul><li><a href=\"javascript:attachDefinition('"+tiro_id+"')\">Definition</a></li><li><a href=\"javascript:attachNote('"+tiro_id+"')\">Textual Note</a></li><li><a href=\"javascript:attachLink('"+tiro_id+"')\">Hyperlink</a></li><li><a href=\"javascript:attachImage('"+tiro_id+"')\">Image</a></li></ul></p>";
 	$('annotationBox').update(content);
 	$('annotationBox').clonePosition($(tiro_id),{setWidth:false, setHeight:false,offsetLeft:100,offsetTop:-80});
-	$('annotationBox').show();
+//	$('annotationBox').show();
 	new Effect.BlindDown('annotationBox');
 };
 
@@ -42,9 +43,42 @@ attachNote = function(tiro_id) {
 };
 
 attachLink = function(tiro_id) {
+	var path = window.location.pathname.toString();
+	var end = path.lastIndexOf('/');
+	var tiro_id_number = tiro_id.substr(tiro_id.indexOf('_')+1);
+	var newPath = path.substring(0,end) + '/Link';
+	new Ajax.Updater('annotationBox',newPath,{
+		method: 'get',
+		parameters: {
+			id_text: tiro_id_number,
+			action: 'input'
+			}
+		});
+};
 
+completeLink = function(tiro_id,link_target)
+{
+	var path = window.location.pathname.toString();
+	var end = path.lastIndexOf('/');
+	var tiro_id_number = tiro_id.substr(tiro_id.indexOf('_')+1);
+	var newPath = path.substring(0,end) + '/Link';
+	new Ajax.Updater('annotationBox',newPath,{
+		method: 'get',
+		parameters: {
+			id_text: tiro_id_number,
+			link: link_target,
+			action: 'attach'
+			}
+	});
 };
 
 attachImage = function(tiro_id) {
 
 };
+
+annotationCancel = function(tiro_id)
+{
+	$(tiro_id).toggleClassName('annotated');
+	new Effect.BlindUp('annotationBox');
+//	$('annotationBox').hide();
+}
