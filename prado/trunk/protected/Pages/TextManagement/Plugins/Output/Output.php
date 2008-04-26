@@ -37,7 +37,7 @@ class Output extends TPage
 		
 		$this->text = TextRecord::finder()->findById($_GET['id']);
 		$path = $ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$this->text->dir_name;
-		$final_path = "/usr/share/tomcat5.5/webapps/cocoon/output";
+		$final_path = ".";
 		$this->tiroText = new TiroText($path);
 		
 		$this->output = new DomDocument;
@@ -51,10 +51,10 @@ class Output extends TPage
 		$this->MsgHolder->Controls[] = "Saving to $path/output.xml<br />";
 		$this->output->save($path .'/output.xml');
 		
-		$success = copy("$path/output.xml","$final_path/output.xml");
-		$this->MsgHolder->Controls[] = "Moving output.xml to $final_path - $success<br />";
-		if($success)
-		$this->MsgHolder->Controls[] = "<br/><a href='/output/output(1)'>output file</a>";
+		//$success = copy("$path/output.xml","$final_path/output.xml");
+		//$this->MsgHolder->Controls[] = "Moving output.xml to $final_path - $success<br />";
+		//if($success)
+		$this->MsgHolder->Controls[] = "<br/><a href='/output/matt/cicero_pro_milone/text(1)'>output file</a>";
 		
 //		$this->MsgHolder->Controls[] = $this->output->saveHTML();
 	}
