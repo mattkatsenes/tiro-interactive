@@ -7,14 +7,14 @@
 
 <!-- Stick the CSS include in! -->
 	<xsl:template name="includeCSS">
-		<link type="text/css" rel="stylesheet" href="stylesheets/output-pharr.css" />
+		<link type="text/css" rel="stylesheet" href="/output/stylesheets/output-pharr.css" />
 	</xsl:template>
 
 <!-- Stick the Java includes in! -->
 	<xsl:template name="includeJava">
-		<script src="js/prototype.js" type="text/javascript"></script>
-		<script src="js/test.js" type="text/javascript"></script>
-		<script src="js/scriptaculous.js" type="text/javascript"></script>
+		<script src="/output/js/prototype.js" type="text/javascript"></script>
+		<script src="/output/js/test.js" type="text/javascript"></script>
+		<script src="/output/js/scriptaculous.js" type="text/javascript"></script>
 	</xsl:template>
 
 <!-- Title and Author Stuff -->

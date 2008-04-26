@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
+
 <map:sitemap xmlns:map="http://apache.org/cocoon/sitemap/1.0">
 <!-- NB
 		Drew-091207= Because IE is weird and refuses to handle the xhtml-xml mime type
@@ -165,68 +166,54 @@
 				<map:serialize type="html"/>
 			</map:match>	
 			
-			<map:match pattern="output.html">
-				<map:generate src="output.xml"/>
+			<map:match pattern="text.html">
+				<map:generate src="users/{1}/{2}/output.xml"/>
 				<map:transform src="stylesheets/tei2html.xsl"/>
 				<map:serialize type="html"/>
 			</map:match>
-
-			<map:match pattern="output(*).xml">
-				<map:generate src="eclogue1_mymarkup.xml"/>
+			<map:match pattern="**/**/text(*)">
+				<map:generate src="users/{1}/{2}/output.xml"/>
 				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
-					<map:parameter name="page" value="{1}"/>
-				</map:transform>
-				<map:serialize type="xml"/>
-			</map:match>
-			
-			<map:match pattern="output(*)">
-				<map:generate src="output.xml"/>
-				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
-					<map:parameter name="page" value="{1}"/>
+					<map:parameter name="page" value="{3}"/>
 				</map:transform>
 				<map:transform src="stylesheets/tei2html.xsl"/>
 				<map:serialize type="html"/>
-			</map:match>
-						
-			<map:match pattern="output(*">
-				<map:generate src="output.xml"/>
-				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
-					<map:parameter name="page" value="{1}"/>
-				</map:transform>
+			</map:match>						
+			<map:match pattern="**/**/text(*).rtf">
+				<map:generate src="users/{1}/{2}/output.xml"/>
+					<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
+						<map:parameter name="page" value="{3}"/>
+					</map:transform>
 				<map:transform src="stylesheets/tei2html.xsl"/>
-				<map:serialize type="html"/>
-			</map:match>
-
-		<!-- D - 08-20-2007 - added new rules for new display style -->	
-			<map:match pattern="output-ajax(*)">
-				<map:generate src="output.xml"/>
-				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
-					<map:parameter name="page" value="{1}"/>
-				</map:transform>
-				<map:transform src="stylesheets/tei2html-ajax.xsl"/>
-				<map:serialize type="html"/>
-			</map:match>
-
-		<!-- D - 09-10-2007 - added new rules for new display style -->	
-			<map:match pattern="output-ajax-testform(*)">
-				<map:generate src="output.xml"/>
-				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
-					<map:parameter name="page" value="{1}"/>
-				</map:transform>
-				<map:transform src="stylesheets/tei2html-testform.xsl"/>
-				<map:serialize type="html"/>
-			</map:match>
-			
-		<!-- D - 09-17-2007 - added new rules for new display style -->	
-			<map:match pattern="output-ajax-testform(*">
-				<map:generate src="output.xml"/>
-				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
-					<map:parameter name="page" value="{1}"/>
-				</map:transform>
-				<map:transform src="stylesheets/tei2html-testform.xsl"/>
-				<map:serialize type="html"/>
+				<map:transform src="stylesheets/html2fo.xsl"/>
+				<map:transform src="stylesheets/fo-formatting.xsl"/>
+				<map:transform src="stylesheets/fo-formatting-rtf.xsl"/>
+				<map:transform src="stylesheets/inherit-attributes.xsl"/>
+				<map:serialize type="fo2rtf"/>
 			</map:match>	
-				
+			<map:match pattern="**/**/text(*).pdf">
+				<map:generate src="users/{1}/{2}/output.xml"/>
+					<map:transform type="paginate" src="pagesheets/tei.big.pagesheet" label="content">
+						<map:parameter name="page" value="{3}"/>
+					</map:transform>
+				<map:transform src="stylesheets/tei2html.xsl"/>
+				<map:transform src="stylesheets/html2fo.xsl"/>
+				<map:transform src="stylesheets/fo-formatting.xsl"/>
+				<map:transform src="stylesheets/fo-formatting-pdf.xsl"/>
+				<map:serialize type="fo2pdf"/>
+			</map:match>
+			<map:match pattern="**/**/text-book(*).pdf">
+				<map:generate src="users/{1}/{2}/output.xml"/>
+					<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
+						<map:parameter name="page" value="{3}"/>
+					</map:transform>
+				<map:transform src="stylesheets/tei2html.xsl"/>
+				<map:transform src="stylesheets/html2fobook.xsl"/>
+				<map:transform src="stylesheets/fo-formatting-book.xsl"/>
+				<map:transform src="stylesheets/fo-formatting-pdf-book.xsl"/>
+				<map:serialize type="fo2pdf"/>
+			</map:match>
+			
 		</map:pipeline>
 	</map:pipelines>
 
