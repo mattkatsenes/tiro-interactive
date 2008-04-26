@@ -54,7 +54,8 @@ class Output extends TPage
 		//$success = copy("$path/output.xml","$final_path/output.xml");
 		//$this->MsgHolder->Controls[] = "Moving output.xml to $final_path - $success<br />";
 		//if($success)
-		$this->MsgHolder->Controls[] = "<br/><a href='/output/matt/cicero_pro_milone/text(1)'>output file</a>";
+		$exploded_path = array_reverse(explode('/',$path));
+		$this->MsgHolder->Controls[] = "<br/><a href='/output/{$exploded_path[1]}/{$exploded_path[0]}/text(1)'>output file</a>";
 		
 //		$this->MsgHolder->Controls[] = $this->output->saveHTML();
 	}
