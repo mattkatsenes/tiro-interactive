@@ -36,11 +36,25 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 
 
 <div id="mainColumn">
-
+<span> <%= $this->Request->getServiceParameter(); %></span>
 <div id="menubar">
 <com:TBulletedList id="MenuList"
 	DisplayMode="HyperLink" />
 </div>
+
+<com:TConditional condition="in_array('Plugins',explode('.',$this->Request->getServiceParameter()))">
+	<prop:TrueTemplate>
+	<div>
+		<com:TDropDownList ID='dropDownList' AutoPostBack='true' OnSelectedIndexChanged="Parent.Parent.Parent.changeLoc">
+		  <com:TListItem Value="null" Text="Options" />
+		  <com:TListItem Value="Defs" Text="Defs" />
+		  <com:TListItem Value="Notes" Text="Notes"/>
+		  <com:TListItem Value="Images" Text="Images" />
+		</com:TDropDownList>
+	</div>
+	</prop:TrueTemplate>
+	<prop:FalseTemplate />
+</com:TConditional>
 
 <div id="guts">
 <com:TContentPlaceHolder ID="guts" />

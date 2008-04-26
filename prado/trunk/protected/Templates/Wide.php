@@ -81,5 +81,17 @@ class Wide extends TTemplateControl
 		
 		$this->Response->redirect($url);
 	}
+	
+	public function changeLoc($sender,$param)
+	{
+	echo $this->dropDownList->Text;
+	
+	if($this->dropDownList->Text == "Defs")
+		$this->Response->redirect("Definitions");
+	if($this->dropDownList->Text == "Notes")
+		$this->Response->redirect("Notes");
+	if($this->dropDownList->Text == "Images")
+		$this->Response->redirect("Images");
+	}
 }
 ?>

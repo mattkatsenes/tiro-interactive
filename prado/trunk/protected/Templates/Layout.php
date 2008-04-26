@@ -81,7 +81,7 @@ class Layout extends TTemplateControl
 		$MENUBAR_ITEMS_USER = array(
 			$this->Application->Request->ApplicationUrl . '?page=Home' => 'Home',
 			$this->Application->Request->ApplicationUrl . '?page=About' =>'About Tiro',
-			$this->Application->Request->ApplicationUrl . '?page=UserManagement.Logout' => 'Logout'
+			$this->Application->Request->ApplicationUrl . '?page=UserManagement.Logout' => 'Logout',
 			);
 		
 		if(!$logged_in)
@@ -149,6 +149,19 @@ class Layout extends TTemplateControl
 		
 		$this->Response->redirect($url);
 	}
+	
+	public function changeLoc($sender,$param)
+	{
+	echo $this->dropDownList->Text;
+	
+	if($this->dropDownList->Text == "Defs")
+		$this->Response->redirect("Definitions");
+	if($this->dropDownList->Text == "Notes")
+		$this->Response->redirect("Notes");
+	if($this->dropDownList->Text == "Images")
+		$this->Response->redirect("Images");
+	}
+	
 }
 
 ?>
