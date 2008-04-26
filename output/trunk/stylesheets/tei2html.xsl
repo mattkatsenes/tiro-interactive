@@ -50,7 +50,7 @@
 			<div id="marginalia">
 				<span id="definitions_heading">Definitions:</span>
 				<div id="definitions">
-					<xsl:apply-templates select="text/body/div[@n='glossary']">
+					<xsl:apply-templates select="text/body/div[@n='glossary']/entry" >
 						<xsl:sort select="orth" />
 					</xsl:apply-templates>
 				</div>

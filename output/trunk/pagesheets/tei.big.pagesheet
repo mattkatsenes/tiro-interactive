@@ -2,5 +2,7 @@
 	<rules>
 		<count type="element" name="l" num="15"/>
 		<link type="unit" num="1"/>
+		<count type="element" name="sp" num="15"/>
+		<link type="unit" num="1"/>
 	</rules>
 </pagesheet>
