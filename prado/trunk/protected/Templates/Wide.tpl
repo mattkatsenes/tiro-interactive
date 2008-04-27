@@ -20,14 +20,23 @@
 
 <com:TConditional condition="in_array('Plugins',explode('.',$this->Request->getServiceParameter()))">
 	<prop:TrueTemplate>
-	<div>
+	<div id="dropDown">
 		<com:TDropDownList ID='dropDownList' AutoPostBack='true' OnSelectedIndexChanged="Parent.Parent.Parent.changeLoc">
 		  <com:TListItem Value="null" Text="Options" />
-		  <com:TListItem Value="Defs" Text="Defs" />
+		  <com:TListItem Value="Defs" Text="Defs"/>
 		  <com:TListItem Value="Notes" Text="Notes"/>
 		  <com:TListItem Value="Images" Text="Images" />
 		</com:TDropDownList>
 	</div>
+	<script type="text/javascript">
+	if($('dropDown')){
+	var list = $('menubar').getElementsBySelector('ul')[0];
+	var listelem = document.createElement('li');
+	listelem.innerHTML = $('dropDown').innerHTML;
+			list.appendChild(listelem);
+	$('dropDown').remove();
+	}
+	</script>
 	</prop:TrueTemplate>
 	<prop:FalseTemplate />
 </com:TConditional>

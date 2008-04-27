@@ -84,8 +84,6 @@ class Wide extends TTemplateControl
 	
 	public function changeLoc($sender,$param)
 	{
-	echo $this->dropDownList->Text;
-	
 	if($this->dropDownList->Text == "Defs")
 		$this->Response->redirect("Definitions");
 	if($this->dropDownList->Text == "Notes")
