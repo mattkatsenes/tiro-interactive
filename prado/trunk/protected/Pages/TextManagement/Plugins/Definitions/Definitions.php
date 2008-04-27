@@ -43,7 +43,7 @@ class Definitions extends TPage
 		{
 			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
 		}
-	echo "<a href='/prado/protected/Pages/TextManagement/Plugins/Definitions/def.xml'>def.xml</a>";
+//	echo "<a href='/prado/protected/Pages/TextManagement/Plugins/Definitions/def.xml'>def.xml</a>";
 	}
 	
 	/**

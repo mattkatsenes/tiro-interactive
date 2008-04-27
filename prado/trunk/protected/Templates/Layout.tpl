@@ -36,7 +36,6 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 
 
 <div id="mainColumn">
-<span> <%= $this->Request->getServiceParameter(); %></span>
 <div id="menubar">
 <com:TBulletedList id="MenuList"
 	DisplayMode="HyperLink" />
@@ -44,7 +43,7 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 
 <com:TConditional condition="in_array('Plugins',explode('.',$this->Request->getServiceParameter()))">
 	<prop:TrueTemplate>
-	<div>
+	<div id="dropDown">
 		<com:TDropDownList ID='dropDownList' AutoPostBack='true' OnSelectedIndexChanged="Parent.Parent.Parent.changeLoc">
 		  <com:TListItem Value="null" Text="Options" />
 		  <com:TListItem Value="Defs" Text="Defs" />
@@ -52,6 +51,15 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 		  <com:TListItem Value="Images" Text="Images" />
 		</com:TDropDownList>
 	</div>
+	<script type="text/javascript">
+	if($('dropDown')){
+	var list = $('menubar').getElementsBySelector('ul')[0];
+	var listelem = document.createElement('li');
+	listelem.innerHTML = $('dropDown').innerHTML;
+			list.appendChild(listelem);
+	$('dropDown').remove();
+	}
+	</script>
 	</prop:TrueTemplate>
 	<prop:FalseTemplate />
 </com:TConditional>

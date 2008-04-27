@@ -44,8 +44,9 @@ function onLoad()
 		else
 		{
 			$this->LatinText->Controls->add($this->innerTextProcessing($this->tiroText));
-		}
-	echo "<a href='/prado/protected/Pages/TextManagement/Plugins/Notes/notes.xml'>notes.xml</a>";
+		};
+	echo "<span>";  //Somewhere there must be a placement funtion that depends on having a certain number of
+							//elements to properly place the notes box.  FIX THIS.
 }
 
 function innerTextProcessing(TiroText $textObject)
