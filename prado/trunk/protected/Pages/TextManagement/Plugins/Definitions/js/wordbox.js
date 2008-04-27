@@ -18,7 +18,7 @@ function newWordBox(word, id_text, objFunction, location)
 	location.appendChild(mySplash);					
 	$('splash').setStyle({
 	border: "1px solid black",
-	backgroundImage: "url('/prado/images/grey.png')",
+	backgroundImage: "url('/frontend/images/grey.png')",
 	padding:"5px",
 	position:"absolute", 
 	top:	$$('body')[0].offsetTop, 
@@ -29,7 +29,7 @@ function newWordBox(word, id_text, objFunction, location)
 	});
 	var A = document.createElement("img");
 		A.setStyle({position: "absolute", top: $$('body')[0].getHeight()/2, left: ($$('body')[0].getWidth()/2)-100});
-		A.src="/prado/images/ajax-loader.gif";
+		A.src="/frontend/images/ajax-loader.gif";
 		A.id = "splashImg";
 		$('splash').appendChild(A);
 						
