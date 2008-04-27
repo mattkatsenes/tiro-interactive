@@ -13,15 +13,35 @@ returnObject members:
 */
 function newWordBox(word, id_text, objFunction, location)
 {
+	var mySplash 	= document.createElement("div");
+	mySplash.id 		= "splash";
+	location.appendChild(mySplash);					
+	$('splash').setStyle({
+	border: "1px solid black",
+	backgroundImage: "url('/prado/images/grey.png')",
+	padding:"5px",
+	position:"absolute", 
+	top:	$$('body')[0].offsetTop, 
+	left:	$$('body')[0].offsetLeft,
+	width: $$('body')[0].clientWidth,
+	height: $$('body')[0].clientHeight,
+	overflow: "auto",
+	});
+	var A = document.createElement("img");
+		A.setStyle({position: "absolute", top: $$('body')[0].getHeight()/2, left: ($$('body')[0].getWidth()/2)-100});
+		A.src="/prado/images/ajax-loader.gif";
+		A.id = "splashImg";
+		$('splash').appendChild(A);
+						
 		if(location == null){location = document.body;}
 		if(objFunction == null) {objFunction=function(){};};
-		
 		new Ajax.Request("/frontend/protected/Pages/TextManagement/Plugins/Definitions/xmlForm.php", 
 				{ 
 					method: 'GET', 
 					parameters: "word="+word,
 					onComplete: function(req)
 					{
+						$('splashImg').remove();
 						var 	myRoot 	= document.createElement("div");
 						myRoot.id 	= "root_wordbox";
 						myRoot.innerHTML = req.responseText;
@@ -31,8 +51,14 @@ function newWordBox(word, id_text, objFunction, location)
 								$$("#root_wordbox")[i].remove();
 						}
 						location.appendChild(myRoot);
-						$('wordbox').action="javascript:sendParse("+objFunction+",'"+id_text+"')";
+						console.log($('wordbox'));
+						$('wordbox').action="javascript:sendParse("+objFunction+",'"+id_text+"');$('splash').remove();";
 						centerWordBox();  //See below
+					},
+					onFailure:	function(req)
+					{
+					$('splash').remove();
+					alert("ajax request failed");
 					}
 				});
 }
@@ -100,6 +126,6 @@ close_button = document.createElement("span");
 close_button.id="close_button";
 close_button.setStyle({cssFloat: "right"});
 close_button.innerHTML="[X]";
-Event.observe(close_button,'click',function(){$('root_wordbox').remove();});
+Event.observe(close_button,'click',function(){$('root_wordbox').remove();$('splash').remove();});
 $('root_wordbox').insertBefore(close_button,$('root_wordbox').childNodes[0]);
 }
