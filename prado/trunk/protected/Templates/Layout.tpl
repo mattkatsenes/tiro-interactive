@@ -6,7 +6,7 @@
 <meta http-equiv="content-language" content="en"/>
 
 <!-- <link href="css/style-2col.css" rel="stylesheet" type="text/css"/>  -->
-<com:TStyleSheet StyleSheetUrl="<%= $this->ApplicationContext %>/css/style-2col.css" />
+<com:TStyleSheet StyleSheetUrl="<%= $this->ApplicationContext %>/css/style-2col-big.css" />
 </com:THead>
 
 <body>
