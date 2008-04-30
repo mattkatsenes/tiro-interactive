@@ -17,9 +17,14 @@ class TiroText
 	protected $xml;
 
 	/**
-	 * String for the path to text.xml
+	 * String for the path to the XML files.
 	 */	
-	public $xml_file;
+	public $xml_path;
+	
+	/*
+	 * Array holding TiroAnnotation objects.
+	 */
+	public $annotations;
 	
 	function __construct($path)
 	{
@@ -36,7 +41,17 @@ class TiroText
 			$this->xml->save($path . '/text.xml');
 		}
 		
-		$this->xml_file = $path . '/text.xml';
+		$this->xml_path = $path;
+		
+		if(file_exists($path . '/def.xml'))
+			$this->loadAnnotations('def.xml');
+		if(file_exists($path . '/notes.xml'))
+			$this->loadAnnotations('notes.xml');
+		if(file_exists($path . '/images.xml'))
+			$this->loadAnnotations('images.xml');
+		if(file_exists($path . '/hyperlinks.xml'))
+			$this->loadAnnotations('hyperlinks.xml');
+				
 		
 //		$this->calculateIDs();
 	}
@@ -161,6 +176,25 @@ class TiroText
 		return $temp->asXML();
 	}
 
+	/*
+	 * Get the XML Document with Annotations marked (somehow)
+	 */
+	function getTextWithAnnotations()
+	{
+		$text = $this->xml->getElementsByTagName('text')->item(0);
+		$XPath = new DomXPath($this->xml);
+		$id_elements = $XPath->query('//*[@id_text]');
+		
+		foreach($id_elements as $elem)
+		{
+			$annotations = $this->annotationGrab($elem->getAttribute('id_text'));
+			foreach($annotations as $annotation)
+				$elem->setAttribute('annotation',$elem->getAttribute('annotation').' '.$annotation->type);	
+		}
+		$temp = simplexml_import_dom($text);
+		return $temp->asXML();
+	}
+
 	/**
 	 * Set the XML for the text portion only.
 	 */	
@@ -202,7 +236,66 @@ class TiroText
 
 	public function getDOMDoc()
 	{
-	return $this->xml;
+		return $this->xml;
+	}
+
+	/*
+	 * Get an array of all the ID'd elements.
+	 * 
+	 * return array $elements =[1,2, ... ,n]
+	 */
+	public function IDs()
+	{
+		$elements = array();
+			
+		$XPath = new DomXPath($this->xml);
+		$IDList = $XPath->query('//text//*/@id_text');
+		
+		foreach($IDList as $newID)
+			$elements[] = (int)$newID->nodeValue;
+		
+		return $elements;
+	}
+	
+	/*
+	 * Check out the element with id_text = $id.  Return array of annotations!
+	 */
+	public function annotationGrab($id)
+	{
+		$annotation_array = array();
+		
+		foreach($this->annotations as $annotation)
+			if($annotation->belongsTo($id))
+				$annotation_array[] = $annotation;
+		
+		return $annotation_array;
+	}
+
+	/*
+	 * Load annotations from a particular file.
+	 * 
+	 * @param string $filename the filename for the *.xml with annotations.
+	 */
+	public function loadAnnotations($filename)
+	{
+		$addendum = new DomDocument;
+		$addendum->load($this->xml_path .'/'. $filename);
+				
+		$addendumXPath = new DomXPath($addendum);
+		$links = $addendumXPath->query('//link');
+		
+		foreach($links as $link)
+		{
+			$targets = $link->getAttribute('targets');
+			$target_arr = explode('#',$targets);
+			$id = array_shift($target_arr);
+			
+			$proper_target = '';
+			foreach($target_arr as $possible)
+				$proper_target .= $possible;
+
+			$this->annotations[] = new TiroAnnotation($id,substr($filename,0,-4),$addendumXPath->query("//*[@id_text = '$id']"),$proper_target);
+		}
 	}
 }
 ?>
