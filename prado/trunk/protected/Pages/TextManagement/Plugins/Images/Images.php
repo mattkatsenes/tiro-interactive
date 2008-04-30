@@ -44,12 +44,27 @@ class Images extends TPage
 		$noteNode = $XPath->query("//*[@id_text=".substr($id_text,5)."]");
 		
 		$this->NoteAnchor->Controls[] = $noteNode->item(0)->textContent;
-				
+		
 		$this->ImageUploader->ActiveView = $this->InsertNote;
 	}
 	
 	function saveImage($sender)
 	{
+		
+		if($sender->HasFile && $sender->FileType == 'image/jpeg')
+		{
+			global $ABS_PATH,$USERS_PREFIX;
+
+			$sender->saveAs($ABS_PATH.'/'.$USERS_PREFIX.'/'.$this->User->Name.'/'.$this->text->dir_name.'/'.$sender->FileName);
+			$img = new TImage();
+			$img->ImageUrl = "http://localhost/~mkatsenes/workspace/prado/protected/users/matt/arma_virumque/".$sender->FileName;
+			
+			$this->ImageInfo->Controls[] = $img;
+		}
+		else
+		{
+			$this->ImageInfo->Controls[] = "failure.  ".$sender->ErrorCode;
+		}
 		
 		$this->ImageUploader->ActiveView = $this->ImageUploaded;
 	}

@@ -6,9 +6,8 @@
 </head>
 <body>
 <hr>
-
-<br /><br />
-<pre><%= $this->tiroObject->getXML(); %>
+<pre>
+<%= $this->tiroText->getTextWithAnnotations(); %>
 </pre>
 </body>
 </html>

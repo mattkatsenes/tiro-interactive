@@ -16,8 +16,7 @@ class CombinedView extends TPage
 		// Display the text at the bottom.
 
 		$textDOM = new DomDocument;
-		$textDOM->loadXML($this->tiroText->getText());
-
+		$textDOM->loadXML($this->tiroText->getTextWithAnnotations());
 
 		$styleSheet = new DOMDocument;
 		$styleSheet->load('protected/Data/xsl/tiro2js_tree.xsl');
