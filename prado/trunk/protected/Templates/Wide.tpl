@@ -5,7 +5,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <meta http-equiv="content-language" content="en"/>
 
-<com:TStyleSheet StyleSheetUrl="<%= $this->ApplicationContext %>/css/style-wide.css" />
+<com:TStyleSheet StyleSheetUrl="<%= $this->ApplicationContext %>/css/style-wide-big.css" />
 </com:THead>
 
 <body>
