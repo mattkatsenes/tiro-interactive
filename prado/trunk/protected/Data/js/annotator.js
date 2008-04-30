@@ -73,7 +73,11 @@ completeLink = function(tiro_id,link_target)
 };
 
 attachImage = function(tiro_id) {
-
+	alert("attach image: "+tiro_id);
+	
+	$('id_text').writeAttribute('value',tiro_id);
+	document.forms[0].submit();
+	
 };
 
 annotationCancel = function(tiro_id)
