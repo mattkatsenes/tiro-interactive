@@ -1,0 +1,114 @@
+/*
+ * Wide Styles for use when editing text.
+ * author: Matt Katsenes
+ * date: 03/18/2008
+*/
+
+body {
+//	text-align:center;
+	margin-top: 0px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+	margin-right: 4px;
+}
+
+#container {
+	width: 100%;
+	border: solid 2px Navy;	
+	overflow: hidden;
+	margin: auto;
+	text-align: left;
+}
+
+
+#mainColumn {
+	margin: 0px 0px 0px 0px;
+	overflow: hidden;
+}
+
+#menubar {
+	width: 100%;
+	margin: 0px 0px 0px 0px;
+}
+
+#menubar ul {
+	padding: .2em 0px;
+	margin: 0px;
+	list-style-type: none;
+	background-color: RoyalBlue;
+	color: #FFF;
+	width: 100%;
+}
+
+#menubar ul li {
+	display: inline;
+	border-right: 1px dotted white;
+	padding-right: 1.5em;
+	padding-left: 1.5em;
+}
+
+#menubar ul li a {
+	text-decoration: none;
+	background-color: RoyalBlue;
+	color: #FFF;
+}
+
+#menubar ul li a:hover {
+	background-color: CornflowerBlue;
+	color: #fff;
+}
+
+#guts {
+	float: left;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	margin: 0px 0px 0px 0px;
+	overflow: auto;
+}
+
+#credits {
+	clear: both;
+	border-top: solid 2px Navy;
+	width: 100%;
+	float: left;
+	vertical-align: middle;
+	color: Navy;
+}
+
+#credits ul {
+	padding: .2em 0px;
+	margin: 0px;
+	list-style-type: none;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#credits ul li {
+	display: inline;
+	border-right: 1px dotted Navy;
+	vertical-align: middle;
+	padding-right: 1.5em;
+	padding-left: 1.5em;
+}
+
+.title2	{
+	padding-left: 1.5em;
+	font-size: x-large;
+}
+
+.info-box {
+	background: AntiqueWhite;
+	width: 70%;
+	margin: auto;
+}
+
+.tocDiv {
+	padding-left: 1em;
+}
+
+.annotated {
+	font-weight: bold;
+}
