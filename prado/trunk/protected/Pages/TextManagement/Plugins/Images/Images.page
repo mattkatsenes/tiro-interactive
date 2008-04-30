@@ -2,8 +2,7 @@
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
-<com:TClientScript ScriptUrl=<%~ js/prototype.js %> />
-<com:TClientScript ScriptUrl=<%~ js/expander.js %> />
+<com:TClientScriptLoader PackagePath="Application.Data.js" PackageScripts="expander,annotator" />
 
 <h1>Image Uploader</h1>
 Text: <%= $this->text->title %>
@@ -15,12 +14,12 @@ Text: <%= $this->text->title %>
 </com:TView>
 <com:TView ID="InsertNote">
 <p>Attach an image to this piece of text: <com:TPlaceHolder ID="NoteAnchor" /></p>
-<p>Choose your Image: <com:TFileUpload ID="ImageFile" OnFileUpload="saveImage"/>
+<p>Choose your Image: <com:TFileUpload ID="ImageFile" OnFileUpload="saveImage" MaxFileSize="5242880"/>
 </p>
 <com:TButton ButtonType="Submit" Text="Submit"/>
 </com:TView>
 <com:TView ID="ImageUploaded">
-success!
+<com:TPlaceHolder ID="ImageInfo" />
 </com:TView>
 </com:TMultiView>
 

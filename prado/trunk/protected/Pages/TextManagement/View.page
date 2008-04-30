@@ -4,8 +4,8 @@
 <com:TContent ID="guts" >
 <h1>Project Title: <%= $this->text->title %></h1>
 <br />
-<font color="red">Try our new<a href="<%= $this->text->id %>/Combined"> Combined View!</a></font>
-<com:TTable ID="Plugins">
+<font color="red">Try our new <a href="<%= $this->text->id %>/Combined">Combined View!</a></font>
+<com:TTable ID="Plugins" Width="50%">
 	<com:TTableHeaderRow>
 		<com:TTableHeaderCell Text="Link" />
 		<com:TTableHeaderCell Text="Description" />

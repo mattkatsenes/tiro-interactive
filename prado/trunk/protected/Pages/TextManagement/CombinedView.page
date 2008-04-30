@@ -1,4 +1,4 @@
-<%@ MasterClass="Wide" %>
+<%@ MasterClass="Layout" %>
 
 <!-- The Main portion of the page. -->
 <com:TContent ID="guts" >
@@ -7,6 +7,12 @@
 <h1>Project Title: <%= $this->text->title %></h1>
 
 <p><b>Instructions:</b> Choose a word to annotate, then you will be prompted for the type of annotation.</p>
+<ul>
+<li>Defined items will look like <span class="def">this</span>.</li>
+<li>Noted items will look like <span class="notes">this</span>.</li>
+<li>Image-linked items will look like <span class="images">this</span>.</li>
+<li>Hyperlinked items will look like <span class="hyperlink">this</span>.</li>
+</ul>
 
 <div id="tiroText" style="float: left;z-index: 1;">
 <com:TPlaceHolder ID="LatinPreview" />

@@ -3,21 +3,14 @@ prado::Using('Application.Engine.*');
 
 class temporary extends TPage 
 {
-	public $perseusObject;
-	public $tiroObject;
-	public $perseusObjectTwo;
+	public $tiroText;
 	
 	public function onLoad()
 	{
-		$this->perseusObject = new PerseusChunk('Perseus:text:1999.02.0002',':book=1:chapter=1:section=1');
-		$this->tiroObject = new TiroText('/Users/mkatsenes/Sites/workspace/prado-gcode/protected/users/matt/worker');
+		global $ABS_PATH,$USERS_PREFIX;
+		$this->tiroText = new TiroText($ABS_PATH.'/'.$USERS_PREFIX.'/matt/arma_virumque');
 		
-		$this->perseusObjectTwo = new PerseusChunk('Perseus:text:1999.02.0002',':book=1:chapter=1:section=2');
 		
-		$this->tiroObject->addPerseusChunk($this->perseusObject);
-		$this->tiroObject->addPerseusChunk($this->perseusObjectTwo);
-		
-		$this->tiroObject->saveText();
 	}	
 }
 ?>
