@@ -128,7 +128,7 @@
 			</map:match>
 			
 			<map:match pattern="tei(*">
-				<map:generate src="eclogue1_newmarkup.xml"/>
+				<map:generate src="eclogue1_mymarkup.xml"/>
 				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
 					<map:parameter name="page" value="{1}"/>
 				</map:transform>
