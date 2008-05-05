@@ -59,7 +59,7 @@
 
 						
 			<map:match pattern="tei(*).pdf">
-				<map:generate src="eclogue1_mymarkup.xml"/>
+				<map:generate src="eclogue1_newmarkup.xml"/>
 					<map:transform type="paginate" src="pagesheets/tei.big.pagesheet" label="content">
 						<map:parameter name="page" value="{1}"/>
 					</map:transform>
@@ -82,7 +82,7 @@
 			</map:match>
 
 			<map:match pattern="tei-book(*).pdf">
-				<map:generate src="eclogue1_mymarkup.xml"/>
+				<map:generate src="eclogue1_newmarkup.xml"/>
 					<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
 						<map:parameter name="page" value="{1}"/>
 					</map:transform>
@@ -105,9 +105,9 @@
 			</map:match>
 			
 			<map:match pattern="tei.html">
-				<map:generate src="eclogue1_mymarkup.xml"/>
+				<map:generate src="eclogue1_newmarkup.xml"/>
 				<map:transform src="stylesheets/tei2html.xsl"/>
-				<map:serialize type="xml"/>
+				<map:serialize type="html"/>
 			</map:match>
 
 			<map:match pattern="tei(*).xml">
@@ -119,7 +119,7 @@
 			</map:match>
 			
 			<map:match pattern="tei(*)">
-				<map:generate src="eclogue1_mymarkup.xml"/>
+				<map:generate src="eclogue1_newmarkup.xml"/>
 				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
 					<map:parameter name="page" value="{1}"/>
 				</map:transform>
@@ -128,7 +128,7 @@
 			</map:match>
 			
 			<map:match pattern="tei(*">
-				<map:generate src="eclogue1_mymarkup.xml"/>
+				<map:generate src="eclogue1_newmarkup.xml"/>
 				<map:transform type="paginate" src="pagesheets/tei.pagesheet" label="content">
 					<map:parameter name="page" value="{1}"/>
 				</map:transform>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- <!DOCTYPE TEI PUBLIC "-//TEI P5//DTD Main Document Type//EN" "/Users/mkat/Sites/tei/P5/dtd/tei.dtd" [
+	<!ENTITY % TEI.header 'INCLUDE' >
+	<!ENTITY % TEI.core 'INCLUDE' >
+	<!ENTITY % TEI.textstructure 'INCLUDE' >
+	<!ENTITY % TEI.analysis 'INCLUDE' >
+	<!ENTITY % TEI.drama 'INCLUDE' >
+	<!ENTITY % TEI.dictionaries 'INCLUDE' >
+	<!ENTITY % TEI.linking 'INCLUDE' >
+]> -->
+
+<TEI>
+	<teiHeader>
+		
+		<fileDesc>
+			<titleStmt>
+				<title>Ecloga Prima</title>
+				<author>P. Vergilius Maro</author>
+				<editor>Matthew G. Katsenes</editor>
+				<respStmt>
+					<name key="mk">Matthew G. Katsenes</name>
+					<resp>Creation and digitization of the notes and vocabulary.</resp>
+				</respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<pubPlace>Amherst, MA</pubPlace>
+				<date>2007</date>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Thanks to http://www.thelatinlibrary.net for the source text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+		
+		<encodingDesc>
+			<projectDesc>
+				<p>This annotation was originally completed as a project for Prof. Breed's Vergil course.  Digitization is for the purpose of displaying the capabilities of XSLT and Javascript.</p>
+			</projectDesc>
+			<editorialDecl>
+				<p>Vocabulary glossed herein includes all words not on Clyde Pharr's pullout.  Notes are aimed at an AP level.</p>
+			</editorialDecl>
+			
+			<refsDecl id_text="canonical">
+				<cRefPattern matchPattern="(.+).(.+)" replacementPattern="#xpath1(//div[@type='poem' and @n='$1']//l[$2])">
+					<p>This pointer pattern extracts and references the <q>poem</q> and <q>line number</q> from the Eclogues.</p>
+				</cRefPattern>
+				<cRefPattern matchPattern="(.+)" replacementPattern="#xpath1(//div[@type='poem' and @n='$1'])">
+					<p>This pointer pattern extracts and references just the <q>poem</q>.</p>
+				</cRefPattern>
+			</refsDecl>
+		</encodingDesc>
+		
+		<profileDesc>
+			<creation>
+				<date value="2007-05-31">May 31, 2007</date>
+			</creation>
+			<langUsage>
+				<language ident="la">Latin</language>
+				<language ident="en">English</language>
+				<language ident="gk">Greek</language>
+			</langUsage>
+		</profileDesc>
+		<revisionDesc>
+			<change date="2007-06-01">
+				<name>Matthew</name>Finished the teiHeader info and began entering the text.</change>
+		</revisionDesc>
+	</teiHeader>
+	
+	<text>
+		
+		<front>
+			<castList>
+				<castItem>
+					<role id_text="me">Meliboeus</role>
+				</castItem>
+				<castItem>
+					<role id_text="ti">Tityrus</role>
+				</castItem>
+			</castList>
+		</front>
+		
+		<body>
+			<div n="I" type="poem" xml:lang="la">
+				<sp who="#ti">
+					<l id_text="I.19" n="19">Urbem quam dicunt Romam, Meliboee, <term id_text="I.19.putavi">putavi</term></l>
+					<l id_text="I.20" n="20"><term id_text="I.20.stultus">stultus</term> ego huic nostrae <term id_text="I.20.similem">similem</term>, cui <term id_text="I.20.saepe">saepe</term> <term id_text="I.20.solemus">solemus</term></l>
+					<l id_text="I.21" n="21"><term id_text="I.21.pastores">pastores</term> <term id_text="I.21.ovium">ovium</term> <term id_text="I.21.teneros">teneros</term> <term id_text="I.21.depellere">depellere</term> <term id_text="I.21.fetus">fetus</term>.</l>
+					<l id_text="I.22" n="22">sic <term id_text="I.22.canibus">canibus</term> <term id_text="I.22.catulos">catulos</term> <term id_text="I.22.similes">similes</term>, sic matribus <term id_text="I.22.haedos">haedos</term></l>
+					<l id_text="I.23" n="23"><term id_text="I.23.noram">noram</term>, sic parvis <term id_text="I.23.componere">componere</term> magna <term id_text="I.23.solebam">solebam</term>.</l>
+					<l id_text="I.24" n="24"><term id_text="I.24.verum">verum</term> haec tantum alias inter caput <term id_text="I.24.extulit">extulit</term> urbes</l>
+					<l id_text="I.25" n="25">quantum <term id_text="I.25.lenta">lenta</term> <term id_text="I.25.solent">solent</term> inter <term id_text="I.25.viburna">viburna</term> <term id_text="I.25.cupressi">cupressi</term>.</l>
+				</sp>
+				<sp who="#me">
+					<l id_text="I.26" n="26">Et quae tanta fuit Romam tibi <term id_text="I.26.causa">causa</term> videndi?</l>
+				</sp>
+				<sp who="#ti">
+					<l id_text="I.27" n="27">Libertas, quae sera tamen respexit inertem,</l>
+					<l id_text="I.28" n="28">candidior postquam tondenti barba cadebat,</l>
+					<l id_text="I.29" n="29">respexit tamen et longo post tempore venit,</l>
+					<l id_text="I.30" n="30">postquam nos Amaryllis habet, Galatea reliquit.</l>
+					<l id_text="I.31" n="31">namque - fatebor enim - dum me Galatea tenebat,</l>
+					<l id_text="I.32" n="32">nec spes libertatis erat nec cura peculi.</l>
+					<l id_text="I.33" n="33">quamvis multa meis exiret victima saeptis</l>
+					<l id_text="I.34" n="34">pinguis et ingratae premeretur caseus urbi,</l>
+					<l id_text="I.35" n="35">non umquam gravis aere domum mihi dextra redibat.</l>
+				</sp>
+				<sp who="#me">
+					<l id_text="I.36" n="36">Mirabar quid maesta deos, Amarylli, vocares,</l>
+					<l id_text="I.37" n="37">cui pendere sua patereris in arbore poma.</l>
+					<l id_text="I.38" n="38">Tityrus hinc aberat. ipsae te, Tityre, pinus,</l>
+					<l id_text="I.39" n="39">ipsi te fontes, ipsa haec arbusta vocabant.</l>
+				</sp>
+				<sp who="#ti">
+					<l id_text="I.40" n="40">Quid facerem? neque servitio me exire licebat</l>
+					<l id_text="I.41" n="41">nec tam praesentis alibi cognoscere divos.</l>
+					<l id_text="I.42" n="42">hic illum vidi iuvenem, Meliboee, quot annis</l>
+					<l id_text="I.43" n="43">bis senos cui nostra dies altaria fumant,</l>
+					<l id_text="I.44" n="44">hic mihi responsum primus dedit ille petenti:</l>
+					<l id_text="I.45" n="45">'pascite ut ante boves, pueri, submittite tauros.'</l>
+				</sp>
+			</div>
+			
+			<div n="glossary">
+				<entry id_text="g.canis">
+					<form>
+						<orth>canis, is</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>m. (f.)</gen>
+					</gramGrp>
+					<def>dog</def>
+				</entry>
+				<entry id_text="g.catulus">
+					<form>
+						<orth>catulus, i</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>m</gen>
+					</gramGrp>
+					<def>young offspring of any animal</def>
+				</entry>
+				<entry id_text="g.causa">
+					<form>
+						<orth>causa, ae</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>f</gen>
+					</gramGrp>
+					<def>cause, reason, occasion</def>
+				</entry>
+				<entry id_text="g.compono">
+					<form>
+						<orth>compono, ere, posui, pos(i)tus</orth>
+					</form>
+					<gramGrp>
+						<pos>vb</pos>
+					</gramGrp>
+					<def>compare</def>
+				</entry>
+				<entry id_text="g.cupressus">
+					<form>
+						<orth>cupressus, i</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>f</gen>
+					</gramGrp>
+					<def>cypress tree</def>
+				</entry>
+				<entry id_text="g.depello">
+					<form>
+						<orth>depello, ere, puli, pulsum</orth>
+					</form>
+					<gramGrp>
+						<pos>vb</pos>
+					</gramGrp>
+					<def>drive down</def>
+				</entry>
+				<entry id_text="g.effero">
+					<form>
+						<orth>effero, ferri, extuli, elatus</orth>
+					</form>
+					<gramGrp>
+						<pos>vb</pos>
+					</gramGrp>
+					<def>carry out, raise</def>
+				</entry>
+				<entry id_text="g.fetus">
+					<form>
+						<orth>fetus, us</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>m</gen>
+					</gramGrp>
+					<def>offspring</def>
+				</entry>
+				<entry id_text="g.haedus">
+					<form>
+						<orth>haedus, i</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>m</gen>
+					</gramGrp>
+					<def>young goat, kid</def>
+				</entry>
+				<entry id_text="g.lentus">
+					<form>
+						<orth>lentus, a, um</orth>
+					</form>
+					<gramGrp>
+						<pos>adj</pos>
+					</gramGrp>
+					<def>pliant, flexible</def>
+				</entry>
+				<entry id_text="g.nosco">
+					<form>
+						<orth>nosco, ere, novi, notus</orth>
+					</form>
+					<gramGrp>
+						<pos>vb</pos>
+					</gramGrp>
+					<def>learn; <hi rend="italics">perf.</hi> know</def>
+				</entry>
+				<entry id_text="g.ovis">
+					<form>
+						<orth>ovis, is</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>f</gen>
+					</gramGrp>
+					<def>sheep</def>
+				</entry>
+				<entry id_text="g.pastor">
+					<form>
+						<orth>pastor, oris</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>m</gen>
+					</gramGrp>
+					<def>shepherd, herdsman</def>
+				</entry>
+				<entry id_text="g.puto">
+					<form>
+						<orth>puto (1)</orth>
+					</form>
+					<gramGrp>
+					  	<pos>vb</pos>
+					</gramGrp>
+					<def>to think.</def>
+				</entry>
+				<entry id_text="g.saepe">
+					<form>
+						<orth>saepe</orth>
+					</form>
+					<gramGrp>
+						<pos>adv</pos>
+					</gramGrp>
+					<def>often</def>
+				</entry>
+				<entry id_text="g.similis">
+					<form>
+						<orth>similis, e</orth>
+					</form>
+					<gramGrp>
+						<pos>adj</pos>
+					</gramGrp>
+					<def>similar, like (+<hi rend="italics">dat.</hi> or <hi rend="italics">gen.</hi>)</def>
+				</entry>
+				<entry id_text="g.soleo">
+					<form>
+						<orth>soleo, ere, itus sum</orth>
+					</form>
+					<gramGrp>
+						<pos>vb</pos>
+					</gramGrp>
+					<def>be accustomed</def>
+				</entry>
+				<entry id_text="g.stultus">
+					<form>
+						<orth>stultus, a, um</orth>
+					</form>
+					<gramGrp>
+						<pos>adj</pos>
+					</gramGrp>
+					<def>foolish</def>
+				</entry>
+				<entry id_text="g.tener">
+					<form>
+						<orth>tener, era, erum</orth>
+					</form>
+					<gramGrp>
+						<pos>adj</pos>
+					</gramGrp>
+					<def>soft, delicate, tender</def>
+				</entry>
+				<entry id_text="g.verus">
+					<form>
+						<orth>verus, a, um</orth>
+					</form>
+					<gramGrp>
+						<pos>adj</pos>
+					</gramGrp>
+					<def>true</def>
+				</entry>
+				<entry id_text="g.viburnum">
+					<form>
+						<orth>viburnum, i</orth>
+					</form>
+					<gramGrp>
+						<pos>n</pos>
+						<gen>n</gen>
+					</gramGrp>
+					<def>small tree, see note on line 25</def>
+				</entry>
+				
+				<link targets="#g.puto #I.19.putavi" />
+				
+				<link targets="#g.stultus #I.20.stultus" />
+				<link targets="#g.similis #I.20.similem #I.22.similes" />
+				<link targets="#g.saepe #I.20.saepe" />
+				<link targets="#g.soleo #I.20.solemus #I.23.solebam #I.25.solent" />
+				
+				<link targets="#g.pastor #I.21.pastores" />
+				<link targets="#g.ovis #I.21.ovium" />
+				<link targets="#g.tener #I.21.teneros" />
+				<link targets="#g.depello #I.21.depellere" />
+				<link targets="#g.fetus #I.21.fetus" />
+				
+				<link targets="#g.canis #I.22.canibus" />
+				<link targets="#g.catulus #I.22.catulos" />
+				<link targets="#g.haedus #I.22.haedos" />
+				
+				<link targets="#g.nosco #I.23.noram" />
+				<link targets="#g.compono #I.23.componere" />
+				
+				<link targets="#g.verus #I.24.verum" />
+				<link targets="#g.effero #I.24.extulit" />
+				
+				<link targets="#g.lentus #I.25.lenta" />
+				<link targets="#g.viburnum #I.25.viburna" />
+				<link targets="#g.cupressus #I.25.cupressi" />
+				
+				<link targets="#g.causa #I.26.causa" />
+			</div>
+			
+			<div n="notes" xml:lang="en">
+				<note place="foot" anchored="false" target="#I.19" type="editorial" id_text="I.19.n">
+					<foreign xml:lang="la" rend="italics">urbem</foreign>: An apparent non sequitur, or is it?  Has the power of Rome itself become divine?
+				</note>
+				<note place="foot" anchored="false" target="#I.26" type="editorial" id_text="I.26.n">
+					<foreign xml:lang="la" rend="italics">causa videndi</foreign>: "reason to see".  An unusual construction.  Usually we see gerundive + causa.
+				</note>
+				<note place="foot" anchored="false" target="#I.34" type="editorial" id_text="I.34.n">
+					<foreign xml:lang="la" rend="italics">premeretur</foreign>: the technical term for cheese-making.
+				</note>
+				<link targets="#I.19 #I.19.n" />
+				<link targets="#I.26 #I.26.n" />
+				<link targets="#I.34 #I.34.n" />
+			</div>
+		</body>
+		
+	</text>
+
+</TEI>
