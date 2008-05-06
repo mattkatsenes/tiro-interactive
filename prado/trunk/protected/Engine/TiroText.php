@@ -211,7 +211,7 @@ class TiroText
 	{
 		$this->xml->formatOutput=true;
 		$this->xml->preserveWhiteSpace=true;
-		$this->xml->save($this->xml_file);
+		$this->xml->save($this->xml_path . '/text.xml');
 	}
 	
 	public function calculateIDs()
