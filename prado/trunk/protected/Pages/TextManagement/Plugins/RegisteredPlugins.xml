@@ -12,14 +12,14 @@
 		<desc>Use me to create a definitions list based off this text.</desc>
 		<folder>Definitions</folder>
 		<friendly-url>/{id}/Definitions</friendly-url>
-		<implemented>no</implemented>
+		<implemented>yes</implemented>
 	</plugin>
 	<plugin>
 		<name>Add Notes</name>
 		<desc>Use me to notes to this text.</desc>
 		<folder>Notes</folder>
 		<friendly-url>/{id}/Notes</friendly-url>
-		<implemented>no</implemented>
+		<implemented>yes</implemented>
 	</plugin>
 	<plugin>
 		<name>Add Images</name>
@@ -40,6 +40,6 @@
 		<desc>Take all the information you've created already and display it beautifully.</desc>
 		<folder>Output</folder>
 		<friendly-url>/{id}/Output</friendly-url>
-		<implemented>no</implemented>
+		<implemented>yes</implemented>
 	</plugin>
 </plugins>

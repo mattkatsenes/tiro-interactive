@@ -7,7 +7,7 @@
 <body>
 <hr>
 <pre>
-<%= $this->tiroText->getTextWithAnnotations(); %>
+stuff
 </pre>
 </body>
 </html>
