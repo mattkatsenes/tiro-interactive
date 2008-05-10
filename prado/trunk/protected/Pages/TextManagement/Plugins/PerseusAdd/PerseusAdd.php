@@ -93,7 +93,11 @@ class PerseusAdd extends TPage
 	public function confirmChunk($chunk_id)
 	{
 		if($this->IsPostBack)
+		{
 			$this->addChunk($chunk_id);
+			$this->Response->redirect($this->Application->Request->ApplicationUrl . '/' . $_GET['id']);
+			
+		}
 		else
 		{
 			$this->ChoicesMultiView->ActiveView = $this->ChunkView;
