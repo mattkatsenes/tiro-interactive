@@ -22,7 +22,7 @@
 		<div id="title">
 			<xsl:value-of select="$title" />
 		</div>
-		<div id="author">by <xsl:value-of select="$author" />; ed. <xsl:value-of select="$editor" />;
+		<div id="author">ed. <xsl:value-of select="$editor" />;
 		<span style="display: none" id="page-lines"> Lines: <span class="line-index" id="start-line"><xsl:value-of select="$startLine"/></span>-<span class="line-index" id="end-line"><xsl:value-of select="$lastLine"/></span></span>
 		</div>
 	</xsl:template>
@@ -56,7 +56,7 @@
 				<xsl:value-of select="substring-after(@who,'#')"/>
 			</xsl:variable>
 			<xsl:variable name="speaker_name">
-				<xsl:value-of select="//role[@xml:id=$speaker_id]"/>
+				<xsl:value-of select="//role[@id_text=$speaker_id]"/>
 			</xsl:variable>
 			<span class="speaker">
 				<xsl:value-of select="$speaker_name"/>
@@ -173,14 +173,14 @@
 			<xsl:value-of select="@target" />
 		</xsl:variable>
 		<xsl:variable name="target_number">
-			<xsl:value-of select="number(substring-after($target,'.'))" />
+			<xsl:value-of select="number(substring-after($target,'#'))" />
 		</xsl:variable>
 		
-		<xsl:if test="//l[contains(@n,$target_number)]">
+		<xsl:if test="//l[contains(@id_text,$target_number)]">
 		
 			<div class="note" id="{$target_number}">
 				<span class="note_number">
-					<xsl:value-of select="$target_number" />
+					<xsl:text>*</xsl:text>
 				</span>
 				<xsl:apply-templates />
 			</div>
