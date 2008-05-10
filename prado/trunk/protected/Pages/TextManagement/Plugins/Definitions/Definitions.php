@@ -104,7 +104,7 @@ class Definitions extends TPage
 	   
 		//This is temporary until the page becomes properly object oriented.
         $xml = base64_decode($json['xml']);
-//        $xml = gzuncompress($xml);
+        $xml = gzuncompress($xml);
 		//	Test of xml transfer, to be removed.
 		//	$this->DefinitionAnchor->Controls[]="<![CDATA[". $xml ."]]>";
 			
