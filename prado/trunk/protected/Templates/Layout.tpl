@@ -49,6 +49,7 @@ Welcome,  <%= $this->User->Name %>.  You are logged in as a <%= $this->User->Rol
 		  <com:TListItem Value="Defs" Text="Defs" />
 		  <com:TListItem Value="Notes" Text="Notes"/>
 		  <com:TListItem Value="Images" Text="Images" />
+		  <com:TListItem Value="Output" Text="Output" />
 		</com:TDropDownList>
 	</div>
 	<script type="text/javascript">

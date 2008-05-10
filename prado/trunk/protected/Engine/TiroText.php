@@ -58,6 +58,29 @@ class TiroText
 //		$this->calculateIDs();
 	}
 	
+	/**
+	 * Set the title and editor in the teiHeader portion of the text
+	 *
+	 * @param string $title
+	 * @param string $editor the User's name
+	 */
+	function titleEditorSet($title,$editor)
+	{
+		$titleStmt = $this->xml->getElementsByTagName('titleStmt')->item(0);
+
+		$titleNodeOld = $this->xml->getElementsByTagName('title')->item(0);
+		$titleNodeNew = $this->xml->createElement('title',$title);
+
+		$titleStmt->replaceChild($titleNodeNew,$titleNodeOld);
+		
+		$respStmtNode = $this->xml->createElement('respStmt');
+		$respStmtNode->appendChild($this->xml->createElement('resp','Creation and digitization of the notes and vocabulary.'));
+		$respStmtNode->appendChild($this->xml->createElement('name',$editor));
+		
+		$respStmtNodeOld = $titleStmt->getElementsByTagName('respStmt')->item(0);
+		
+		$titleStmt->replaceChild($respStmtNode,$respStmtNodeOld);		
+	}
 	
 	/**
 	 * Take a {@link PerseusChunk} object and add it to our current TiroText

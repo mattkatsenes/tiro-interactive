@@ -64,6 +64,7 @@ class NewText extends TPage
 		require_once($ABS_PATH . "/protected/Engine/TiroText.php");
 		
 		$text = new TiroText($path);
+		$text->titleEditorSet($newText->title, $this->User->Name);
 		$text->saveText();
 	}
 	
