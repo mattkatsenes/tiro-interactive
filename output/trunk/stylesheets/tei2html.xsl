@@ -20,7 +20,7 @@
 </xsl:variable>
 
 <xsl:variable name="editor">
-	<xsl:value-of select="//editor" />
+	<xsl:value-of select="//respStmt/name" />
 </xsl:variable>
 
 
