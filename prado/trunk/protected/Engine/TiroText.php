@@ -20,6 +20,7 @@ class TiroText
 	 * String for the path to the XML files.
 	 */	
 	public $xml_path;
+	public $xml_file;
 	
 	/*
 	 * Array holding TiroAnnotation objects.
@@ -42,6 +43,7 @@ class TiroText
 		}
 		
 		$this->xml_path = $path;
+		$this->xml_file = $path . '/text.xml';
 		
 		if(file_exists($path . '/def.xml'))
 			$this->loadAnnotations('def.xml');
@@ -211,7 +213,7 @@ class TiroText
 	{
 		$this->xml->formatOutput=true;
 		$this->xml->preserveWhiteSpace=true;
-		$this->xml->save($this->xml_path . '/text.xml');
+		$this->xml->save($this->xml_file);
 	}
 	
 	public function calculateIDs()

@@ -35,7 +35,7 @@ function onLoad()
 				$this->localNotes->loadTemplate("notes","note","link");
 				$this->localNotes->saveText();
 			}
-			$this->LatinText->Controls[0] = $this->innerTextProcessing($this->tiroText);
+//			$this->LatinText->Controls[0] = $this->innerTextProcessing($this->tiroText);
 			
 		if(!$this->IsPostBack)
 		{

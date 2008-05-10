@@ -48,7 +48,7 @@ class NewText extends TPage
 		$this->dirSetup($newText);
 		
 		$newText->save();
-		$this->Response->redirect("index.php");
+		$this->Response->redirect('index.php/'.$newText->id);
 	}
 	
 	/**
