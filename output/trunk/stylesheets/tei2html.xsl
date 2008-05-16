@@ -44,7 +44,7 @@
 			<xsl:call-template name="title_author" />
 			
 			<div id="text">
-				<xsl:apply-templates select="text/body/*[@n!='glossary' and @n!='notes']" />
+				<xsl:apply-templates select="text/body/*[@n!='glossary' and @n!='notes' or not(@n)]" />
 			</div>
 			
 			<div id="marginalia">
