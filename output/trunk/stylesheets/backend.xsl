@@ -176,7 +176,7 @@
 			<xsl:value-of select="number(substring-after($target,'#'))" />
 		</xsl:variable>
 		
-		<xsl:if test="//l[contains(@id_text,$target_number)]">
+		<xsl:if test="//*[contains(@id_text,$target_number)]">
 		
 			<div class="note" id="{$target_number}">
 				<span class="note_number">
