@@ -24,11 +24,11 @@ $(Box).setStyle({
 	position:"absolute", 
 	top:	$('guts').offsetTop-1, 
 	left:	$('guts').offsetLeft+1,
-	width: $('guts').clientWidth+7,
+	width: "500",
 	height: $('guts').clientHeight-11,
 	overflow: "auto"
 	});
-$('<%= $this->NotesAnchor->ClientID %>').value = "<b>" + value + "</b>: ";	
+$('<%= $this->NotesAnchor->ClientID %>').value = value + ": ";	
 
 if ($('close_button'))
 	$('close_button').remove();
