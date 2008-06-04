@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<TEI>
+	<teiHeader>
+		<fileDesc>
+			<titleStmt>
+				<title>Aeneid 1.1</title>
+				<author/>
+				<respStmt><resp>Creation and digitization of the notes and vocabulary.</resp><name>matt</name></respStmt>
+			</titleStmt>
+			<publicationStmt>
+				<p>Prepared for publication using Tiro Interactive (http://www.tiro-interactive.org)</p>
+			</publicationStmt>
+			<sourceDesc>
+				<bibl>Source of the text.</bibl>
+			</sourceDesc>
+		</fileDesc>
+		<encodingDesc>
+			<refsDecl/>
+		</encodingDesc>
+	</teiHeader>
+	<text>
+		<body id_text="0">
+		<div1 type="Book" n="1" org="uniform" sample="complete" id_text="1">
+			<milestone ed="p" n="1" unit="card" id_text="2"/>
+				<l id_text="3">
+					<term id_text="4" defined="true">Arma</term>
+					<term id_text="5">virumque</term>
+					<term id_text="6">cano,</term>
+					<term id_text="7">Troiae</term>
+					<term id_text="8">qui</term>
+					<term id_text="9">primus</term>
+					<term id_text="10">ab</term>
+					<term id_text="11">oris</term>
+				</l>
+				<l id_text="12">
+					<term id_text="13">Italiam,</term>
+					<term id_text="14">fato</term>
+					<term id_text="15">profugus,</term>
+					<term id_text="16">Laviniaque</term>
+					<term id_text="17">venit</term>
+				</l>
+				<l id_text="18">
+					<term id_text="19">litora,</term>
+					<term id_text="20">multum</term>
+					<term id_text="21">ille</term>
+					<term id_text="22">et</term>
+					<term id_text="23">terris</term>
+					<term id_text="24">iactatus</term>
+					<term id_text="25">et</term>
+					<term id_text="26">alto</term>
+				</l>
+				<l id_text="27">
+					<term id_text="28">vi</term>
+					<term id_text="29" defined="true">superum</term>
+					<term id_text="30">saevae</term>
+					<term id_text="31">memorem</term>
+					<term id_text="32">Iunonis</term>
+					<term id_text="33">ob</term>
+					<term id_text="34">iram;</term>
+				</l>
+				<l n="5" id_text="35">
+					<term id_text="36">multa</term>
+					<term id_text="37">quoque</term>
+					<term id_text="38">et</term>
+					<term id_text="39" noted="true">bello</term>
+					<term id_text="40">passus,</term>
+					<term id_text="41">dum</term>
+					<term id_text="42">conderet</term>
+					<term id_text="43">urbem,</term>
+				</l>
+				<l id_text="44">
+					<term id_text="45">inferretque</term>
+					<term id_text="46">deos</term>
+					<term id_text="47">Latio,</term>
+					<term id_text="48">genus</term>
+					<term id_text="49">unde</term>
+					<term id_text="50" noted="true">Latinum,</term>
+				</l>
+				<l id_text="51">
+					<term id_text="52">Albanique</term>
+					<term id_text="53">patres,</term>
+					<term id_text="54" defined="true">atque</term>
+					<term id_text="55">altae</term>
+					<term id_text="56">moenia</term>
+					<term id_text="57">Romae.</term>
+				</l>
+			</div1>
+		</body>
+	</text>
+</TEI>
