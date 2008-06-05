@@ -72,7 +72,7 @@
  * Turn off all caching application-wide.
  *
  */
-	//Configure::write('Cache.disable', true);
+	Configure::write('Cache.disable', true);
 /**
  * Enable cache checking.
  *
@@ -170,8 +170,8 @@
  * The classname and database used in CakePHP's
  * access control lists.
  */
-	Configure::write('Acl.classname', 'DB_ACL');
-	Configure::write('Acl.database', 'default');
+//	Configure::write('Acl.classname', 'DB_ACL');
+//	Configure::write('Acl.database', 'default');
 /**
  * Cache Engine Configuration
  *
@@ -225,5 +225,5 @@
  *								)
  * 					);
  */
-	Cache::config('default', array('engine' => 'File'));
+//	Cache::config('default', array('engine' => 'File'));
 ?>
