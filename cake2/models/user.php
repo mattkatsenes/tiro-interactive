@@ -14,17 +14,17 @@ class User extends AppModel {
 						'joinTable' => 'groups_users',
 						'foreignKey' => 'user_id',
 						'associationForeignKey' => 'group_id',
-						'unique' => true,
-						'conditions' => '',
-						'fields' => '',
-						'order' => '',
-						'limit' => '',
-						'offset' => '',
-						'finderQuery' => '',
-						'deleteQuery' => '',
-						'insertQuery' => ''
+						'unique' => true
 			)
 	);
+
+	var $hasMany = array(
+			'Project' => array('className' => 'Project',
+								'foreignKey' => 'user_id',
+								'dependent' => true
+			)
+	);
+	
 
 }
 ?>
