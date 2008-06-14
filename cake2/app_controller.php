@@ -12,16 +12,6 @@ class AppController extends Controller {
 	var $components = array('DarkAuth');
 	
 	/**
-	 * Runs Before whole app.
-	 *
-	 * Includes Auth & ACL.
-	 */
-	function beforeFilter() {
-		//        $access = $this->Acl->check($user_id, $page, 'read');
-	}
-
-
-	/**
 	 * Copied from DarkAuth
 	 */
 	function _login(){

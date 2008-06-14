@@ -24,31 +24,40 @@ class UsersController extends AppController {
 	function add() {
 		if (!empty($this->data)) {
 			/**
-			 * Each teacher user gets a group of the form: group_username
+			 * Check Password-confirmation
 			 */
-			$newgroup = array('Group' => array(
-								'name' => 'group_'.$this->data['User']['username']));
-			$this->User->Group->save($newgroup);
-
-			/**
-			 * Add this teacher to its own group, and the Teacher group (2)
-			 */
-			$this->data['Group']['Group'][] = $this->User->Group->getLastInsertId();
-			$this->data['Group']['Group'][] = '2';
+			if($this->data['User']['password'] != $this->data['User']['password_confirm']) {
+				$this->Session->setFlash(__('Your passwords do not match.  Please confirm.', true));
+			}
 			
-			/**
-			 * Hash the password.
-			 */
-			$old_pass = $this->data['User']['password'];
-			$this->data['User']['password'] = DarkAuthComponent::hasher($this->data['User']['password']);
+			else {
+				/**
+				 * Each teacher user gets a group of the form: group_username
+				 */
+				$newgroup = array('Group' => array(
+								'name' => 'group_'.$this->data['User']['username']));
+				$this->User->Group->save($newgroup);
 
-			$this->User->create();
-			if ($this->User->save($this->data)) {
-				$this->Session->setFlash(__('The User has been saved', true));
-				$this->redirect(array('action'=>'index'));
-			} else {
-				$this->data['User']['password'] = $old_pass;
-				$this->Session->setFlash(__('This name is already taken. Please, choose another.', true));
+				/**
+				 * Add this teacher to its own group, and the Teacher group (2)
+				 */
+				$this->data['Group']['Group'][] = $this->User->Group->getLastInsertId();
+				$this->data['Group']['Group'][] = '2';
+					
+				/**
+				 * Hash the password.
+				 */
+				$old_pass = $this->data['User']['password'];
+				$this->data['User']['password'] = DarkAuthComponent::hasher($this->data['User']['password']);
+
+				$this->User->create();
+				if ($this->User->save($this->data)) {
+					$this->Session->setFlash(__('The User has been saved', true));
+					$this->redirect(array('action'=>'index'));
+				} else {
+					$this->data['User']['password'] = $old_pass;
+					$this->Session->setFlash(__('This name is already taken. Please, choose another.', true));
+				}
 			}
 		}
 	}
