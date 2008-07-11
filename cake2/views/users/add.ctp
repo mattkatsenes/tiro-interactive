@@ -13,3 +13,4 @@
 	
 	</fieldset>
 <?php echo $form->end('Submit');?>
+</div>

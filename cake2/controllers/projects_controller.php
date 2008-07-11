@@ -2,15 +2,21 @@
 class ProjectsController extends AppController {
 
 	var $name = 'Projects';
-	var $helpers = array('Html', 'Form',);
+	var $helpers = array('Html', 'Form','Javascript','Ajax');
 	var $components = array('TiroText');
 	var $_DarkAuth;
 	
+	/**
+	 * Projects Index
+	 * 
+	 * Shows a registered user his projects.
+	 */
 	function index() {
-		$this->Project->recursive = 1;
-		$user = $this->User->read(null,4);
-		$projects = $user['Project'];
-		$this->set('projects',$projects);
+		$this->User->recursive = 1;
+		$user_id = $this->DarkAuth->current_user['User']['id'];
+		$user = $this->User->find(array('id' => $user_id));
+		
+		$this->set('projects',$user['Project']);
 	}
 
 	function view($id = null) {
@@ -21,18 +27,22 @@ class ProjectsController extends AppController {
 		
 		$project = $this->Project->read(null, $id);
 
-		if($project['User'] != $this->DarkAuth->getUserInfo() )
-		{
+		if($project['User'] != $this->DarkAuth->getUserInfo() ) {
 			$this->Session->setFlash("Invalid Project.");
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set(compact('project'));
 		
+		$this->TiroText->loadText($id);
+		$this->set('pretty',$this->TiroText->getTextPretty());
+		$this->set(compact('project'));
 	}
 
 	function add() {
 		if (!empty($this->data)) {
 			$this->Project->create();
+			$user = $this->DarkAuth->getUserInfo();
+			$this->data['Project']['user_id'] = $user['id'];
+			
 			if ($this->Project->save($this->data)) {
 				$this->Session->setFlash(__('The Project has been saved', true));
 				$this->redirect(array('action'=>'index'));
@@ -40,11 +50,9 @@ class ProjectsController extends AppController {
 				$this->Session->setFlash(__('The Project could not be saved. Please, try again.', true));
 			}
 		}
-		$users = $this->Project->User->find('list');
-		$this->set(compact('users'));
 	}
 
-	function edit($id = null) {
+	function edit($id = null,$latin_text = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Project', true));
 			$this->redirect(array('action'=>'index'));
@@ -60,8 +68,46 @@ class ProjectsController extends AppController {
 		if (empty($this->data)) {
 			$this->data = $this->Project->read(null, $id);
 		}
-		$users = $this->Project->User->find('list');
-		$this->set(compact('users'));
+
+		$this->TiroText->loadText($id);
+		
+		$this->set('sections',$this->TiroText->getSectionsPlain());
+	}
+	
+	/**
+	 * Copy & Paste in Latin Text
+	 *
+	 * @param int $id
+	 */
+	function textAdd($id = null) {
+		$this->layout = 'ajax';
+		if(!$id) {
+			$this->Session->setFlash(__('Invalid id for Project', true));
+			$this->redirect(array('action'=>'index'));
+		}
+		
+		$project = $this->Project->read(null, $id);
+		
+		if($project['User'] != $this->DarkAuth->getUserInfo() ) {
+			$this->Session->setFlash("Invalid Project.");
+			$this->redirect(array('action'=>'index'));
+		}
+		
+		$this->TiroText->loadText($id);
+		
+		if(!empty($_POST['value'])) {
+			$this->TiroText->deleteSection($_POST['editorId']);
+			$newId = $this->TiroText->addRawText($_POST['value']);
+		}
+		
+		$section = $this->TiroText->getSection($newId);
+		
+		$this->set(compact('section'));
+		$this->set('id',$newId);
+	}
+	
+	function perseusAdd() {
+		//add text from Perseus
 	}
 
 	function delete($id = null) {

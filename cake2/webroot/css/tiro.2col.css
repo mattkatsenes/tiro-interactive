@@ -246,3 +246,16 @@ p.error em {
 	background-color: green;
 	color: #FFF;
 }
+
+/* TiroText Stylings */
+.original_div {
+	padding: 0.8em;
+}
+
+table.options {
+	padding: 4px;
+}
+
+table.options td {
+	border-bottom: 2px dotted;
+}
