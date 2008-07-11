@@ -2,7 +2,7 @@
 /**
  * AppController for Tiro
  *
- * Includes ACL stuff?
+ * Includes Auth stuff.
  *
  * @author Matthew Katsenes
  * @package tiro

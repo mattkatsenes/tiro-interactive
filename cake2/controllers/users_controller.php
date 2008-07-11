@@ -13,14 +13,33 @@ class UsersController extends AppController {
 		$this->set('users', $this->paginate());
 	}
 
+	/**
+	 * View user info.
+	 * 
+	 * Available only to Root or the user himself.
+	 *
+	 * @param int $id
+	 */
 	function view($id = null) {
-		if (!$id) {
+		/**
+		 * Check that the record exists.
+		 */
+		if (!$id || count($this->User->find(array('id' => $id))) == 0) {
 			$this->Session->setFlash(__('Invalid User.', true));
 			$this->redirect(array('action'=>'index'));
 		}
-		$this->set('user', $this->User->read(null, $id));
+		
+		$user = $this->User->read(null, $id);
+		
+		$this->DarkAuth->requiresAuth('Root','group_'.$user['User']['username']);
+		$this->set(compact('user'));
 	}
 
+	/**
+	 * Create a new user.
+	 * 
+	 * Open to all.
+	 */
 	function add() {
 		if (!empty($this->data)) {
 			/**
@@ -62,7 +81,17 @@ class UsersController extends AppController {
 		}
 	}
 
+	/**
+	 * Change User Data
+	 * 
+	 * Restricted to Root and group_username
+	 * 
+	 * @param int $id
+	 */
 	function edit($id = null) {
+		$user = $this->User->read(null, $id);	
+		$this->DarkAuth->requiresAuth('Root','group_'.$user['User']['username']);
+		
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid User', true));
 			$this->redirect(array('action'=>'index'));
@@ -83,6 +112,8 @@ class UsersController extends AppController {
 	}
 
 	function delete($id = null) {
+		$this->DarkAuth->requiresAuth('Root');
+		
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for User', true));
 			$this->redirect(array('action'=>'index'));
